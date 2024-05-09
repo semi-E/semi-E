@@ -56,6 +56,39 @@ public class ProfessorDAO {
 		return list;
 	}
 	
+	//loginProfessor
+	//Param:id,pw
+	//반환값:HashMap<String, Object>
+	public static HashMap<String, Object>loginProfessor(int id , String pw)throws Exception{
+		HashMap<String, Object>resultMap=null;
+	//DB접근
+	Class.forName("org.mariadb.jdbc.Driver");
+	Connection conn = DBHelper.getConnection();
+
+	
+	String sql = "SELECT professor_pw_history.professor_no professor_pw_history.pw "
+			+ "FROM professor,professor_pw_history "
+			+ "WHERE professor_pw_history.professor_no= = ? "
+			+ "AND pw = ?";
+	PreparedStatement stmt = conn.prepareStatement(sql);
+	stmt.setInt(1, id);
+	stmt.setString(2,pw);
+	ResultSet rs=stmt.executeQuery();
+	
+	if(rs.next()) {
+		
+		resultMap = new HashMap<String,Object>();
+		resultMap.put("professorNo",rs.getInt("professorNo"));
+		//디버깅
+		System.out.println(rs.getInt("professorNo"));
+		
+	}
+	//DB자원 반납
+	conn.close();
+	return resultMap;
+	}
+
+	
 	public static void main(String[] args) throws Exception {
 		//디버깅
 		System.out.println(selectProfessorList(0, "", "", 0, 5));

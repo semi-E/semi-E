@@ -90,4 +90,39 @@ public class AdminDAO {
 		
 	}
 
+	//loginAdmin
+	//Param:id,pw
+	//반환값:HashMap<String, Object>
+	public static HashMap<String, Object>loginAdmin(int id , String pw)throws Exception{
+		HashMap<String, Object>resultMap=null;
+		//DB접근
+		Class.forName("org.mariadb.jdbc.Driver");
+		Connection conn = DBHelper.getConnection();
+
+		
+		String sql = "SELECT admin_pw_history.admin_no , admin_pw_history.pw ,grade "
+				+ "FROM admin,admin_pw_history "
+				+ "WHERE admin.admin_no = admin_pw_history.admin_no AND admin_pw_history.admin_no= ? "
+				+ "AND admin_pw_history.pw =? ";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, id);
+		stmt.setString(2,pw);
+		ResultSet rs=stmt.executeQuery();
+		
+		if(rs.next()) {
+			
+			resultMap = new HashMap<String,Object>();
+			resultMap.put("adminNo",rs.getInt("admin_no"));
+			resultMap.put("grade",rs.getString("grade"));
+			
+			//디버깅
+			System.out.println(rs.getInt("admin_no"));
+			System.out.println(rs.getString("grade"));
+		}
+		//DB자원 반납
+		conn.close();
+		return resultMap;
+		}
+
+	
 }
