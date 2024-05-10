@@ -114,7 +114,7 @@ public class AdminDAO {
 		Connection conn = DBHelper.getConnection();
 
 		
-		String sql = "SELECT admin_pw_history.admin_no , admin_pw_history.pw ,grade "
+		String sql = "SELECT admin_pw_history.admin_no adminNo , admin_pw_history.pw ,grade "
 					+ "FROM admin,admin_pw_history "
 					+ "WHERE admin.admin_no = admin_pw_history.admin_no AND admin_pw_history.admin_no= ? "
 					+ "AND admin_pw_history.pw =? ";
@@ -130,11 +130,11 @@ public class AdminDAO {
 		if(rs.next()) {
 			
 			resultMap = new HashMap<String,Object>();
-			resultMap.put("adminNo",rs.getInt("admin_no"));
+			resultMap.put("adminNo",rs.getInt("adminNo"));
 			resultMap.put("grade",rs.getString("grade"));
 			
 			//디버깅
-			System.out.println(rs.getInt("admin_no"));
+			System.out.println(rs.getInt("adminNo"));
 			System.out.println(rs.getString("grade"));
 		}
 		//DB자원 반납
