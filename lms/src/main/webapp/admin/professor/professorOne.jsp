@@ -42,7 +42,7 @@
 				<td><%=m.get("gender") %></td>
 			</tr>
 			<tr>
-				<th>생일</th>	
+				<th>생년월일</th>	
 				<td><%=m.get("birthday") %></td>
 			</tr>
 			<tr>

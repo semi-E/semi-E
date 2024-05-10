@@ -127,7 +127,7 @@ public class ProfessorDAO {
 			map.put("department", rs.getString("department"));
 			map.put("gender", rs.getString("gender"));
 			map.put("birthday", rs.getString("birthday"));
-			map.put("phone", rs.getInt("phone"));
+			map.put("phone", rs.getString("phone"));
 			map.put("address", rs.getString("address"));
 			map.put("state", rs.getString("state"));
 			map.put("email", rs.getString("email"));
