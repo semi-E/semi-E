@@ -111,6 +111,7 @@ public class ProfessorDAO {
 	//교수 상세보기
 	//파라미터 : int professorNo
 	//반환 값 : HashMap<String, Object>
+	//사용 페이지 : /admin/professor/professorOne.jsp, /professor/myPage.jsp, /professor/updateMyPageForm.jsp
 	public static HashMap<String, Object> selectProfessor(int professorNo) throws Exception{
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String sql = null;
@@ -193,6 +194,30 @@ public class ProfessorDAO {
 		}
 		
 		return cnt;
+	}
+	
+	//교수 마이페이지 수정
+	//파라미터 : int professorNo, String gender, String birthday, String phone, String email
+	//반환 값 : int
+	//사용 페이지 : /professor/updateMyPageAction.jsp
+	public static int updateProfessor(int professorNo, String gender, String birthday, String phone, String email) throws Exception {
+		int row = 0;
+		String sql = null;
+		sql = "UPDATE professor "
+				+ "SET gender = ?, birthday = ?, phone = ?, email = ? "
+				+ "WHERE professor_no = ?";
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, gender);
+		stmt.setString(2, birthday);
+		stmt.setString(3, phone);
+		stmt.setString(4, email);
+		stmt.setInt(5, professorNo);
+		System.out.println(stmt);
+		row = stmt.executeUpdate();
+		
+		return row;
 	}
 	
 	public static void main(String[] args) throws Exception {

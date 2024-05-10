@@ -18,7 +18,7 @@
 </head>
 <body>
 	<h1>마이페이지 수정</h1>
-	<form method="post" action="/lms/admin/professor/updateProfessorAction.jsp">
+	<form method="post" action="/lms/professor/updateMyPageAction.jsp">
 		<table border="1">
 			<tr>
 				<th>번호</th>
@@ -66,11 +66,11 @@
 			</tr>
 			<tr>
 				<th>생년월일</th>	
-				<td><input type="date" value="<%=m.get("birthday") %>"></td>
+				<td><input type="date" name="birthday" value="<%=m.get("birthday") %>" required></td>
 			</tr>
 			<tr>
 				<th>핸드폰</th>
-				<td><input type="text" value="<%=m.get("phone") %>"></td>
+				<td><input type="text" name="phone" value="<%=m.get("phone") %>"></td>
 			</tr>
 			<tr>
 				<th>상태</th>
@@ -78,7 +78,7 @@
 			</tr>
 			<tr>
 				<th>이메일</th>
-				<td><input type="text" value="<%=m.get("email") %>"></td>
+				<td><input type="text" name="email" value="<%=m.get("email") %>"></td>
 			</tr>
 			<tr>
 				<th>연구실</th>
