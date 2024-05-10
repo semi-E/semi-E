@@ -21,7 +21,7 @@ public class ProfessorDAO {
 		if(professorNo != 0) {
 			sql = "SELECT professor_no professorNo, name, department, state "
 					+ "FROM professor "
-					+ "WHERE professor_no LIKE '%" + professorNo +"%' AND name LIKE ? AND department LIKE ? "
+					+ "WHERE professor_no LIKE '%" + professorNo +"%' AND department LIKE ? AND name LIKE ? "
 					+ "LIMIT ?, ? ";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, "%" + department + "%");
@@ -31,11 +31,11 @@ public class ProfessorDAO {
 		} else {
 			sql = "SELECT professor_no professorNo, name, department, state "
 					+ "FROM professor "
-					+ "WHERE name LIKE ? AND department LIKE ? "
+					+ "WHERE department LIKE ? AND name LIKE ? "
 					+ "LIMIT ?, ?";
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, "%" + name + "%");
-			stmt.setString(2, "%" + department + "%");
+			stmt.setString(1, "%" + department + "%");
+			stmt.setString(2, "%" + name + "%");
 			stmt.setInt(3, startRow);
 			stmt.setInt(4, rowPerPage);
 		}
@@ -87,10 +87,116 @@ public class ProfessorDAO {
 	conn.close();
 	return resultMap;
 	}
-
+	
+	//교수 등록
+	//파라미터 : int professorNo, String name, String department
+	//반환 값 : int
+	//사용페이지 : /admin/professor/addProfessorAction.jsp
+	public static int insertProfessor(int professorNo, String name, String department) throws Exception {
+		int row = 0;
+		String sql = null;
+		sql = "INSERT INTO professor (professor_no, name, department) VALUES(?, ?, ?)";
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, professorNo);
+		stmt.setString(2, name);
+		stmt.setString(3, department);
+		System.out.println(stmt);
+		row = stmt.executeUpdate();
+		
+		return row;
+	}
+	
+	//교수 상세보기
+	//파라미터 : int professorNo
+	//반환 값 : HashMap<String, Object>
+	public static HashMap<String, Object> selectProfessor(int professorNo) throws Exception{
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		String sql = null;
+		sql = "SELECT professor_no professorNo, name, department, gender, birthday, phone, address, state, email, office_no officeNo "
+				+ "FROM professor "
+				+ "WHERE professor_no = ? ";
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, professorNo);
+		System.out.println(stmt);
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			map.put("professorNo", rs.getInt("professorNo"));
+			map.put("name", rs.getString("name"));
+			map.put("department", rs.getString("department"));
+			map.put("gender", rs.getString("gender"));
+			map.put("birthday", rs.getString("birthday"));
+			map.put("phone", rs.getInt("phone"));
+			map.put("address", rs.getString("address"));
+			map.put("state", rs.getString("state"));
+			map.put("email", rs.getString("email"));
+			map.put("officeNo", rs.getString("officeNo"));
+			
+		}
+		
+		return map;
+	}
+	
+	//교수 정보 수정
+	//파라미터 : int professorNo, String department, String state, String officeNo
+	//반환 값 : int
+	//사용 페이지 : /admin/professor/updateProfessorAction.jsp
+	public static int updateProfessor(int professorNo, String department, String state, String officeNo) throws Exception {
+		int row = 0;
+		String sql = null;
+		sql = "UPDATE professor "
+				+ "SET department = ?, state = ?, office_no = ? "
+				+ "WHERE professor_no = ?";
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, department);
+		stmt.setString(2, state);
+		stmt.setString(3, officeNo);
+		stmt.setInt(4, professorNo);
+		System.out.println(stmt);
+		row = stmt.executeUpdate();
+		
+		return row;
+	}
+	
+	//교수 인원 카운트
+	//파라미터 : int professorNo, String department, String name
+	//반환 값 : int
+	//사용 페이지 : admin/professor/professorList.jsp
+	public static int selectProfessorCount(int professorNo, String department, String name) throws Exception {
+		int cnt = 0;
+		String sql = null;
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = null;
+		if(professorNo != 0) {
+			sql = "SELECT count(*) cnt "
+					+ "FROM professor "
+					+ "WHERE professor_no LIKE '%" + professorNo +"%' AND department LIKE ? AND name LIKE ? ";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" + department + "%");
+			stmt.setString(2, "%" + name + "%");
+		} else {
+			sql = "SELECT count(*) cnt "
+					+ "FROM professor "
+					+ "WHERE department LIKE ? AND name LIKE ? ";
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" + department + "%");
+			stmt.setString(2, "%" + name + "%");
+		}
+		//디버깅
+		System.out.println(stmt);
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			cnt = rs.getInt("cnt");
+		}
+		
+		return cnt;
+	}
 	
 	public static void main(String[] args) throws Exception {
 		//디버깅
-		System.out.println(selectProfessorList(0, "", "", 0, 5));
+		//System.out.println(selectProfessorList(0, "", "", 0, 5));
+		//System.out.println(selectProfessorCountint(202410, "", ""));
 	}
 }
