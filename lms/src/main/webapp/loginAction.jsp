@@ -13,7 +13,7 @@
         System.out.println(pw + "<--loginAction.jsp Param pw");
 
         // 관리자 로그인 DAO
-        HashMap<String, Object> loginAdmin = AdminDAO.loginAdmin(id, pw);
+        HashMap<String, Object> loginAdmin = AdminDAO.selectAdmin(id, pw);
         if (loginAdmin != null) {
             // 관리자 로그인 성공
             System.out.println("관리자 로그인 성공");
@@ -23,7 +23,7 @@
         }
 
         // 학생 로그인 DAO
-        HashMap<String, Object> loginStudent = StudentDAO.loginStudent(id, pw);
+        HashMap<String, Object> loginStudent = StudentDAO.selectStudent(id, pw);
         if (loginStudent != null) {
             // 학생 로그인 성공
             System.out.println("학생 로그인 성공");
@@ -33,7 +33,7 @@
         }
 
         // 교수 로그인 DAO
-        HashMap<String, Object> loginProfessor = ProfessorDAO.loginProfessor(id, pw);
+        HashMap<String, Object> loginProfessor = ProfessorDAO.selectProfessor(id, pw);
         if (loginProfessor != null) {
             // 교수 로그인 성공
             System.out.println("교수 로그인 성공");
