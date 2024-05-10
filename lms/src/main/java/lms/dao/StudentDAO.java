@@ -168,17 +168,21 @@ public class StudentDAO {
 		return row;
 	
 	}
-	//loginStudent
-	//Param:id,pw
+	//학생 로그인
+	//파라미터: int id, Strung pw
 	//반환값:HashMap<String, Object>
-	public static HashMap<String, Object>loginStudent(int id , String pw)throws Exception{
+	public static HashMap<String, Object>selectStudent(int id , String pw)throws Exception{
 		HashMap<String, Object>resultMap=null;
 		//DB접근
 		Class.forName("org.mariadb.jdbc.Driver");
 		Connection conn = DBHelper.getConnection();
 
 		
-		String sql = "SELECT student_no studentNo FROM student WHERE student_no = ? AND pw = ?";
+		String sql = "SELECT student_pw_history.student_no ,student_pw_history.pw  "
+					+ "FROM student,student_pw_history "
+					+ "WHERE student.student_no = student_pw_history.student_no "
+					+ "AND student_pw_history.student_no = ? "
+					+ "AND student_pw_history.pw = ? " ;
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, id);
 		stmt.setString(2,pw);

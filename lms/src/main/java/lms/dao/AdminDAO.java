@@ -103,10 +103,11 @@ public class AdminDAO {
 		return row;
 	}
 
-	//loginAdmin
-	//Param:id,pw
+	//관리자 로그인
+	//파라미터 : int id, String pw
 	//반환값:HashMap<String, Object>
-	public static HashMap<String, Object>loginAdmin(int id , String pw)throws Exception{
+	//사용 페이지 :/lms/loginAction.jsp
+	public static HashMap<String, Object>selectAdmin(int id , String pw)throws Exception{
 		HashMap<String, Object>resultMap=null;
 		//DB접근
 		Class.forName("org.mariadb.jdbc.Driver");
@@ -114,9 +115,9 @@ public class AdminDAO {
 
 		
 		String sql = "SELECT admin_pw_history.admin_no , admin_pw_history.pw ,grade "
-				+ "FROM admin,admin_pw_history "
-				+ "WHERE admin.admin_no = admin_pw_history.admin_no AND admin_pw_history.admin_no= ? "
-				+ "AND admin_pw_history.pw =? ";
+					+ "FROM admin,admin_pw_history "
+					+ "WHERE admin.admin_no = admin_pw_history.admin_no AND admin_pw_history.admin_no= ? "
+					+ "AND admin_pw_history.pw =? ";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		
 		//디버깅
