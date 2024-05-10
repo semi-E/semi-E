@@ -6,7 +6,7 @@
 <%@ page import = "lms.dao.*" %>    
        
 <%
-	int studentNo = request.getParameter("studentNo");
+	int studentNo = Integer.parseInt(request.getParameter("studentNo"));
 	String department = request.getParameter("department");
 	String state = request.getParameter("state"); 
 	
@@ -23,30 +23,9 @@
 	
 		
 %>    
+      
     
     
     
     
     
-    
-    
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-	
-	
-
-
-
-
-
-
-
-</body>
-</html>

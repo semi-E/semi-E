@@ -4,22 +4,33 @@
 <%@page import="java.sql.*"%>    
 <%@ page import = "lms.dao.*"%>      
 <%
-	
-	
-	int studentNo = 0;
-	String studentNoParam = request.getParameter("studentNo");
-	if(studentNoParam != null && !studentNoParam.isEmpty()) {
-	    studentNo = Integer.parseInt(studentNoParam);
+	int currentPage = 0;
+	if(request.getParameter("currentPage") == null){
+		currentPage = 1;
+	} else {
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
-		
+	String paramstudentNo =request.getParameter("studentNo");	
 	String name = request.getParameter("name");
 	String department = request.getParameter("department");
-	
-	System.out.println(studentNo+"<-----studentNo");
+
+	System.out.println(paramstudentNo+"<-----studentNo");
 	System.out.println(name+"<----name");
 	System.out.println(department+"<----department");
 	
-	int currentPage = 1;
+	if(paramstudentNo == null || paramstudentNo.equals("")){
+		paramstudentNo = "0";
+	}
+	int studentNo = Integer.parseInt(paramstudentNo);
+	
+	if(department == null){
+		department = "";
+	}
+	
+	if(name == null){
+		name = "";
+	}
+	
 	int rowPerPage = 10;
 	int startRow = (currentPage-1)*rowPerPage;
 	
@@ -86,20 +97,6 @@
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
 
 </body>
 </html>

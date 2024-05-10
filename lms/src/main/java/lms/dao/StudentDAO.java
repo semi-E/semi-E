@@ -107,21 +107,23 @@ public class StudentDAO {
 	//반환값 :  ArrayList<HashMap<String,Object>>
 	public static ArrayList<HashMap<String,Object>> selectstudentList(int studentNo, String name, String department, int startRow, int rowPerPage) 
 	        throws Exception {   
-	    Connection conn = DBHelper.getConnection();
+		Connection conn = DBHelper.getConnection();
 	    String sql = "SELECT student_no studentNo, name, department, state "
 	                + "FROM student "
-	                + "WHERE (student_no = ? OR ? = 0) "
-	                + "AND department LIKE ? "
-	                + "AND name LIKE ? "
+	                + "WHERE (? = 0 OR student_no = ?) "
+	                + "AND (? = '' OR department LIKE ?) "
+	                + "AND (? = '' OR name LIKE ?) "
 	                + "LIMIT ?, ?";
 	    
 	    PreparedStatement stmt = conn.prepareStatement(sql);
 	    stmt.setInt(1, studentNo);
 	    stmt.setInt(2, studentNo);
-	    stmt.setString(3, "%" + department + "%");
-	    stmt.setString(4, "%" + name + "%");
-	    stmt.setInt(5, startRow);
-	    stmt.setInt(6, rowPerPage);
+	    stmt.setString(3, department);
+	    stmt.setString(4, "%" + department + "%");
+	    stmt.setString(5, name);
+	    stmt.setString(6, "%" + name + "%");
+	    stmt.setInt(7, startRow);
+	    stmt.setInt(8, rowPerPage);
 
 	    //디버깅
 	    System.out.println(stmt);
@@ -178,7 +180,7 @@ public class StudentDAO {
 		Connection conn = DBHelper.getConnection();
 
 		
-		String sql = "SELECT student_pw_history.student_no studentNo ,student_pw_history.pw  "
+		String sql = "SELECT student_pw_history.student_no ,student_pw_history.pw  "
 					+ "FROM student,student_pw_history "
 					+ "WHERE student.student_no = student_pw_history.student_no "
 					+ "AND student_pw_history.student_no = ? "
@@ -191,7 +193,7 @@ public class StudentDAO {
 		if(rs.next()) {
 			
 			resultMap = new HashMap<String,Object>();
-			resultMap.put("studentNo",rs.getInt("studentNo"));
+			resultMap.put("professorNo",rs.getInt("studentNo"));
 			//디버깅
 			System.out.println(rs.getInt("studentNo"));	
 		}
