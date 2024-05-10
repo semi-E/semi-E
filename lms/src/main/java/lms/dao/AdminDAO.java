@@ -30,11 +30,17 @@ public class AdminDAO {
 		
 		
 		HashMap<String, Object> resultMap = null;
-		if(rs.next()) {
+		while(rs.next()) {
 			resultMap = new HashMap<String, Object>();
-			resultMap.put("empId", rs.getString("empId"));
-			resultMap.put("empName", rs.getString("empName"));
-			resultMap.put("grade", rs.getInt("grade"));
+			resultMap.put("admin_no", rs.getString("admin_no"));
+			resultMap.put("name", rs.getString("name"));
+			resultMap.put("gender", rs.getString("gender"));
+			resultMap.put("birthday", rs.getString("birthday"));
+			resultMap.put("phone", rs.getString("phone"));
+			resultMap.put("address", rs.getString("address"));
+			resultMap.put("email", rs.getString("email"));
+			resultMap.put("grade", rs.getString("grade"));
+			list.add(resultMap);
 		}
 		
 		conn.close();
@@ -50,9 +56,9 @@ public class AdminDAO {
 									String name ) throws Exception {
 		int row = 0;
 		
-		String sql = "INSERT INTO admin"
-				+ " (admin_no, NAME, grade)"
-				+ " VAlUES (?, ?, ?)";
+		String sql = "INSERT INTO admin "
+				+ "(admin_no, NAME, grade) "
+				+ "VAlUES (?, ?, ?) ";
 		
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = null; 	
@@ -80,8 +86,8 @@ public class AdminDAO {
 	public static int deleteAdmin( int adminNo ) throws Exception {
 		int row = 0;
 		
-		String sql = "DELETE FROM admin"
-				+ " WHERE admin_no= ?" ;
+		String sql = "DELETE FROM admin "
+				+ "WHERE admin_no= ?" ;
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = null; 	
 		stmt = conn.prepareStatement(sql);
@@ -139,7 +145,6 @@ public class AdminDAO {
 		// 파라미터 : String email, int phone, String address, String gender, String birthday
 		// 반환 값 : int
 		// 사용 페이지 : /lms/admin/updateMyPageAction.jsp
-
 		public static int updateAdmin(  String email,
 										int phone,
 										String address,
@@ -147,12 +152,12 @@ public class AdminDAO {
 										String birthday ) throws Exception {
 			int row = 0;
 			
-			String sql = "UPDATE admin SET"
-					+ " email = ?,"
-					+ " phone = ?,"
-					+ " gender = ?,"
-					+ " birthday = ?"
-					+ " WHERE admin_no = ?";
+			String sql = "UPDATE admin SET "
+					+ "email = ?, "
+					+ "phone = ?, "
+					+ "gender = ?, "
+					+ "birthday = ? "
+					+ "WHERE admin_no = ?";
 			Connection conn = DBHelper.getConnection();
 			PreparedStatement stmt = null; 	
 			stmt = conn.prepareStatement(sql);
@@ -172,6 +177,10 @@ public class AdminDAO {
 			conn.close();
 			return row;
 		}
+		
+		
+		
+		
 		
 		
 	

@@ -15,8 +15,8 @@ public class AdminPwHistoryDAO {
 		
 		int row = 0;
 		
-		String sql = "INSERT INTO admin_pw_history (pw, admin_no)"
-				+ " VALUES(?, ?)";
+		String sql = "INSERT INTO admin_pw_history (pw, admin_no) "
+				+ "VALUES(?, ?)";
 		
 		
 		Connection conn = DBHelper.getConnection();
@@ -40,18 +40,18 @@ public class AdminPwHistoryDAO {
 	// 파라미터 : String oldPw
 	// 반환값 : int
 	// 사용 페이지 : 
-	public static int checkOldPw(String oldPw, int adminNo) throws Exception {
+	public static int selectOldPw(String oldPw, int adminNo) throws Exception {
 		int row = 0;
 		
 		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 		
 		// DB 접근
 		// History 내역을 전부 호출
-		String sql = "SELECT pw"
-				+ " FROM admin_pw_history"
-				+ " WHERE admin_no = ?"
-				+ " ORDER BY create_date"
-				+ " DESC limit 1";
+		String sql = "SELECT pw "
+				+ "FROM admin_pw_history "
+				+ "WHERE admin_no = ? "
+				+ "ORDER BY create_date "
+				+ "DESC limit 1";
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = null; 	
 		ResultSet rs = null;
@@ -86,16 +86,16 @@ public class AdminPwHistoryDAO {
 	// 파라미터 : String oldPw
 	// 반환값 : ArrayList<HashMap<String, Object>>
 	// 사용 페이지 : 
-	public static int checkNewPw (String newPw, int adminNo) throws Exception{
+	public static int selectNewPw (String newPw, int adminNo) throws Exception{
 		int row = 0;
 		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
 		
 		// DB 접근
 		Connection conn = DBHelper.getConnection();
 		
-		String sql = "SELECT pw FROM admin_pw_history"
-				+ " WHERE admin_no = ?"
-				+ " ORDER BY create_date DESC LIMIT 3";
+		String sql = "SELECT pw FROM admin_pw_history "
+				+ "WHERE admin_no = ? "
+				+ "ORDER BY create_date DESC LIMIT 3 ";
 		PreparedStatement stmt = null; 	
 		ResultSet rs = null;
 		stmt=conn.prepareStatement(sql);

@@ -16,9 +16,9 @@
 	
 	
 	//전 비밀번호가 맞는지 확인
-	int checkOldPw = AdminPwHistoryDAO.checkOldPw(oldPw, adminNo);
+	int checkOldPw = AdminPwHistoryDAO.selectOldPw(oldPw, adminNo);
 	//새 비밀번호가 pw내역에 없는지 확인
-	int checkNewPw = AdminPwHistoryDAO.checkNewPw(newPw, adminNo);
+	int checkNewPw = AdminPwHistoryDAO.selectNewPw(newPw, adminNo);
 	// 위 조건을 모두 해당하면 비밀번호 추가
 	int insertPw = AdminPwHistoryDAO.insertPw(adminNo, newPw);
 	

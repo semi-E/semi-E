@@ -2,7 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ page import="lms.dao.*" %>
 <%
-	int adminNo = request.getParameter("adminNo");
+	//현재 페이지 시스템 알림
+	System.out.println("페이지: deleteAdminAction.jsp");
+
+	int adminNo = Integer.valueOf(request.getParameter("adminNo"));   
 	int deleteAdmin = AdminDAO.deleteAdmin(adminNo);
 	
 	//디버깅
