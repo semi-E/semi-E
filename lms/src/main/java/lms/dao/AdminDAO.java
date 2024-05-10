@@ -52,8 +52,8 @@ public class AdminDAO {
 	// 반환 값 : int
 	// 사용 페이지 : /lms/admin/admins/addAdminAction.jsp 
 	public static int insertAdmin(  int adminNo,
-									String grade,
-									String name ) throws Exception {
+									String name,
+									String grade) throws Exception {
 		int row = 0;
 		
 		String sql = "INSERT INTO admin "
@@ -64,12 +64,12 @@ public class AdminDAO {
 		PreparedStatement stmt = null; 	
 		stmt = conn.prepareStatement(sql);
 		
-		//디버깅
-		System.out.println(stmt+" <-- insertAdmin stmt");
 		
 		stmt.setInt(1, adminNo);
-		stmt.setString(2, grade);
-		stmt.setString(3, name);
+		stmt.setString(2, name);
+		stmt.setString(3, grade);
+		//디버깅
+		System.out.println(stmt+" <-- insertAdmin stmt");
 		
 		row = stmt.executeUpdate();
 		
@@ -114,7 +114,7 @@ public class AdminDAO {
 		Connection conn = DBHelper.getConnection();
 
 		
-		String sql = "SELECT admin_pw_history.admin_no adminNo , admin_pw_history.pw ,grade "
+		String sql = "SELECT admin_pw_history.admin_no , admin_pw_history.pw ,grade "
 					+ "FROM admin,admin_pw_history "
 					+ "WHERE admin.admin_no = admin_pw_history.admin_no AND admin_pw_history.admin_no= ? "
 					+ "AND admin_pw_history.pw =? ";
@@ -130,11 +130,11 @@ public class AdminDAO {
 		if(rs.next()) {
 			
 			resultMap = new HashMap<String,Object>();
-			resultMap.put("adminNo",rs.getInt("adminNo"));
+			resultMap.put("adminNo",rs.getInt("admin_no"));
 			resultMap.put("grade",rs.getString("grade"));
 			
 			//디버깅
-			System.out.println(rs.getInt("adminNo"));
+			System.out.println(rs.getInt("admin_no"));
 			System.out.println(rs.getString("grade"));
 		}
 		//DB자원 반납
@@ -180,11 +180,6 @@ public class AdminDAO {
 		}
 		
 		
-		
-		
-		
-		
-	
 		//디버깅 용
 		public static void main(String[] args) {
 			// TODO Auto-generated method stub

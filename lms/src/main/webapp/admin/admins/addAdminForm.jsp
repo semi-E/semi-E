@@ -13,7 +13,10 @@
 			<input type="text" name = "adminNo" placeholder="관리자 번호">
 		</div>
 		<div>
-			<input type="text" name = "grade" placeholder="등급">
+			<select name="grade">
+			    <option value="마스터">마스터</option>
+			    <option value="서브">서브</option>
+			  </select>
 		</div>
 		<div>
 			<input type="text" name = "name" placeholder="이름" >
