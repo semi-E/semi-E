@@ -14,9 +14,11 @@
 		<div>
 			새 비밀번호: <input type="text" name = "newPw">
 		</div>
+		<!-- 테스트용 -->
 		<div>
-			<button type="button">제출</button>
+			어드민 번호: <input type="text" name = "adminNo">
 		</div>
+		<button type="submit">제출</button>
 	</form>
 </body>
 </html>

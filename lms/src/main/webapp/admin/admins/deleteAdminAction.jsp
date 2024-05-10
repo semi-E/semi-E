@@ -5,6 +5,12 @@
 	int adminNo = request.getParameter("adminNo");
 	int deleteAdmin = AdminDAO.deleteAdmin(adminNo);
 	
+	//디버깅
+	System.out.println(adminNo + " <-- deleteAdminAction adminNo");
+	System.out.println(deleteAdmin + " <-- deleteAdminAction deleteAdmin");
+	
+	
+	
 	if(deleteAdmin == 1){ // 성공 했을 때
 		
 		System.out.println("어드민 삭제 성공");

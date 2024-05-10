@@ -23,7 +23,9 @@ public class AdminDAO {
 		ResultSet rs = null;
 		stmt=conn.prepareStatement(sql);
 		
-		System.out.println("empLoginAction stmt -->"+stmt);
+		//디버깅
+		System.out.println(stmt+" <-- selectAdminList stmt");
+		
 		rs = stmt.executeQuery();
 		
 		
@@ -55,12 +57,18 @@ public class AdminDAO {
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = null; 	
 		stmt = conn.prepareStatement(sql);
+		
+		//디버깅
+		System.out.println(stmt+" <-- insertAdmin stmt");
+		
 		stmt.setInt(1, adminNo);
 		stmt.setString(2, grade);
 		stmt.setString(3, name);
 		
 		row = stmt.executeUpdate();
 		
+		//DB자원 반납
+		conn.close();
 		return row;
 		
 	}
@@ -77,17 +85,16 @@ public class AdminDAO {
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = null; 	
 		stmt = conn.prepareStatement(sql);
+		
+		//디버깅
+		System.out.println(stmt+" <-- deleteAdmin stmt");
+		
 		stmt.setInt(1, adminNo);
 		row = stmt.executeUpdate();
 		
+		//DB자원 반납
+		conn.close();
 		return row;
-	}
-
-	
-	//디버깅 용
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	//loginAdmin
@@ -105,6 +112,10 @@ public class AdminDAO {
 				+ "WHERE admin.admin_no = admin_pw_history.admin_no AND admin_pw_history.admin_no= ? "
 				+ "AND admin_pw_history.pw =? ";
 		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		//디버깅
+		System.out.println(stmt+" <-- loginAdmin stmt");
+		
 		stmt.setInt(1, id);
 		stmt.setString(2,pw);
 		ResultSet rs=stmt.executeQuery();
@@ -122,6 +133,52 @@ public class AdminDAO {
 		//DB자원 반납
 		conn.close();
 		return resultMap;
+		}
+	
+		// 마이페이지 정보 변경
+		// 파라미터 : String email, int phone, String address, String gender, String birthday
+		// 반환 값 : int
+		// 사용 페이지 : /lms/admin/updateMyPageAction.jsp
+
+		public static int updateAdmin(  String email,
+										int phone,
+										String address,
+										String gender,
+										String birthday ) throws Exception {
+			int row = 0;
+			
+			String sql = "UPDATE admin SET"
+					+ " email = ?,"
+					+ " phone = ?,"
+					+ " gender = ?,"
+					+ " birthday = ?"
+					+ " WHERE admin_no = ?";
+			Connection conn = DBHelper.getConnection();
+			PreparedStatement stmt = null; 	
+			stmt = conn.prepareStatement(sql);
+			
+			//디버깅
+			System.out.println(stmt+" <-- updateAdmin stmt");
+			
+			stmt.setString(1, email);
+			stmt.setInt(2, phone);
+			stmt.setString(3, address);
+			stmt.setString(4, gender);
+			stmt.setString(5, birthday);
+			
+			row = stmt.executeUpdate();
+			
+			//DB자원 반납
+			conn.close();
+			return row;
+		}
+		
+		
+	
+		//디버깅 용
+		public static void main(String[] args) {
+			// TODO Auto-generated method stub
+			
 		}
 
 	
