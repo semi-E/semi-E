@@ -9,6 +9,42 @@ import java.util.HashMap;
 
 
 public class StudentDAO {
+		//학생 리스트 페이징
+		//파라미터 : int studentNo,String name ,String department
+		//반환값 : int
+		public static int selectstudentCount(int studentNo,String name ,String department) throws Exception{
+			int cnt = 0;
+			Connection conn = DBHelper.getConnection();
+			PreparedStatement stmt = null;
+			if(studentNo != 0) {
+				String sql = "SELECT count(*) cnt "
+						+ "FROM student "
+						+ "WHERE student_no LIKE '%" + studentNo +"%' AND department LIKE ? AND name LIKE ? ";
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, "%" + department + "%");
+				stmt.setString(2, "%" + name + "%");
+			} else {
+				String sql = "SELECT count(*) cnt "
+						+ "FROM student "
+						+ "WHERE department LIKE ? AND name LIKE ? ";
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, "%" + department + "%");
+				stmt.setString(2, "%" + name + "%");
+			}
+			
+			System.out.println(stmt);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getInt("cnt");
+			}
+			
+			return cnt;
+		}
+		
+	
+	
+	
+	
 	//학생정보 수정
 	//파라미터 : int studentNo, String department, String state
 	//반환값 : int
@@ -49,7 +85,7 @@ public class StudentDAO {
 		if(rs1.next()) {
 			
 			m.put("student_no", rs1.getString("student_no"));
-			m.put("name", rs1.getString("name"));
+			m.put("name", rs1.getString("name"));	
 			m.put("gender", rs1.getString("gender"));
 			m.put("birthday", rs1.getString("birthday"));
 			m.put("phone", rs1.getInt("phone"));
@@ -66,48 +102,47 @@ public class StudentDAO {
 		
 	}
 	
-	
-	
-	
-	
-	
-	
 	//학생 리스트
 	// 파라미터 : int studentNo, String name, String department,int startRow, int rowPerpage
 	//반환값 :  ArrayList<HashMap<String,Object>>
-	public static ArrayList<HashMap<String,Object>>selectstudentList(int studentNo, String name, String department,int startRow, int rowPerPage) 
-			throws Exception {
-		Class.forName("org.mariadb.jdbc.Driver");
-		PreparedStatement stmt1 = null;
-		ResultSet rs1 = null;
-		Connection conn = DBHelper.getConnection();
-		
-		String sql1 = "SELECT student_no as studentNo,name,department FROM student LIMIT ?,?;";
-		stmt1 = conn.prepareStatement(sql1);
-		
-		stmt1.setInt(1,startRow);
-		stmt1.setInt(2, rowPerPage);
-		
-			
-		rs1 = stmt1. executeQuery();
-		
-		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+	public static ArrayList<HashMap<String,Object>> selectstudentList(int studentNo, String name, String department, int startRow, int rowPerPage) 
+	        throws Exception {   
+	    Connection conn = DBHelper.getConnection();
+	    String sql = "SELECT student_no studentNo, name, department, state "
+	                + "FROM student "
+	                + "WHERE (student_no = ? OR ? = 0) "
+	                + "AND department LIKE ? "
+	                + "AND name LIKE ? "
+	                + "LIMIT ?, ?";
+	    
+	    PreparedStatement stmt = conn.prepareStatement(sql);
+	    stmt.setInt(1, studentNo);
+	    stmt.setInt(2, studentNo);
+	    stmt.setString(3, "%" + department + "%");
+	    stmt.setString(4, "%" + name + "%");
+	    stmt.setInt(5, startRow);
+	    stmt.setInt(6, rowPerPage);
 
-		while(rs1.next()){
-			HashMap<String, Object> m0 = new HashMap<String, Object>();
-			m0.put("studentNo", rs1.getInt("studentNo"));
-			m0.put("name", rs1.getString("name"));
-			m0.put("department", rs1.getString("department"));
-			list.add(m0);
-		
-		}
-		conn.close();
-		
-		return list;
-		
-		
+	    //디버깅
+	    System.out.println(stmt);
+	    
+	    ResultSet rs = stmt.executeQuery();
+	    
+	    ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
+	    
+	    while(rs.next()) {
+	        HashMap<String, Object> m = new HashMap<String, Object>();
+	        m.put("studentNo", rs.getInt("studentNo"));
+	        m.put("department", rs.getString("department"));
+	        m.put("name", rs.getString("name"));
+	        m.put("state", rs.getString("state"));
+	        
+	        list.add(m);
+	    }
+	    return list;
 	}
-
+		
+	
 	//학생 추가
 	//파라미터: int studentNo, String name, String department,String pw
 	//반환 값: int
@@ -161,42 +196,6 @@ public class StudentDAO {
 		return resultMap;
 		}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

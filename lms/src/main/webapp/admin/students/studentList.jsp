@@ -5,14 +5,13 @@
 <%@ page import = "lms.dao.*"%>      
 <%
 	
+	
 	int studentNo = 0;
-	//Integer.parseInt(request.getParameter("studentNo"));
-	
-	
-	
-	
-	
-	
+	String studentNoParam = request.getParameter("studentNo");
+	if(studentNoParam != null && !studentNoParam.isEmpty()) {
+	    studentNo = Integer.parseInt(studentNoParam);
+	}
+		
 	String name = request.getParameter("name");
 	String department = request.getParameter("department");
 	
@@ -24,7 +23,21 @@
 	int rowPerPage = 10;
 	int startRow = (currentPage-1)*rowPerPage;
 	
+	int cnt = StudentDAO.selectstudentCount(studentNo, name, department);
+	int lastPage = 0;
+	
+
+	if(cnt % rowPerPage == 0){
+		lastPage = cnt / rowPerPage;
+	} else {
+		lastPage = cnt / rowPerPage + 1;
+	}
+	
+	
+	
 	ArrayList<HashMap<String, Object>> studentList = StudentDAO.selectstudentList(studentNo, name, department, startRow, rowPerPage);
+	
+	
 	
 	
 	
