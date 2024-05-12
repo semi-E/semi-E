@@ -4,7 +4,15 @@
 <%@ page import="java.net.*"%>
 <%@ page import = "java.util.*" %>       
 <%@ page import = "lms.dao.*" %>    
-    
+ 
+ <%
+	// 세션인증분기 - loginAdmin 관리자
+	if(session.getAttribute("loginAdmin") == null) {
+		response.sendRedirect("/lms/loginForm.jsp");
+		return;
+	}
+%>
+   
 <%
 	int studentNo = Integer.parseInt(request.getParameter("studentNo"));
 
@@ -14,7 +22,7 @@
 
 %>    
 <!DOCTYPE html>
-<html>
+<html>	
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -26,7 +34,7 @@
 	<table border="1">
 		<tr>
 			<th>번호</th>
-			<td><%= m.get("studentNo")%></td>
+			<td><input type="hidden" name="studentNo" value="<%=m.get("studentNo") %>"><%=m.get("studentNo") %></td>
 		</tr>
 
 		<tr>
@@ -56,9 +64,9 @@
 						<%
 							if(m.get("state").equals("재학")){
 						%>
-								<option value="재직" selected>재직</option>
-							    <option value="휴직">휴학</option>
-							    <option value="퇴직">퇴학</option>
+								<option value="재학" selected>재학</option>
+							    <option value="휴학">휴학</option>
+							    <option value="퇴학">퇴학</option>
 					    <%
 					    	} else if(m.get("state").equals("재학")){
 					    %>
@@ -66,11 +74,19 @@
 							    <option value="휴학" selected>휴학</option>
 							    <option value="퇴학">퇴학</option>
 					    <%
-					    	} else {
+					    	} else if (m.get("state").equals("재학")) {
 					    %>
 					    		<option value="재학">재학</option>
 							    <option value="휴학">휴학</option>
 							    <option value="퇴학" selected>퇴학</option>
+						<%
+    						} else {
+						%>
+						        <option value="재학">재학</option>
+						        <option value="휴학">휴학</option>
+						        <option value="퇴학">퇴학</option>
+						        <option value="자퇴" selected>자퇴</option> 
+							    
 					    <%
 					    	}
 					    %>

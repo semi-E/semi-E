@@ -84,7 +84,7 @@ public class StudentDAO {
 		HashMap<String, Object> m = new HashMap<String, Object>();
 		if(rs1.next()) {
 			
-			m.put("student_no", rs1.getString("student_no"));
+			m.put("studentNo", rs1.getString("student_no"));
 			m.put("name", rs1.getString("name"));	
 			m.put("gender", rs1.getString("gender"));
 			m.put("birthday", rs1.getString("birthday"));
@@ -165,6 +165,16 @@ public class StudentDAO {
 		
 		row = stmt1.executeUpdate();
 		
+		// 학생이 추가될때 비밀번호도 같이 추가
+		// 비밀번호 기본값 '1234', 학생번호를 추가하면 자동적으로 추가.
+	    String sql2 = "INSERT INTO student_pw_history (student_no) VALUES(?)";
+	    PreparedStatement stmt2 = conn.prepareStatement(sql2);
+	    System.out.println(sql2+"<-----SQL2");
+	    
+	    stmt2.setInt(1, student_no); 
+	    
+	    row += stmt2.executeUpdate();
+			
 		conn.close();
 		
 		return row;
