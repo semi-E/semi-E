@@ -3,6 +3,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	// 세션인증분기 - loginAdmin 관리자
+	if(session.getAttribute("loginAdmin") == null) {
+		response.sendRedirect("/lms/loginForm.jsp");
+		return;
+	}
+%>
+<%
 	int professorNo = Integer.parseInt(request.getParameter("professorNo"));
 	
 	//디버깅

@@ -31,15 +31,32 @@ public class Professor_Pw_History {
 		String sql = "INSERT INTO professor_pw_history "
 				+ "(pw, professor_no) "
 				+ "SELECT ?, ? "
-				+ "FROM professor_pw_history "
-				+ "WHERE professor_no = ? AND pw = ? AND pw != ? ORDER BY create_date LIMIT 0,3";
+					+ "WHERE ( "
+					+ "SELECT pw "
+					+ "FROM professor_pw_history "
+					+ "WHERE professor_no = ? "
+					+ "ORDER BY create_date DESC "
+					+ " LIMIT 1 "
+				+ ") = ? "
+				+ "AND NOT EXISTS ( "
+					+ "SELECT pw "
+					+ "FROM ( "
+						+ "SELECT pw "
+						+ "FROM professor_pw_history "
+						+ "WHERE professor_no =? "
+						+ "ORDER BY create_date DESC "
+						+ " LIMIT 3 "
+					+ ") AS recent_pw "
+					+ " WHERE pw = ? "
+				+ ");";
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, newPw);
 		stmt.setInt(2, professorNo);
 		stmt.setInt(3, professorNo);
 		stmt.setString(4, oldPw);
-		stmt.setString(5, newPw);
+		stmt.setInt(5, professorNo);
+		stmt.setString(6, newPw);
 		System.out.println(stmt);
 		row = stmt.executeUpdate();
 		

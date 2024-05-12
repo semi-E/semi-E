@@ -3,7 +3,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	int professorNo = 220241001;//세션되면 나중에 세션으로 수정
+	//세션인증분기 - loginProfessor 교수 
+	if(session.getAttribute("loginProfessor") == null) {
+		response.sendRedirect("/lms/loginForm.jsp");
+		return;
+	}
+%>
+<%
+	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginProfessor"));
+	int professorNo = (Integer)(sessionInfo.get("professorNo"));
 	
 	//디버깅
 	System.out.println(professorNo + "<-- myPage session professorNo");
@@ -25,7 +33,6 @@
 			<td>
 				<%=m.get("professorNo") %>
 			</td>
-			
 		</tr>
 		<tr>
 			<th>이름</th>
@@ -60,5 +67,7 @@
 			<td><%=m.get("officeNo") %></td>
 		</tr>
 	</table>
+	<a href="/lms/professor/updateMyPageForm.jsp">수정</a>
+	<a href="/lms/professor/updatePwForm.jsp">비밀번호 변경</a>
 </body>
 </html>
