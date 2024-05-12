@@ -118,4 +118,44 @@ public class AdminPwHistoryDAO {
 		conn.close();
 		return row;
 	}
+	
+	//관리자 비밀번호 찾기
+	//파라미터 : int id , String email
+	//반환값 String pw
+	//사용 페이지: findPwAction.jsp
+	//-수정중
+	public static int selectPw(int id,String email) throws Exception{
+		int row = 0;
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		
+		//DB접근
+		Connection conn = DBHelper.getConnection();
+		
+		String sql= "select admin_pw_history.admin_no adminNo,admin_pw_history.pw "
+					+ "from admin ,admin_pw_history "
+					+ "where admin.admin_no = admin_pw_history.admin_no"
+					+ "AND admin_pw_history.admin_no = ? "
+					+ "AND admin_pw_history.pw = ? ";
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		stmt=conn.prepareStatement(sql);
+		
+		//디버깅
+		System.out.println(stmt  + "AdminPwHistoryDAO findPwAction.jsp stmt");
+		
+		stmt.setInt(1,id);
+		stmt.setString(2,email);
+		
+		rs=stmt.executeQuery();
+		
+		while(rs.next()) {
+			if(email.equals(rs.getString("eamil"))) {
+				row= 1; 
+			}else {
+				row= 0; 
+			}
+		}
+	conn.close();
+	return row;
+	}
 }

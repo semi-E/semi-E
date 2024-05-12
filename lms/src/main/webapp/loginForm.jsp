@@ -7,7 +7,7 @@
 </head>
 	<h1>로그인 폼</h1>
 		<body>
-			<form	method="post" action="/lms/loginAction.jsp">
+			<form method="post" action="/lms/loginAction.jsp">
 				<div>
 					<label for="id">아이디</label>
 					<input type="text" id="id" maxlength="9" required="required" name="id" placeholder="abc1234@naver.com">
