@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
-	//¼¼¼ÇÀÎÁõºĞ±â - loginProfessor ±³¼ö 
+	//ì„¸ì…˜ì¸ì¦ë¶„ê¸° - loginProfessor êµìˆ˜ 
 	if(session.getAttribute("loginProfessor") == null) {
 		response.sendRedirect("/lms/loginForm.jsp");
 		return;
@@ -10,11 +10,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>±³¼ö ¸ŞÀÎ</h1>
-	<a href="/lms/professor/myPage.jsp">¸¶ÀÌ ÆäÀÌÁö</a>
+	<h1>êµìˆ˜ ë©”ì¸</h1>
+	<a href="/lms/professor/myPage.jsp">ë§ˆì´ í˜ì´ì§€</a>
+	<a href="/lms/professor/class/myClassList.jsp">ê°•ì˜</a>
 </body>
 </html>
