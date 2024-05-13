@@ -292,6 +292,8 @@ public class ClassOpenApplyDAO {
 		return row;
 	}
 	
+	
+	
 	public static void main(String[] args) throws Exception {
 		//디버깅
 		//System.out.println(ClassOpenApplyDAO.selectClassOpenApplyCount(0, 0, "", "", "", 0, 2024, 1, "승인"));

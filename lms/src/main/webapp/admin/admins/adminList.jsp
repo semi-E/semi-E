@@ -4,6 +4,14 @@
 <%@ page import="java.util.*" %>
 
 <%
+	// 세션인증분기 - loginAdmin 관리자
+	if(session.getAttribute("loginAdmin") == null) {
+		response.sendRedirect("/lms/loginForm.jsp");
+		return;
+	}
+%>
+
+<%
 	ArrayList<HashMap<String, Object>> selectAdminList = AdminDAO.selectAdminList();
 %>
 <!DOCTYPE html>

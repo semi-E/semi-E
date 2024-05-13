@@ -3,6 +3,14 @@
 <%@ page import="lms.dao.*" %>
 
 <%
+	// 세션인증분기 - loginAdmin 관리자
+	if(session.getAttribute("loginAdmin") == null) {
+		response.sendRedirect("/lms/loginForm.jsp");
+		return;
+	}
+%>
+
+<%
 	System.out.println("페이지: addAdminAction.jsp");
 
 	int adminNo = Integer.valueOf(request.getParameter("adminNo"));
