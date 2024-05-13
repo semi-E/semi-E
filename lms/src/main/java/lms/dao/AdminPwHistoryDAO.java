@@ -119,43 +119,43 @@ public class AdminPwHistoryDAO {
 		return row;
 	}
 	
-	//관리자 비밀번호 찾기
+	//관리자-비밀번호 찾기
 	//파라미터 : int id , String email
-	//반환값 String pw
+	//반환값 HashMap<String, Object>
 	//사용 페이지: findPwAction.jsp
 	//-수정중
-	public static int selectPw(int id,String email) throws Exception{
-		int row = 0;
-		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
-		
-		//DB접근
-		Connection conn = DBHelper.getConnection();
-		
-		String sql= "SELECT admin_pw_history.admin_no adminNo,admin_pw_history.pw "
-					+ "FROM admin ,admin_pw_history "
-					+ "WHERE admin.admin_no = admin_pw_history.admin_no"
-					+ "AND admin_pw_history.admin_no = ? "
-					+ "AND admin_pw_history.pw = ? ";
+	public static HashMap<String , Object>selectPw(int id, String email) throws Exception {
+		HashMap<String , Object>resultMap=null;
+
+	    // DB접근
+	    Connection conn = DBHelper.getConnection();
+
+	    String sql = "SELECT admin.admin_no adminNo , admin_pw_history.pw ,email "
+	    		+"FROM admin,admin_pw_history " 
+	    		+"WHERE admin.admin_no = admin_pw_history.admin_no AND admin_pw_history.admin_no= ? "
+	    		+"AND (select pw FROM admin_pw_history WHERE admin_no = ? "
+	    		+"ORDER BY create_date DESC LIMIT 1)= ? "   
+	    		+"ORDER BY create_date DESC LIMIT 1";	  
 		PreparedStatement stmt = null;
-		ResultSet rs = null;
-		stmt=conn.prepareStatement(sql);
-		
-		//디버깅
-		System.out.println(stmt  + "AdminPwHistoryDAO findPwAction.jsp stmt");
-		
-		stmt.setInt(1,id);
-		stmt.setString(2,email);
-		
-		rs=stmt.executeQuery();
-		
-		while(rs.next()) {
-			if(email.equals(rs.getString("eamil"))) {
-				row= 1; 
-			}else {
-				row= 0; 
-			}
-		}
-	conn.close();
-	return row;
+	    ResultSet rs = null;
+	    stmt = conn.prepareStatement(sql);
+
+	    // 디버깅
+	    System.out.println(stmt + "AdminPwHistoryDAO findPwAction.jsp stmt");
+
+	    stmt.setInt(1, id);
+	    stmt.setInt(2, id);
+	    stmt.setString(3, email);
+
+	    rs = stmt.executeQuery();
+
+	    if (rs.next()) {
+        	resultMap = new HashMap<String,Object>();
+        	resultMap.put("pw",rs.getString("pw"));
+        	//디버깅
+        	System.out.println("pw");
+	        }
+	    conn.close();
+	    return resultMap;
+	    }
 	}
-}
