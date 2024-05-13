@@ -81,7 +81,7 @@
 	}
 	//관리자 로그인 분기
 	//1로 시작하는 9자리
-	} else if (userId.charAt(0) == '1' && userId.length() == 9) {
+	}else if (userId.charAt(0) == '1' && userId.length() == 9) {
 		System.out.println(id + ": 관리자입니다.");
 		// 관리자 로그인 DAO
 		HashMap<String, Object> loginAdmin = AdminDAO.selectAdmin(id, pw);
@@ -97,7 +97,9 @@
 	session.setAttribute("loginAdmin", loginAdmin);
 	response.sendRedirect("/lms/admin/main.jsp");
 	return;
-
 		}
+	}else{
+		response.sendRedirect("/lms/loginForm.jsp");
+		return;
 	}
 %>

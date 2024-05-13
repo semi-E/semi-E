@@ -10,11 +10,11 @@
 		<form method="post" action="/lms/findPwAction.jsp">
 			<div>
 				<label for="id">아이디</label>
-				<input type="text" id="id" maxlength="9" required="required" name="id" placeholder="abc1234@naver.com">
+				<input type="text" id="id" maxlength="9" required="required" name="id" >
 			</div>
 			<div>
 				<label for="email">이메일</label>
-				<input type="email" id="pw" maxlength="25" required="required" name="email">
+				<input type="email" id="pw" maxlength="25" required="required" name="email" placeholder="abc1234@naver.com">
 			</div>
 			<button type="submit">로그인</button>			
 		</form>
