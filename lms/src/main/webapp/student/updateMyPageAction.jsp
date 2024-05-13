@@ -5,7 +5,7 @@
 <%@ page import = "java.util.*" %>       
 <%@ page import = "lms.dao.*" %>     
  <%
-	//세션인증분기 - loginProfessor 교수 
+	//세션인증분기 - loginProfessor 학생
 	if(session.getAttribute("loginStudent") == null) {
 		response.sendRedirect("/lms/loginForm.jsp");
 		return;
@@ -36,15 +36,14 @@
 
 			
 	if(row == 1){
-		System.out.println("학생마이페지이 수정 성공");
+		System.out.println("학생마이페이지 수정 성공");
 		response.sendRedirect("/lms/student/myPage.jsp");
-				
-	}else 
+		
+	}else {
 		System.out.println("학생마이페이지 수정 실패");	
-		response.sendRedirect("/lms/student/updateMyPageForm.jsp?studentNo="+studentNo);
+		response.sendRedirect("/lms/student/updateMyPageForm.jsp"); 
 	
-	
-	
+	}
 	
 %>
 

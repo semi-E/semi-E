@@ -1,12 +1,42 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%
+	//세션인증분기 - loginProfessor 학생
+	if(session.getAttribute("loginStudent") == null) {
+		response.sendRedirect("/lms/loginForm.jsp");
+		return;
+	}
+%>    
+    
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>학생 비밀번호 변경</h1>
+	<form method="post" action="/lms/student/updatePwAction.jsp">
+
+		<table>
+			<tr>
+				<td>이전 비밀번호:<input type="password" name="oldpw"></td>
+				<td>새 비밀번호:<input type="password" name="newpw"></td>
+			</tr>
+
+			<tr>
+				<td><button type ="submit">비밀번호 변경</button></td>
+			</tr>
+
+		</table>
+
+
+	</form>
+
+
 
 </body>
 </html>
