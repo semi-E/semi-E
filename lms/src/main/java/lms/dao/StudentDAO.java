@@ -9,6 +9,34 @@ import java.util.HashMap;
 
 
 public class StudentDAO {
+	//학생 마이페이지 수정(내정보 수정)
+	// 파라미터 : int studentNo,String email,int phone,String address,String gender,String birthday
+	// 반환 값 : int 
+
+	public static int updatestudent(int studentNo,String email,String phone,String address,String gender,String birthday) throws Exception{
+			int row = 0;
+			Connection conn = DBHelper.getConnection();
+			
+			
+			String sql1 = "UPDATE student SET gender = ?,birthday =?,phone = ?, address = ?, email = ?  WHERE student_no = ?";
+			PreparedStatement stmt1 = conn.prepareStatement(sql1);
+			System.out.println(sql1+"<-----SQL1");
+			
+			stmt1.setString(1, gender);
+			stmt1.setString(2, birthday);
+			stmt1.setString(3, phone);
+			stmt1.setString(4, address);
+			stmt1.setString(5, email);
+			stmt1.setInt(6, studentNo);
+			System.out.println(stmt1+"<------stmt1");
+			
+			row = stmt1.executeUpdate();
+			
+			conn.close();
+			
+			return row;
+		}
+		
 		//학생 리스트 페이징
 		//파라미터 : int studentNo,String name ,String department
 		//반환값 : int
@@ -84,12 +112,12 @@ public class StudentDAO {
 		HashMap<String, Object> m = new HashMap<String, Object>();
 		if(rs1.next()) {
 			
-			m.put("studentNo", rs1.getString("student_no"));
+			m.put("studentNo", rs1.getInt("student_no"));
 			m.put("name", rs1.getString("name"));	
 			m.put("gender", rs1.getString("gender"));
 			m.put("birthday", rs1.getString("birthday"));
-			m.put("phone", rs1.getInt("phone"));
-			m.put("address", rs1.getInt("address"));
+			m.put("phone", rs1.getString("phone"));
+			m.put("address", rs1.getString("address"));
 			m.put("state", rs1.getString("state"));
 			m.put("email", rs1.getString("email"));
 			m.put("department", rs1.getString("department"));

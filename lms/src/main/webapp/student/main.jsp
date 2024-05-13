@@ -13,9 +13,10 @@
 	<a href ="/lms/student/class/subjectList.jsp">과목리스트</a>
 	<a href ="/lms/student/class/classList.jsp">강의리스트</a>
 	<a href ="/lms/student/myPage.jsp">마이페이지</a>
+	<a href ="/lms/student/updateMyPageForm.jsp">내정보수정</a>
+	<a href="/lms/logout.jsp">로그아웃</a>
+	<a href="/lms/student/classApply/classApplyList.jsp ">수강신청</a>
 	
-
-
 
 </body>
 </html>
