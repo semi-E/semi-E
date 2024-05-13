@@ -7,7 +7,80 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ClassOpenApplyDAO {
-
+	// 학생 강의 목록
+	// 파라미터 :int classApplyNo, int studentNo, String studentName, String className, 
+	//	String subjectName, String days, int periodStart, int year, int semester, String state, int startRow, int rowPerPage
+	// 반환 값 : ArrayList<HashMap<Strimg.Object>>
+	public static ArrayList<HashMap<String, Object>> selectClassOpenApplyList1(int classApplyNo, int studentNo, String studentName, String className, 
+			String subjectName, String days, int periodStart, int year, int semester, String state, int startRow, int rowPerPage) throws Exception{
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		String sql = "SELECT c.class_apply_no classApplyNo, c.student_no studentNo, s.name studentName, c.class_name className, c.classroom classroom,\r\n"
+				+ "       c.subject_name subjectName, c.days days, c.period_start periodStart, c.year year, c.semester semester, sb.credit credit\r\n"
+				+ "FROM class_open_apply c, subject sb, student s\r\n"
+				+ "WHERE c.subject_name = sb.subject_name \r\n"
+				+ "      AND c.student_no = s.student_no \r\n"
+				+ "      AND c.class_apply_no LIKE ? \r\n"
+				+ "      AND c.student_no LIKE ? \r\n"
+				+ "      AND c.class_name LIKE ? \r\n"
+				+ "      AND c.subject_name LIKE ? \r\n"
+				+ "      AND c.days LIKE ? \r\n"
+				+ "      AND c.period_start LIKE ? \r\n"
+				+ "      AND c.year = ? \r\n"
+				+ "      AND c.semester = ? \r\n"
+				+ "      AND c.state = ? \r\n"
+				+ "      AND s.name LIKE ?\r\n"
+				+ "LIMIT ?, ?";
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		
+		if(classApplyNo == 0) {
+			stmt.setString(1, "%%");
+		} else {
+			stmt.setString(1, "%" + classApplyNo + "%");
+		}
+		// 검색 값이 0으로 들어왔을 때
+		if(studentNo == 0) {
+			stmt.setString(2, "%%");
+		} else {
+			stmt.setString(2, "%" + studentNo + "%");
+		}
+		stmt.setString(3, "%" + className + "%");
+		stmt.setString(4, "%" + subjectName + "%");
+		stmt.setString(5, "%" + days + "%");
+		if(periodStart == 0) {
+			stmt.setString(6, "%%");
+		} else {
+			stmt.setString(6, "%" + periodStart + "%");
+		}
+		stmt.setInt(7, year);
+		stmt.setInt(8, semester);
+		stmt.setString(9, state);
+		stmt.setString(10, "%" + studentName + "%");
+		stmt.setInt(11, startRow);
+		stmt.setInt(12, rowPerPage);
+		
+		System.out.println(stmt);
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			m.put("classApplyNo", rs.getInt("classApplyNo"));
+			m.put("studentNo", rs.getInt("studentNo"));
+			m.put("studentName", rs.getString("studentName"));
+			m.put("className", rs.getString("className"));
+			m.put("classroom", rs.getString("classroom"));
+			m.put("subjectName", rs.getString("subjectName"));
+			m.put("days", rs.getString("days"));
+			m.put("periodStart", rs.getInt("periodStart"));
+			m.put("year", rs.getInt("year"));
+			m.put("semester", rs.getInt("semester"));
+			m.put("credit", rs.getInt("credit"));
+			
+			list.add(m);
+		}
+	
+		return list;
+	}
 	//강의 개수 카운트
 	//파라미터 : int classApplyNo, int professorNo, String professorName, String className, 
 	//String subjectName, String days, int periodStart, int year, int semester, String state

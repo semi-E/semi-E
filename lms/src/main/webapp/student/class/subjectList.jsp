@@ -19,14 +19,27 @@
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
 	
-	String subjectName =request.getParameter("subjectName");	
+	String subjectName =request.getParameter("subjectName");
 
 	System.out.println(subjectName+"<-----subjectName");
 
-	
+	// subjectName이 null 값으로 들어오기 때문에 공백으로 빼줘야함.
+	if(subjectName == null){
+		subjectName = "";
+	}
 	
 	int rowPerPage = 10;
 	int startRow = (currentPage-1)*rowPerPage;
+	
+	int cnt = SubjectDAO.selectSubjectCount(subjectName);
+	int lastPage = 0;
+	
+	if(cnt % rowPerPage == 0){
+		lastPage = cnt / rowPerPage;
+	} else {
+		lastPage = cnt / rowPerPage + 1;
+	}
+	
 
 	ArrayList<HashMap<String, Object>> subjectList = SubjectDAO.selectSubjectList(subjectName, startRow, rowPerPage);
  %>   
@@ -41,6 +54,18 @@
 </head>
 <body>
 	<h1>과목 리스트</h1>
+	
+	<form method="get" action="/lms/student/class/subjectList.jsp">
+		과목이름:<input type="text" name = "subjectName">
+		학점:<input type="text" name = "credit">
+	
+		<button type="submit">검색</button>
+		
+	</form>
+	
+	
+	
+	
 	<table border = "1">
 	
 		<tr>
@@ -56,7 +81,7 @@
 	            <td><%= m.get("subjectName") %></td>
 	            <td><%= m.get("credit") %></td>
 	        </tr>
-        
+        	
         <%
             }
         %>
