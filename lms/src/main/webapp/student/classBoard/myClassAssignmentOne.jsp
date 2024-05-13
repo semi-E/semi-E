@@ -51,24 +51,35 @@
 		</tr>
 	</table>
 	
-	<h2>제출 과제</h2>
-	<table border="1">
-		<tr>
-			<th>제목</th>
-			<td><%=studentAssignment.get("title") %></td>
-		</tr>
-		<tr>
-			<th>제출날짜</th>
-			<td><%=studentAssignment.get("createDate") %></td>
-		</tr>
-		<tr>
-			<th>수정날짜</th>
-			<td><%=studentAssignment.get("updateDate") %></td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td><%=studentAssignment.get("content") %></td>
-		</tr>
-	</table>
+	<%
+		if(studentAssignment != null){
+	%>
+			<h2>제출 과제</h2>
+			<table border="1">
+				<tr>
+					<th>제목</th>
+					<td><%=studentAssignment.get("title") %></td>
+				</tr>
+				<tr>
+					<th>제출날짜</th>
+					<td><%=studentAssignment.get("createDate") %></td>
+				</tr>
+				<tr>
+					<th>수정날짜</th>
+					<td><%=studentAssignment.get("updateDate") %></td>
+				</tr>
+				<tr>
+					<th>내용</th>
+					<td><%=studentAssignment.get("content") %></td>
+				</tr>
+			</table>
+			<a href="/lms/student/classBoard/updateMyClassAssignmentForm.jsp?assignmentNo=<%=assignmentNo%>">수정</a>
+	<%
+		} else {
+	%>
+			<a href="/lms/student/classBoard/submitMyClassAssignmentForm.jsp?assignmentNo=<%=assignmentNo%>&classApplyNo=<%=assignment.get("classApplyNo")%>">제출</a>
+	<%
+		}
+	%>
 </body>
 </html>

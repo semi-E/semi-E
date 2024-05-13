@@ -72,7 +72,7 @@ public class AssignmentDAO {
 	public static HashMap<String, Object> selectAssignment(int assignmentNo, int studentNo) throws Exception{
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String sql = null;
-		sql = "SELECT a.title title, a.content content, a.end_date endDate, a.create_date createDate "
+		sql = "SELECT a.class_apply_no classApplyNo, a.title title, a.content content, a.end_date endDate, a.create_date createDate "
 				+ "FROM assignment a, my_class m "
 				+ "WHERE a.class_apply_no = m.class_apply_no AND a.assignment_no = ? AND m.student_no = ? ";
 		Connection conn = DBHelper.getConnection();
@@ -83,6 +83,7 @@ public class AssignmentDAO {
 		ResultSet rs = stmt.executeQuery();
 		
 		if(rs.next()) {
+			map.put("classApplyNo", rs.getInt("classApplyNo"));
 			map.put("title", rs.getString("title"));
 			map.put("content", rs.getString("content"));
 			map.put("endDate", rs.getString("endDate"));
