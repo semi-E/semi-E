@@ -75,7 +75,8 @@ public class ProfessorDAO {
 				+"ORDER BY create_date DESC LIMIT 1";
 	PreparedStatement stmt = conn.prepareStatement(sql);
 	stmt.setInt(1, id);
-	stmt.setString(2,pw);
+	stmt.setInt(2, id);
+	stmt.setString(3,pw);
 	ResultSet rs=stmt.executeQuery();
 	
 	if(rs.next()) {
