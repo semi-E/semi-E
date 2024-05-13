@@ -47,8 +47,7 @@
 				%>
 							<td>
 								<%=m.get("studentNo") %>
-								<input type="hidden" name="studentNo">
-								<input type="hidden" name="classApplyNo">
+								<input type="hidden" name="studentNo" value="<%=m.get("studentNo")%>">
 							</td>
 							<td><%=m.get("name") %>
 				<%				
@@ -92,6 +91,7 @@
 				%>
 			</tr>
 		</table>
+		<input type="hidden" name="classApplyNo" value="<%=classApplyNo%>">
 		<button type="submit">수정</button>
 	</form>
 </body>
