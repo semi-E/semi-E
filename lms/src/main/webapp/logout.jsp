@@ -2,22 +2,22 @@
 <%@ page import="java.util.*"%>
 <%
 	// 세션인증분기 - loginAdmin 관리자
-	if(session.getAttribute("loginAdmin") != null) { //이미 로그인을 한 상태라면
-		response.sendRedirect("/lms/admin/main.jsp");
+	if(session.getAttribute("loginAdmin") == null) { //로그인에 실패하였을때
+		response.sendRedirect("/lms/loginForm.jsp");
 		return;
 	}
 %>
 <%
 	//세션인증분기 - loginStudent 학생
-	if(session.getAttribute("loginStudent") != null) { //이미 로그인을 한 상태라면
-		response.sendRedirect("/lms/student/main.jsp");
+	if(session.getAttribute("loginStudent") == null) { //로그인에 실패하였을때
+		response.sendRedirect("/lms/loginForm.jsp");
 		return;
 	}
 %>
 <%
 	//세션인증분기 - loginProfessor 교수 
-	if(session.getAttribute("loginProfessor") != null) { //이미 로그인을 한 상태라면
-		response.sendRedirect("/lms/professor/main.jsp");
+	if(session.getAttribute("loginProfessor") == null) { //로그인에 실패하였을때
+		response.sendRedirect("/lms/loginForm.jsp");
 		return;
 	}
 %>
@@ -26,7 +26,7 @@
 
 
 	System.out.println(session.getId()+"<--logout.jsp+session.getId");
-	session.invalidate(); // 세션공간을 초기화 하였다.(포맷))
+	session.invalidate(); // 세션공간을 초기화 (포맷))
 
 	response.sendRedirect("/lms/loginForm.jsp");
  %>

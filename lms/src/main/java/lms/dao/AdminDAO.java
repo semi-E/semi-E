@@ -115,9 +115,10 @@ public class AdminDAO {
 
 		
 		String sql = "SELECT admin_pw_history.admin_no , admin_pw_history.pw ,grade "
-					+ "FROM admin,admin_pw_history "
-					+ "WHERE admin.admin_no = admin_pw_history.admin_no AND admin_pw_history.admin_no= ? "
-					+ "AND admin_pw_history.pw =? ";
+				+"FROM admin,admin_pw_history "
+				+"WHERE admin.admin_no = admin_pw_history.admin_no AND admin_pw_history.admin_no= ? "
+				+"AND (select pw FROM admin_pw_history WHERE admin_no = ? "
+				+"ORDER BY create_date DESC LIMIT 1)= ? ORDER BY create_date DESC LIMIT 1";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		
 		//디버깅

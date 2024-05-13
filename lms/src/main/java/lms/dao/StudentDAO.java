@@ -190,11 +190,13 @@ public class StudentDAO {
 		Connection conn = DBHelper.getConnection();
 
 		
-		String sql = "SELECT student_pw_history.student_no studentNo ,student_pw_history.pw  "
-					+ "FROM student,student_pw_history "
-					+ "WHERE student.student_no = student_pw_history.student_no "
-					+ "AND student_pw_history.student_no = ? "
-					+ "AND student_pw_history.pw = ? " ;
+		String sql = "SELECT student_pw_history.student_no  studentNo, student_pw_history.pw "
+					+"FROM student, student_pw_history "
+					+"WHERE student.student_no = student_pw_history.student_no "
+					+"AND student_pw_history.student_no = ? "
+					+"AND (SELECT pw FROM student_pw_history WHERE student_no = ? "
+					+"ORDER BY create_date DESC LIMIT 1) = ? "
+					+"ORDER BY create_date DESC LIMIT 1";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, id);
 		stmt.setString(2,pw);

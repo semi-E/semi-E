@@ -66,11 +66,13 @@ public class ProfessorDAO {
 	Connection conn = DBHelper.getConnection();
 
 	
-	String sql = "SELECT professor_pw_history.professor_no professorNo ,professor_pw_history.pw  "
-				+ "FROM professor,professor_pw_history "
-				+ "WHERE professor.professor_no = professor_pw_history.professor_no "
-				+ "AND professor_pw_history.professor_no = ? "
-				+ "AND professor_pw_history.pw = ? ";
+	String sql ="SELECT professor_pw_history.professor_no  professorNo, professor_pw_history.pw "
+				+"FROM professor, professor_pw_history "
+				+"WHERE professor.professor_no = professor_pw_history.professor_no " 
+				+"AND professor_pw_history.professor_no = ? "
+				+"AND (SELECT pw FROM professor_pw_history WHERE professor_no = ? " 
+				+"ORDER BY create_date DESC LIMIT 1) = ? " 
+				+"ORDER BY create_date DESC LIMIT 1";
 	PreparedStatement stmt = conn.prepareStatement(sql);
 	stmt.setInt(1, id);
 	stmt.setString(2,pw);

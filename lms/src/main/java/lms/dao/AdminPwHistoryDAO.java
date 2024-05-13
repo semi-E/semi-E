@@ -131,9 +131,9 @@ public class AdminPwHistoryDAO {
 		//DB접근
 		Connection conn = DBHelper.getConnection();
 		
-		String sql= "select admin_pw_history.admin_no adminNo,admin_pw_history.pw "
-					+ "from admin ,admin_pw_history "
-					+ "where admin.admin_no = admin_pw_history.admin_no"
+		String sql= "SELECT admin_pw_history.admin_no adminNo,admin_pw_history.pw "
+					+ "FROM admin ,admin_pw_history "
+					+ "WHERE admin.admin_no = admin_pw_history.admin_no"
 					+ "AND admin_pw_history.admin_no = ? "
 					+ "AND admin_pw_history.pw = ? ";
 		PreparedStatement stmt = null;

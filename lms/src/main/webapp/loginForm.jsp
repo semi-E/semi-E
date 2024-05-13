@@ -10,7 +10,7 @@
 			<form method="post" action="/lms/loginAction.jsp">
 				<div>
 					<label for="id">아이디</label>
-					<input type="text" id="id" maxlength="9" required="required" name="id" placeholder="abc1234@naver.com">
+					<input type="text" id="id" maxlength="9" required="required" name="id" placeholder="번호를 입력해주세요">
 				</div>
 				<div>
 					<label for="pw">비밀번호</label>
