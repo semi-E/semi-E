@@ -16,13 +16,22 @@
 	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginStudent"));
 	int studentNo = (Integer)(sessionInfo.get("studentNo"));
 	
-	HashMap<String, Object> m = StudentDAO.selectStudent(studentNo);
 
 	String oldpw = request.getParameter("oldpw");
 	String newpw = request.getParameter("newpw");
-	
 	System.out.println(studentNo+"<----studentNo");
 	System.out.println(oldpw+"<----oldpw");
 	System.out.println(newpw+"<----newpw");
+	
+	int row = StudentDAO.insertPw(studentNo, oldpw, newpw);
+	
+	if(row == 1){
+		System.out.println("비밀번호 변경 완료");
+		response.sendRedirect("/lms/student/myPage.jsp");
+	} else {
+		System.out.println("비밀번호 변경 실패");
+		response.sendRedirect("/lms/student/updatePwForm.jsp");
+	}
+	
 	
 %>      

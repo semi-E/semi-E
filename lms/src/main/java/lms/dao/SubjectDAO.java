@@ -43,6 +43,7 @@ public class SubjectDAO {
 				+ "FROM subject "
 				+ "WHERE subject_name like ? "
 				+ "LIMIT ?, ?";
+		System.out.println("SQL Query: " + sql);
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = null;
 		stmt = conn.prepareStatement(sql);

@@ -90,7 +90,9 @@
 		        <th>학과</th>
 		    </tr>
 		    
-		    <% for(HashMap<String, Object> student	:studentList) { %>
+		    <% 
+		    	for(HashMap<String, Object> student	:studentList)  {
+		    %>
 		        <tr>
 		            <td><a href = "/lms/admin/students/studentOne.jsp?studentNo=<%= student.get("studentNo") %>"><%= student.get("studentNo") %></a></td>
 		            <td><%= student.get("name") %></td>
