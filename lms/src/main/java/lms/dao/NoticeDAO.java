@@ -12,16 +12,20 @@ public class NoticeDAO {
 	// 파라미터 : String title
 	// 사용 페이지: /lms/professor/notice/noticeList.jsp
 	// 반환 값 : ArrayList<HashMap<String, Object>> 
-	public static ArrayList<HashMap<String, Object>> selectNoticeList (String title) throws Exception {
+	public static ArrayList<HashMap<String, Object>> selectNoticeList (String title , int startRow, int rowperPage) throws Exception {
 		
 		
 		Connection conn = DBHelper.getConnection();
 		
-		String sql1 = "SELECT * FROM notice "
-				+ 	  "WHERE title LIKE ?";
+		String sql1 = "SELECT  notice_no noticeNo , admin_no adminNo,create_date createDate ,update_date updateDate ,title, content  "
+					+ "FROM notice "
+					+ "WHERE title like ? "
+					+ "LIMIT ? , ?";
 			
 		PreparedStatement stmt1 = conn.prepareStatement(sql1);
 		stmt1.setString(1, "%" + title + "%");
+		stmt1.setInt(2, startRow);
+		stmt1.setInt(3, rowperPage);
 		System.out.println(sql1+"<-----SQL1");
 		System.out.println(stmt1);
 
@@ -31,10 +35,10 @@ public class NoticeDAO {
 	    ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();	 
 	    while(rs.next()) {
 	        HashMap<String, Object> m = new HashMap<String, Object>();
-	        m.put("noticeNo", rs.getInt("notice_no"));
-	        m.put("adminNo", rs.getInt("admin_no"));
-	        m.put("createDate", rs.getString("create_date"));
-	        m.put("updateDate", rs.getString("update_date"));
+	        m.put("noticeNo", rs.getInt("noticeNo"));
+	        m.put("adminNo", rs.getInt("adminNo"));
+	        m.put("createDate", rs.getString("createDate"));
+	        m.put("updateDate", rs.getString("updateDate"));
 	        m.put("title", rs.getString("title"));
 	        m.put("content", rs.getString("content"));
 	     
@@ -45,7 +49,7 @@ public class NoticeDAO {
 		return list;
 	}
 	
-	//강의 개수 카운트
+	//공지 개수 카운트
 	//파라미터 : String title
 	//반환 값 : int
 	//사용 페이지 : /lms/professor/class/classList.jsp
@@ -77,7 +81,7 @@ public class NoticeDAO {
 	// 반환 값: HashMap<String, Object>
 	public static HashMap<String, Object> selectNotice(int noticeNo) throws Exception {
 		Connection conn = DBHelper.getConnection();
-		String sql1 ="SELECT * "
+		String sql1 ="SELECT notice_no noticeNo,admin_no adminNo, create_date createDate,update_date updateDate,title, content "
 				+    "FROM notice "
 				+    "WHERE notice_no = ?";
 			
@@ -90,15 +94,16 @@ public class NoticeDAO {
 		
 		HashMap<String, Object> m = new HashMap<String, Object>();
 		if(rs1.next()) {
-	        m.put("noticeNo", rs1.getInt("notice_no"));
-	        m.put("adminNo", rs1.getString("admin_no"));   
-	        m.put("createDate", rs1.getString("create_date"));
-	        m.put("updateDate", rs1.getString("update_date"));
+	        m.put("noticeNo", rs1.getInt("noticeNo"));
+	        m.put("adminNo", rs1.getString("adminNo"));   
+	        m.put("createDate", rs1.getString("createDate"));
+	        m.put("updateDate", rs1.getString("updateDate"));
 	        m.put("title", rs1.getString("title"));
 	        m.put("content", rs1.getString("content"));
 	    }
 	    return m;
 	}
 			
+	
 		
 }

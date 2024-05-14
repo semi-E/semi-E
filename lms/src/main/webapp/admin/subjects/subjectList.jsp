@@ -46,7 +46,6 @@
 	
 	//DAO 호출
 	ArrayList<HashMap<String, Object>> selectSubjectList= SubjectDAO.selectSubjectList(subjectName, startRow, rowPerPage);
-	int selectSubjectCount= SubjectDAO.selectSubjectCount(subjectName);
  %>
 <!DOCTYPE html>
 <html>
