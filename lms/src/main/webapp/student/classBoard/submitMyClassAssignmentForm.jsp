@@ -23,11 +23,11 @@
 </head>
 <body>
 	<h1>과제 제출</h1>
-	<form method="post" action="/lms/student/classBoard/submitMyClassAssignmentAction.jsp">
+	<form method="post" action="/lms/student/classBoard/submitMyClassAssignmentAction.jsp" enctype="multipart/form-data">
 		<input type="hidden" name="assignmentNo" value="<%=assignmentNo%>">
 		<input type="hidden" name="classApplyNo" value="<%=classApplyNo%>">
 		제목 : <input type="text" name="title"><br>
-		<!-- 시간남으면 파일도 가능하게 -->
+		파일 : <input type="file" name="file"><br>
 		내용 : <textarea rows="5" cols="50" name="content"></textarea><br>
 		<button type="submit">제출</button>
 	</form>

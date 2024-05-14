@@ -9,22 +9,23 @@ import java.util.HashMap;
 public class AssignmentDAO {
 	
 	//과제 목록
-	//파라미터 : int classApplyNo, int startRow, int rowPerPage
+	//파라미터 : int classApplyNo, int studentNo, int startRow, int rowPerPage
 	//반환 값 : ArrayList<HashMap<String, Object>>
 	//사용 페이지 : /student/classBoard/myClassAssignmentList.jsp
-	public static ArrayList<HashMap<String, Object>> selectAssignmentList(int classApplyNo, 
+	public static ArrayList<HashMap<String, Object>> selectAssignmentList(int classApplyNo, int studentNo,
 			int startRow, int rowPerPage) throws Exception{
 		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
 		String sql = null;
-		sql = "SELECT assignment_no assignmentNo, title, end_date endDate, create_date createDate "
-				+ "FROM assignment "
-				+ "WHERE class_apply_no = ? "
+		sql = "SELECT a.assignment_no assignmentNo, a.title title, a.end_date endDate, a.create_date createDate "
+				+ "FROM assignment a, my_class m "
+				+ "WHERE a.class_apply_no = m.class_apply_no AND a.class_apply_no = ? AND m.student_no = ? "
 				+ "LIMIT ?, ?";
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, classApplyNo);
-		stmt.setInt(2, startRow);
-		stmt.setInt(3, rowPerPage);
+		stmt.setInt(2, studentNo);
+		stmt.setInt(3, startRow);
+		stmt.setInt(4, rowPerPage);
 		System.out.println(stmt);
 		ResultSet rs = stmt.executeQuery();
 		

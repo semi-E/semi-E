@@ -17,5 +17,7 @@
 	<h1>교수 메인</h1>
 	<a href="/lms/professor/myPage.jsp">마이 페이지</a>
 	<a href="/lms/professor/class/myClassList.jsp">강의</a>
+	<a href="/lms/professor/classBoard/myClassBoardList.jsp">강의 게시판</a>
+	<a href="/lms/professor/notice/noticeList.jsp">공지사항</a>
 </body>
 </html>

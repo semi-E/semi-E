@@ -1,3 +1,6 @@
+<%@page import="lms.dao.DepartmentDAO"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -6,6 +9,9 @@
 		response.sendRedirect("/lms/loginForm.jsp");
 		return;
 	}
+%>
+<%
+	ArrayList<HashMap<String, Object>> departmentList = DepartmentDAO.selectDepartmentList();
 %>
 <!DOCTYPE html>
 <html>
@@ -20,7 +26,16 @@
 		교수 번호<input type="text" name="professorNo"  maxlength="9" required><br>
 		교수 이름<input type="text" name="name" required><br>
 		<!--  학과 리스트를 받아와서 select로 변경할수도있음 -->
-		학과<input type="text" name="department" required><br>
+		학과
+		<select name="department">
+			<%
+				for(HashMap m : departmentList){
+			%>
+					<option value=<%=m.get("department") %>><%=m.get("department") %></option>
+			<%
+				}
+			%>
+		</select><br>
 		<button type="submit">등록</button>
 	</form>
 </body>

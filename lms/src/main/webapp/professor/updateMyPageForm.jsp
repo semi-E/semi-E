@@ -41,6 +41,7 @@
 			</tr>
 			<tr>
 				<th>학과</th>
+				<td><%=m.get("department") %></td>
 			</tr>
 			<tr>
 				<th>성별</th>

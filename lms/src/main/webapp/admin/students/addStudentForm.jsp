@@ -1,3 +1,6 @@
+<%@page import="lms.dao.DepartmentDAO"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -8,7 +11,9 @@
 		return;
 	}
 %>    
-    
+<%
+	ArrayList<HashMap<String, Object>> departmentList = DepartmentDAO.selectDepartmentList();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +37,15 @@
 		
 		<div>
 			<label for="department">학과</label> 
-			<input type="text"name="department" id="deprartment">
+			<select name="department">
+			<%
+				for(HashMap m : departmentList){
+			%>
+					<option value=<%=m.get("department") %>><%=m.get("department") %></option>
+			<%
+				}
+			%>
+		</select>
 		</div>
 		
 		<div><button type="submit">학생추가</button></div>

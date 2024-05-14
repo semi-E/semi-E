@@ -69,6 +69,10 @@
 					<td><%=studentAssignment.get("updateDate") %></td>
 				</tr>
 				<tr>
+					<th>파일</th>
+					<td><a href="/lms/upload/<%=studentAssignment.get("file") %>"><%=studentAssignment.get("file") %></a></td>
+				</tr>
+				<tr>
 					<th>내용</th>
 					<td><%=studentAssignment.get("content") %></td>
 				</tr>
