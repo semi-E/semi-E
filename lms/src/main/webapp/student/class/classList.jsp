@@ -20,62 +20,72 @@
 	
 	
 	String paramclassApplyNo = request.getParameter("classApplyNo");
-	String studentNo = request.getParameter("studentNo");
-	String studentName = request.getParameter("studentName");
+	String paramprofessorNo = request.getParameter("studentNo");
+	String professorName = request.getParameter("studentName");
 	String className = request.getParameter("className");
 	String subjectName = request.getParameter("subjectName");
 	String days = request.getParameter("days");
-	String periodStart = request.getParameter("periodStart");
-	String year = request.getParameter("year");
- 	String semester = request.getParameter("semester");
+	String paramperiodStart = request.getParameter("periodStart");
+	String paramyear = request.getParameter("year");
+ 	String paramsemester = request.getParameter("semester");
 	String state = request.getParameter("state");
 	
+	//디버깅
+	System.out.println("paramclassApplyNo: " + paramclassApplyNo);
+	System.out.println("paramprofessorNo: " + paramprofessorNo);
+	System.out.println("professorName: " + professorName);
+	System.out.println("className: " + className);
+	System.out.println("subjectName: " + subjectName);
+	System.out.println("days: " + days);
+	System.out.println("paramperiodStart: " + paramperiodStart);
+	System.out.println("paramyear: " + paramyear);
+	System.out.println("paramsemester: " + paramsemester);
+	System.out.println("state: " + state);
 	
-	int classApplyNo = Integer.parseInt(request.getParameter("classApplyNo"));
+ 	
 	if(paramclassApplyNo == null || paramclassApplyNo.equals("")){
 		paramclassApplyNo = "0";
 	}
+	int classApplyNo = Integer.parseInt(paramclassApplyNo);
 	
-	if(studentNo == null){
-		studenttNo = "";
+	if(paramprofessorNo == null || paramprofessorNo.equals("")){
+		paramprofessorNo = "0";
 	}
+	int professorNo = Integer.parseInt(paramprofessorNo);
 	
-	
-	
-	if(subjectName == null){
-		subjectName = "";
-	}
-	
-	if(studentName == null){
-		studentName = "";
+	if(professorName == null){
+		professorName = "";
 	}
 	
 	if(className == null){
 		className = "";
 	}
-	
+	if(subjectName == null){
+		subjectName = "";
+	}
 	if(days == null){
 		days = "";
 	}
 	
-	if(periodStart == null){
-		periodStart = "";
+	if(paramperiodStart == null || paramperiodStart.equals("")){
+		paramperiodStart = "0";
 	}
+	int periodStart = Integer.parseInt(paramperiodStart);
 	
-	if(year == null){
-		year = "";
+	//년도와 학기는 나중에 그 날의 날짜에 따라서 기본값이 정해지게 변경
+	// ex) 20240514, 20240512
+	if(paramyear == null || paramyear.equals("")){
+		paramyear = "2024";
 	}
+	int year = Integer.parseInt(paramyear);
 	
-	if(semester == null){
-		semester = "";
+	if(paramsemester == null || paramsemester.equals("")){
+		paramsemester = "1";
 	}
+	int semester = Integer.parseInt(paramsemester);
 	
-	if(state == null){
-		state = "";
-	}
-	
-	
-	ArrayList<HashMap<String, Object>> list = ClassOpenApplyDAO.selectClassOpenApplyList1(classApplyNo, studentNo, studentName, className, subjectName, days, periodStart, year, semester, state, startRow, rowPerPage);
+	ArrayList<HashMap<String, Object>> list = ClassOpenApplyDAO.selectClassOpenApplyList(classApplyNo, professorNo, professorName, className, subjectName, days, periodStart, year, semester, "승인", startRow, rowPerPage);
+	//state 매개변수로인해 오류 -> 관리자에게 승인이 완료된 강의 목록을 보여주는 것임으로 state가 "승인" 상태여야 함. 매개변수 말고 값으로 표시.
 %>  
     
 <!DOCTYPE html>
@@ -87,42 +97,57 @@
 <body>
 	<h1>강의 리스트</h1>
 	
-	<table>
+	<form method="get" action="/lms/student/class/classList.jsp">
+		강의번호:<input type="text" name = "classApplyNo">
+		교수번호:<input type="text" name = "professorNo">
+		강의이름:<input type="text" name = "className">
+		과목이름:<input type="text" name = "subjectName">
+		요일:<input type="text" name = "days">
+		시작교시:<input type="text" name = "periodStart">
+	
+		<button type="submit">검색</button>
+		
+	</form>
+	
+	
+	
+	
+	<table border = "1">
 		<tr>
-			<td>강의</td>
-			<td>과목이름</td>
-			<td>교수번호</td>
-			<td>강의이름</td>
-			<td>시간</td>
-			<td>요일</td>
-			<td>생성날짜</td>
-			<td>업데이트 날짜</td>
-			<td>상태</td>
-			<td>관리자 번호</td>
-			<td>강의실</td>
+			<th>강의 번호</th>
+			<th>교수 번호</th>
+			<th>교수 이름</th>
+			<th>과목 명</th>
+			<th>강의 명</th>
+			<th>학점</th>
+			<th>요일</th>
+			<th>시작 교시</th>
+			<th>강의실</th>
+			<th>년도</th>
+			<th>학기</th>
+			
 		</tr>
 		
 		<%
-			for(HashMap<String,Object> m : list){
+			for(HashMap<String,Object> m : list) {
 		%>
-		<tr>
-			<td><%=m.get("classApplyNo")%></td>
-			<td><%=m.get("studentNo")%></td>
-			<td><%=m.get("studentName")%></td>
-			<td><%=m.get("className")%></td>
-			<td><%=m.get("classroom")%></td>
-			<td><%=m.get("subjectName")%></td>
-			<td><%=m.get("days")%></td>
-			<td><%=m.get("periodStart")%></td>
-			<td><%=m.get("year")%></td>
-			<td><%=m.get("semester")%></td>
-			<td><%=m.get("credit")%></td>
-		</tr>
+			<tr>
+				<td><%=m.get("classApplyNo")%></td>
+				<td><%=m.get("professorNo")%></td>
+				<td><%=m.get("professorName")%></td>
+				<td><%=m.get("subjectName")%></td>
+				<td><%=m.get("className")%></td>
+				<td><%=m.get("credit")%></td>
+				<td><%=m.get("days")%></td>
+				<td><%=m.get("periodStart")%></td>
+				<td><%=m.get("classroom")%></td>
+				<td><%=m.get("year")%></td>
+				<td><%=m.get("semester")%></td>
+			</tr>
 		
 		
 		<% 	
-			}
-		
+			}	
 		%>
 	
 	
