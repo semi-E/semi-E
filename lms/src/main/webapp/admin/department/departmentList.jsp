@@ -26,12 +26,27 @@
 				for(HashMap m : selectDepartmentList){
 			%>
 				<tr>
-					<td><%=(String)(m.get("department"))%></td>
-					<td><%=(Integer)(m.get("admin_no"))%></td>
+					<td><%=(String)(m.get("department"))%></td> <!-- 학과 --> 
+					<td><%=(Integer)(m.get("admin_no"))%></td> <!-- 관리자번호 --> 
+					<td><a href="/lms/admin/department/deleteDepartment.jsp?department=<%=(String)(m.get("department"))%>">삭제</a></td>	
 				</tr>
 			<%
 				}
 			%>
 		</table>
+		<hr>
+		<br>
+		<h2>학과 추가</h2>
+		<form action="/lms/admin/department/addDepartment.jsp" method="post">
+			<div>
+				<label for="department">학과</label>
+				<input type="text" required id="department" name="department" maxlength="20"> 
+			</div>
+			<div>
+				<label for="adminNo">관리자 번호</label>
+				<input type="text" required id="adminNo" name="adminNo" maxlength="9">
+			</div>
+			<button type="submit">추가하기</button>
+		</form>
 	</body>
 </html>

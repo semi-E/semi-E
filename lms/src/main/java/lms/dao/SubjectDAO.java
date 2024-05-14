@@ -35,11 +35,11 @@ public class SubjectDAO {
 	//과목 목록
 	//파라미터 : String subjectName, int startRow, int rowPerPage
 	//반환 값 : ArrayList<HashMap<String, Object>>
-	//사용 페이지 : /professor/class/subjectList.jsp
+	//사용 페이지 : /professor/class/subjectList.jsp//lms/admin/subjects/subjectList.jsp
 	public static ArrayList<HashMap<String, Object>> selectSubjectList(String subjectName, int startRow, int rowPerPage) throws Exception{
 		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
 		String sql = null;
-		sql = "SELECT subject_name subjectName, credit "
+		sql = "SELECT subject_name subjectName, admin_no adminNo, credit "
 				+ "FROM subject "
 				+ "WHERE subject_name like ? "
 				+ "LIMIT ?, ?";
@@ -55,6 +55,7 @@ public class SubjectDAO {
 		while(rs.next()) {
 			HashMap<String, Object> m = new HashMap<String, Object>();
 			m.put("subjectName", rs.getString("subjectName"));
+			m.put("adminNo", rs.getInt("adminNo"));
 			m.put("credit", rs.getInt("credit"));
 			
 			list.add(m);
@@ -63,9 +64,11 @@ public class SubjectDAO {
 		return list;
 	}
 	
+	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
+	
 
 }

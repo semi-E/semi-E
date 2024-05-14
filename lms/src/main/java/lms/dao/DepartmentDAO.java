@@ -40,4 +40,59 @@ public class DepartmentDAO {
 			return list;
 		}
 		
+		//학과 삭제
+		//파라미터: String department
+		//반환 값 : int
+		//사용 페이지: /lms/admin/department/deleteDepartment.jsp
+		
+		public static int deleteDepartment(String department)throws Exception{
+			int row = 0;
+			
+			String sql="DELETE FROM department "
+					+ "WHERE department = ? ";
+			
+			// DB 접근
+			Connection conn = DBHelper.getConnection();
+			PreparedStatement stmt = null;
+			stmt = conn.prepareStatement(sql);
+			
+			//디버깅
+			System.out.println(stmt + "<-- deleteDepartment stmt");
+			
+			stmt.setString(1, department);
+			row=stmt.executeUpdate();
+			
+			conn.close();
+			return row;
+		}
+		
+		//학과 추가
+		//파라미터: String department , int adminNo
+		//반환 값 : int
+		//사용 페이지: /lms/admin/department/addDepartment.jsp
+		
+		public static int insertDepartment(String department,int adminNo)throws Exception{
+			int row=0;
+			
+			String sql="INSERT INTO department(department, admin_no ) "
+						+"VALUES (?, ?)";
+			
+			// DB 접근
+			Connection conn = DBHelper.getConnection();
+			PreparedStatement stmt = null;
+			stmt = conn.prepareStatement(sql);
+			
+			
+			stmt.setString(1, department);
+			stmt.setInt(2, adminNo);
+			//디버깅
+			System.out.println(stmt + "<-- addDepartment stmt");
+			row=stmt.executeUpdate();
+			//DB자원 반납
+			conn.close();
+			return row;
+		}
+		
+		
+
 }
