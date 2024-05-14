@@ -23,54 +23,7 @@
 %>
 
 <%
-	String paramclassApplyNo = request.getParameter("classApplyNo");
-	String paramprofessorNo = request.getParameter("professorNo");
-	String paramperiodStart = request.getParameter("periodStart");
-	String className = request.getParameter("className");
-	String department = request.getParameter("department");
-	String subjectName  = request.getParameter("subjectName");
-	String days = request.getParameter("days");
-	
-	if(paramclassApplyNo == null || paramclassApplyNo.equals("")){
-		paramclassApplyNo = "0";
-	}
-	int classApplyNo = Integer.parseInt(paramclassApplyNo);
-	
-	if(paramprofessorNo == null || paramprofessorNo.equals("")){
-		paramprofessorNo = "0";
-	}
-	int professorNo = Integer.parseInt(paramprofessorNo);
-	
-	if(paramperiodStart == null || paramperiodStart.equals("")){
-		paramperiodStart = "0";
-	}
-	int periodStart = Integer.parseInt(paramperiodStart);
-	
-	
-	
-	
-	if(className == null){
-		className = "";
-	}
-	
-	if(department == null){
-		department = "";
-	}
-	if(subjectName == null){
-		subjectName = "";
-	}
-	if(days == null){
-		days = "";
-	}
-	
-
-	
-	
-	
-
-
-
-	ArrayList<HashMap<String, Object>> list = MyclassDAO.selectMyClasslist(studentNo, classApplyNo, professorNo, className, department, subjectName, days, periodStart);
+	ArrayList<HashMap<String, Object>> list = MyclassDAO.selectMyClasslist(studentNo);
 %>
 
 <!DOCTYPE html>
@@ -89,6 +42,7 @@
 			<td>과목 이름</td>
 			<td>요일</td>
 			<td>시작 교시</td>
+			<td>학점</td>
 		</tr>
 		<%
 			for(HashMap<String,Object> m : list) {
@@ -100,6 +54,7 @@
 				<td><%=m.get("subjectName") %></td>
 				<td><%=m.get("days") %></td>
 				<td><%=m.get("periodStart") %></td>
+				<td><%=m.get("credit") %></td>
 			</tr>
 		<%
 			}

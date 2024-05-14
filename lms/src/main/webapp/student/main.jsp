@@ -28,6 +28,7 @@
 	<a href="/lms/student/updatePwForm.jsp">비밀번호 변경</a>
 	<a href="/lms/student/classApply/classApplyList.jsp ">수강신청</a>
 	<a href="/lms/student/class/myClassList.jsp">내 강의리스트</a>
+	<a href="/lms/student/class/schedule.jsp">학생시간표</a>
 	<a href="/lms/logout.jsp">로그아웃</a>
 	
 

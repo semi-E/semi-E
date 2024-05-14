@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MyclassDAO {
+		// 학생 시간표
+		// 파라미터:
+		// 반환 값 :
+		
 	
 		// 내 강의목록 상세보기
 		// 파라미터: int classApplyNo
@@ -59,26 +63,28 @@ public class MyclassDAO {
 		// 파라미터 :int studentNo,int classApplyNo,int professorNo,String className,
 		//String department,String subjectName,String days,int periodStart
 		// 반환 값 : ArrayList<HashMap<String, Object>> 
-		public static ArrayList<HashMap<String, Object>> selectMyClasslist(int studentNo,int classApplyNo,int professorNo,String className,
-				String department,String subjectName,String days,int periodStart) throws Exception {
+		public static ArrayList<HashMap<String, Object>> selectMyClasslist(int studentNo) throws Exception {
 			
 			
 			Connection conn = DBHelper.getConnection();
 			
-			String sql1 = "SELECT c.class_apply_no AS classApplyNo"
-					+ ", c.subject_name AS subjectName"
-					+ ", c.professor_no AS professorNo"
-					+ ", c.class_name AS className"
-					+ ", c.period_start AS periodStart"
-					+ ", c.days"
-					+ ", c.state"
-					+ ",c.classroom"
-					+ ", c.year"
-					+ ", c.semester\r\n"
-					+ "FROM class_open_apply c\r\n"
-					+ "JOIN my_class m\r\n"
-					+ "ON c.class_apply_no = m.class_apply_no\r\n"
-					+ "WHERE m.student_no = ?";
+			 String sql1 = "SELECT c.class_apply_no AS classApplyNo"
+			            + ", c.subject_name AS subjectName"
+			            + ", c.professor_no AS professorNo"
+			            + ", c.class_name AS className"
+			            + ", c.period_start AS periodStart"
+			            + ", c.days"
+			            + ", c.state"
+			            + ", c.classroom"
+			            + ", c.year"
+			            + ", c.semester"
+			            + ", s.credit"  //시간표에서 학점을 가져오기위해 추가
+			            + " FROM class_open_apply c"
+			            + " JOIN my_class m"
+			            + " ON c.class_apply_no = m.class_apply_no"
+			            + " JOIN subject s" 
+			            + " ON c.subject_name = s.subject_name" 
+			            + " WHERE m.student_no = ?";
 				
 			PreparedStatement stmt1 = conn.prepareStatement(sql1);
 			System.out.println(sql1+"<-----SQL1");
@@ -104,6 +110,7 @@ public class MyclassDAO {
 		        m.put("calssroom", rs.getString("classroom"));
 		        m.put("year", rs.getString("year"));
 		        m.put("semester", rs.getInt("semester"));
+		        m.put("credit", rs.getInt("credit"));
 		        
 		     
 		        list.add(m);
