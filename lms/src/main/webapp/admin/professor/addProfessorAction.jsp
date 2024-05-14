@@ -1,4 +1,4 @@
-<%@page import="lms.dao.Professor_Pw_History"%>
+<%@page import="lms.dao.ProfessorPwHistoryDAO"%>
 <%@page import="lms.dao.ProfessorDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -24,7 +24,7 @@
 	
 	if(row == 1){
 		System.out.println("교수 등록 성공");
-		row = Professor_Pw_History.insertProfessorPwHistory(professorNo);
+		row = ProfessorPwHistoryDAO.insertProfessorPwHistory(professorNo);
 		if(row == 1){
 			System.out.println("교수 비밀번호 설정 성공");
 			response.sendRedirect("/lms/admin/professor/professorList.jsp");

@@ -1,5 +1,5 @@
+<%@page import="lms.dao.ProfessorPwHistoryDAO"%>
 <%@page import="java.util.HashMap"%>
-<%@page import="lms.dao.Professor_Pw_History"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -19,7 +19,7 @@
 	System.out.println(newPw + "<-- updatePwAction param newPw");
 	System.out.println(professorNo + "<-- updatePwAction session professorNo");
 	
-	int row = Professor_Pw_History.insertProfessorPwHistory(professorNo, oldPw, newPw);
+	int row = ProfessorPwHistoryDAO.insertProfessorPwHistory(professorNo, oldPw, newPw);
 	if(row == 1){
 		System.out.println("교수 비밀번호 수정 성공");
 		response.sendRedirect("/lms/professor/myPage.jsp");
