@@ -39,7 +39,7 @@
 		if (userId.length() == 9) {
 			System.out.println(id + ": 교수입니다.");
 			//교수 비밀번호 찾기 
-			HashMap<String, Object> professorSelectPw = AdminPwHistoryDAO.selectPw(id, email);
+			HashMap<String, Object> professorSelectPw = ProfessorPwHistoryDAO.selectPw(id, email);
 			if (professorSelectPw == null) {
 			    System.out.println("비밀번호 찾기 실패");
 			    response.sendRedirect("/lms/findPwForm.jsp");
@@ -47,6 +47,7 @@
 			    String pw = (String) professorSelectPw.get("pw"); // 비밀번호 가져오기
 			    if (pw != null) {
 			        System.out.println("비밀번호 찾기 성공: " + pw);
+			        response.sendRedirect("/lms/loginForm.jsp");
 			    } else {
 			        System.out.println("비밀번호가 없습니다.");
 			    }
@@ -55,7 +56,7 @@
 			//학생 비밀번호찾기(2로 시작하는 8자리)
 		} else if (userId.length() == 8) {
 			System.out.println(id + ": 학생입니다.");
-			HashMap<String,Object>StudentSelectPw = AdminPwHistoryDAO.selectPw(id, email);
+			HashMap<String,Object>StudentSelectPw = StudentPwHistoryDAO.selectPw(id, email);
 			if (StudentSelectPw == null) {
 				System.out.println("비밀번호 찾기 실패");
 				response.sendRedirect("/lms/findPwForm.jsp");
@@ -63,6 +64,7 @@
 			 String pw = (String) StudentSelectPw.get("pw");
 			 if (pw != null) {
 		        System.out.println("비밀번호 찾기 성공: " + pw);
+		        response.sendRedirect("/lms/loginForm.jsp");
 		    } else {
 		        System.out.println("비밀번호가 없습니다.");
 			    }
@@ -79,6 +81,7 @@
 			 String pw = (String)AdminSelectPw.get("pw");
 			 if (pw != null) {
 	        	System.out.println("비밀번호 찾기 성공: " + pw);
+	        	response.sendRedirect("/lms/loginForm.jsp");
 	    	}else {
 		        System.out.println("비밀번호가 없습니다.");
 		    }

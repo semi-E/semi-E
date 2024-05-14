@@ -123,19 +123,17 @@ public class AdminPwHistoryDAO {
 	//파라미터 : int id , String email
 	//반환값 HashMap<String, Object>
 	//사용 페이지: findPwAction.jsp
-	//-수정중
 	public static HashMap<String , Object>selectPw(int id, String email) throws Exception {
 		HashMap<String , Object>resultMap=null;
 
 	    // DB접근
 	    Connection conn = DBHelper.getConnection();
 
-	    String sql = "SELECT admin.admin_no adminNo , admin_pw_history.pw ,email "
-	    		+"FROM admin,admin_pw_history " 
-	    		+"WHERE admin.admin_no = admin_pw_history.admin_no AND admin_pw_history.admin_no= ? "
-	    		+"AND (select pw FROM admin_pw_history WHERE admin_no = ? "
-	    		+"ORDER BY create_date DESC LIMIT 1)= ? "   
-	    		+"ORDER BY create_date DESC LIMIT 1";	  
+	    String sql = "SELECT  admin_pw_history.admin_no, email, pw "
+	    		+ "FROM admin "
+	    		+ "JOIN admin_pw_history ON admin.admin_no = admin_pw_history.admin_no "
+	    		+ "WHERE admin.admin_no = ? AND admin.email = ? "
+	    		+ "ORDER BY create_date DESC LIMIT 1";	  
 		PreparedStatement stmt = null;
 	    ResultSet rs = null;
 	    stmt = conn.prepareStatement(sql);
@@ -144,8 +142,7 @@ public class AdminPwHistoryDAO {
 	    System.out.println(stmt + "AdminPwHistoryDAO findPwAction.jsp stmt");
 
 	    stmt.setInt(1, id);
-	    stmt.setInt(2, id);
-	    stmt.setString(3, email);
+	    stmt.setString(2, email);
 
 	    rs = stmt.executeQuery();
 
