@@ -293,6 +293,82 @@ public class ClassOpenApplyDAO {
 	}
 	
 	
+	//강의 목록
+	//파라미터 : int professorNo, String state
+	//반환 값 : ArrayList<HashMap<String, Object>>
+	//사용 페이지 : /lms/professor/classBoard/myClassBoardList.jsp
+	public static ArrayList<HashMap<String, Object>> selectMyClassOpenApplyList(int professorNo, String state) throws Exception{
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
+		String sql = null;
+		sql = "SELECT c.class_apply_no classApplyNo, "
+				+ "c.class_name className, "
+				+ "c.classroom classroom, "
+				+ "c.subject_name subjectName, "
+				+ "c.days days, c.period_start periodStart, "
+				+ "c.year year, c.semester semester, s.credit credit "
+				+ "FROM class_open_apply c , subject s, professor p "
+				+ "WHERE c.subject_name = s.subject_name "
+				+ "AND c.professor_no = p.professor_no "
+				+ "AND p.professor_no = ? "
+				+ "AND c.state = ?";
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, professorNo);
+		stmt.setString(2, state);
+		System.out.println(stmt);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			m.put("classApplyNo", rs.getInt("classApplyNo"));
+			m.put("className", rs.getString("className"));
+			m.put("classroom", rs.getString("classroom"));
+			m.put("subjectName", rs.getString("subjectName"));
+			m.put("days", rs.getString("days"));
+			m.put("periodStart", rs.getInt("periodStart"));
+			m.put("year", rs.getInt("year"));
+			m.put("semester", rs.getInt("semester"));
+			m.put("credit", rs.getInt("credit"));
+			
+			list.add(m);
+		}
+		
+		return list;
+	}
+	
+	// 공지사항 상세보기
+	// 파라미터: int classApplyNo int professorNo
+	// 반환 값: HashMap<String, Object>
+	public static HashMap<String, Object> selecMyClassOpenApply( int classApplyNo, int professorNo ) throws Exception {
+		Connection conn = DBHelper.getConnection();
+		String sql1 ="SELECT subject_name subjectName, class_name className, period_start periodStart, "
+				+ "days, create_date createDate, update_date updateDate, admin_no adminNo "
+				+ "FROM class_open_apply "
+				+ "WHERE class_apply_no = ? AND professor_no = ?";
+			
+		PreparedStatement stmt1 = conn.prepareStatement(sql1);
+		System.out.println(sql1+"<-----SQL1");
+		
+		stmt1.setInt(1,classApplyNo);
+		stmt1.setInt(2,professorNo);
+		
+		ResultSet rs1 = stmt1.executeQuery();
+		
+		HashMap<String, Object> m = new HashMap<String, Object>();
+		if(rs1.next()) {
+	        m.put("subjectName", rs1.getString("subjectName"));   
+	        m.put("className", rs1.getString("className"));
+	        m.put("periodStart", rs1.getInt("periodStart"));
+	        m.put("days", rs1.getString("days"));
+	        m.put("createDate", rs1.getString("createDate"));
+	        m.put("updateDate", rs1.getString("updateDate"));
+	        m.put("adminNo", rs1.getInt("adminNo"));
+
+	    }
+	    return m;
+	}
+	
 	
 	public static void main(String[] args) throws Exception {
 		//디버깅
