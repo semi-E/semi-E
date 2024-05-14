@@ -94,7 +94,7 @@
 			for(HashMap<String,Object> m : list) {
 		%>
 			<tr>
-				<td><%=m.get("classApplyNo") %></td>
+				<td><a href="/lms/student/class/myClassOne.jsp?classApplyNo=<%=m.get("classApplyNo") %>"><%=m.get("classApplyNo") %></a></td>
 				<td><%=m.get("className") %></td>
 				<td><%=m.get("professorNo") %></td>
 				<td><%=m.get("subjectName") %></td>

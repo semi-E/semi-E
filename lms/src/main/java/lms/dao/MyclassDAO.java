@@ -9,27 +9,52 @@ import java.util.HashMap;
 public class MyclassDAO {
 	
 		// 내 강의목록 상세보기
-		// 파라미터:
-		// 반환 값:
+		// 파라미터: int classApplyNo
+		// 반환 값: HashMap<String, Object>
 		public static HashMap<String, Object> selectMyClass(int classApplyNo) throws Exception {
 			Connection conn = DBHelper.getConnection();
-			String sql1 ="";
-			
+			String sql1 ="SELECT c.class_apply_no AS classApplyNo,\r\n"
+					+ "       c.subject_name AS subjectName,\r\n"
+					+ "       c.professor_no AS professorNo,\r\n"
+					+ "       c.class_name AS className,\r\n"
+					+ "       c.period_start AS periodStart,\r\n"
+					+ "       c.days,\r\n"
+					+ "       c.state,\r\n"
+					+ "       c.classroom,\r\n"
+					+ "       c.year,\r\n"
+					+ "       c.semester\r\n"
+					+ "FROM class_open_apply c\r\n"
+					+ "JOIN my_class m \r\n"
+					+ "ON c.class_apply_no = m.class_apply_no\r\n"
+					+ "JOIN student s \r\n"
+					+ "ON m.student_no = s.student_no\r\n"
+					+ "WHERE c.class_apply_no = ?;\r\n";
+				
 			PreparedStatement stmt1 = conn.prepareStatement(sql1);
 			System.out.println(sql1+"<-----SQL1");
 			
 			stmt1.setInt(1,classApplyNo);
 			
-			ResultSet rs = stmt1.executeQuery();
+			ResultSet rs1 = stmt1.executeQuery();
 			
-			if(rs.next()) {
-				 HashMap<String, Object> m = new HashMap<String, Object>();
-				  m.put("", rs.getInt(""));
-			}
-			return null;
-			
-		
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			if(rs1.next()) {
+		        m.put("classApplyNo", rs1.getInt("classApplyNo"));
+		        m.put("subjectName", rs1.getString("subjectName"));   
+		        m.put("professorNo", rs1.getInt("professorNo"));
+		        m.put("className", rs1.getString("className"));
+		        m.put("periodStart", rs1.getString("periodStart"));
+		        m.put("days", rs1.getString("days"));
+		        m.put("state", rs1.getString("state"));
+		        m.put("classroom", rs1.getString("classroom"));
+		        m.put("year", rs1.getString("year"));
+		        m.put("semester", rs1.getString("semester"));
+		    }
+		    return m;
 		}
+		
+		
+		
 		// 학생 자신의 강의 목록
 		// 파라미터 :int studentNo,int classApplyNo,int professorNo,String className,
 		//String department,String subjectName,String days,int periodStart
