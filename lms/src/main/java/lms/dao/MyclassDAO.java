@@ -87,5 +87,35 @@ public class MyclassDAO {
 			
 			return list;
 		}
+		
+		
+		// 수정 중
+		// 나의 수강 목록에 추가
+		// 파라미터 : int classApplyNo, int studentNo
+		// 반환 값 : int
+		// 사용 페이지 : /lms/student/classApply/addMyClassAction.jsp 
+		public static int insertMyClass(int studentNo, int classApplyNo) throws Exception {
+			int row = 0;
+			
+			String sql = "INSERT INTO my_class "
+						+"VALUES( ?, ?)";
+			
+			Connection conn = DBHelper.getConnection();
+			PreparedStatement stmt = null; 	
+			stmt = conn.prepareStatement(sql);
+			
+			
+			stmt.setInt(1, studentNo);
+			stmt.setInt(1, classApplyNo);
+			//디버깅
+			System.out.println(stmt+" <-- insertMyClass stmt");
+			
+			row = stmt.executeUpdate();
+			
+			//DB자원 반납
+			conn.close();
+			return row;
+			
+		}
 
 }

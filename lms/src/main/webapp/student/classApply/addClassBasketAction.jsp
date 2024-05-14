@@ -23,7 +23,6 @@
 		int add = ClassBasketDAO.insertClassBasket(classApplyNo, studentNo);
 		
 		if(add == 1){ // 장바구니 추가 성공
-			
 			System.out.println("장바구니 추가 성공");
 			response.sendRedirect("/lms/student/classApply/classBasketList.jsp");
 			

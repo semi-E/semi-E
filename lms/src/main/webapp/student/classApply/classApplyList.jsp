@@ -1,23 +1,16 @@
+<%@page import="lms.dao.ClassOpenApplyDAO"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%@ page import="lms.dao.*" %>
-<%@ page import="java.util.*" %>
-
 <%
-	//세션인증분기 - loginProfessor 학생
+	//세션인증분기 - loginStudent 학생 
 	if(session.getAttribute("loginStudent") == null) {
 		response.sendRedirect("/lms/loginForm.jsp");
 		return;
 	}
 %>
-
 <%
-	// 세션으로부터 학생 개인정보 가져오기
-	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginStudent"));
-	int studentNo = (Integer)(sessionInfo.get("studentNo"));	
-
-
 	int currentPage = 0;
 	if(request.getParameter("currentPage") == null){
 		currentPage = 1;
@@ -88,15 +81,14 @@
 	}
 	int semester = Integer.parseInt(paramSemester);
 	
-
 	// 검색된 class의 개수
 	int cnt = ClassOpenApplyDAO.selectClassOpenApplyCount(classApplyNo, professorNo, professorName, className, subjectName, days, periodStart, year, semester, "승인");
 	System.out.println(cnt);
-	
 	int lastPage = 0;
 	
 	int rowPerPage = 10;
 	int startRow = (currentPage - 1) * rowPerPage;
+	
 	
 	if(cnt % rowPerPage == 0){
 		lastPage = cnt / rowPerPage;
@@ -104,14 +96,13 @@
 		lastPage = cnt / rowPerPage + 1;
 	}
 	
-	ArrayList<HashMap<String, Object>> classList = ClassOpenApplyDAO.selectClassOpenApplyList(classApplyNo, professorNo, professorName, className, subjectName, days, periodStart, year, semester, startRow, rowPerPage);
-	
+	ArrayList<HashMap<String, Object>> classList = ClassOpenApplyDAO.selectClassOpenApplyList(classApplyNo, professorNo, professorName, className, subjectName, days, periodStart, year, semester, "승인", startRow, rowPerPage);
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>수강 신청 목록</title>
+<meta charset="UTF-8">
+<title>수강신청 목록</title>
 </head>
 <body>
 	<h1>전체 강의 목록</h1>
@@ -163,6 +154,7 @@
 			<th>강의실</th>
 			<th>년도</th>
 			<th>학기</th>
+			<th>신청</th>
 		</tr>
 		<%
 			for(HashMap m : classList){
@@ -179,7 +171,7 @@
 					<td><%=m.get("classroom") %></td>
 					<td><%=m.get("year") %></td>
 					<td><%=m.get("semester") %></td>
-					<td><a href='/lms/student/classApply/addClassBasketAction.jsp?classApplyNo=<%=m.get("classApplyNo") %>&studnetNo=<%=studentNo%>'>신청</a></td>
+					<td><a href="/lms/student/classApply/addClassBasketAction.jsp?classApplyNo=<%=m.get("classApplyNo")%>">신청</a></td>
 				</tr>
 		<%
 			}
