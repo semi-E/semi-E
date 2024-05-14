@@ -64,6 +64,51 @@ public class SubjectDAO {
 		return list;
 	}
 	
+	//과목 추가
+	//파라미터 : String subjectName,int credit
+	//반환 값 : int
+	//사용 페이지 :/subjects/addSubjectAction.jsp
+	public static int insertSubject(String subjectName, int adminNO, int credit)throws Exception{
+		int row=0;
+		String sql="INSERT INTO subject(subject_name , admin_no , credit) "
+				+"VALUES (?,?,?)";
+		//DB접근
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = null;
+		stmt= conn.prepareStatement(sql);
+		
+		stmt.setString(1,subjectName);
+		stmt.setInt(2,adminNO);
+		stmt.setInt(3,credit);
+		//디버깅
+		System.out.println(stmt + "<--addSubject stmt" );
+		row=stmt.executeUpdate();
+		
+		conn.close();
+		return row;
+	}
+	
+	//과목 삭제
+	//파라미터 : String subjectName
+	//반환 값 : int
+	//사용 페이지 :/subjects/deleteSubjectAction.jsp
+	public static int deleteSubject(String subjectName)throws Exception{
+		int row=0;
+		String sql="DELETE FROM subject "
+				+"WHERE subject_name= ? ";
+		//DB접근
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = null;
+		stmt =conn.prepareStatement(sql);
+		stmt.setString(1, subjectName);
+		//디버깅
+		System.out.println(stmt + "<--deleteSubject stmt");
+		row=stmt.executeUpdate();
+		
+		conn.close();
+		return row;
+	}
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

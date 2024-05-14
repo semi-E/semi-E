@@ -25,6 +25,7 @@
 	//디버깅
 	System.out.println(currentPage + "<-- subjectList currentPage");
 	System.out.println(subjectName + "<-- subjectList subjectName");
+	//검색에 의해서 null값이 넘어오기때문에 예외처리를 해줘야함 
 	if(subjectName == null){
 		subjectName = "";
 	}
@@ -63,7 +64,7 @@
 					<td><%=(String)(m.get("subjectName"))%></td> <!-- 과목 --> 
 					<td><%=(Integer)(m.get("adminNo"))%></td> <!-- 관리자번호 --> 
 					<td><%=(Integer)(m.get("credit"))%></td> <!-- 학점 --> 
-					<td><a href="/lms/admin/subjects/deleteSubjectAction.jsp?subject=<%=(String)(m.get("subject_name"))%>">삭제</a></td>	
+					<td><a href="/lms/admin/subjects/deleteSubjectAction.jsp?subjectName=<%=(String)(m.get("subjectName"))%>">삭제</a></td>	
 				</tr>
 			<%
 				}
