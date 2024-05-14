@@ -20,5 +20,8 @@
 	<a href="/lms/professor/classBoard/myClassBoardList.jsp">강의 게시판</a>
 	<a href="/lms/professor/notice/noticeList.jsp">공지사항</a>
 	<a href="/lms/professor/classBoard/gradeList.jsp">성적 목록</a>
+	
+	<a href="/lms/logout.jsp">로그아웃</a>
+	
 </body>
 </html>

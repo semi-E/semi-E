@@ -32,18 +32,18 @@
 	int cnt = NoticeDAO.selectNoticeCount(title);
 	int lastPage = 0;
 	
-	int rowPerPage = 10;
-	int startRow = (currentPage - 1) * rowPerPage;
+	int rowperPage = 10;
+	int startRow = (currentPage - 1) * rowperPage;
 	
 	
-	if(cnt % rowPerPage == 0){
-		lastPage = cnt / rowPerPage;
+	if(cnt % rowperPage == 0){
+		lastPage = cnt / rowperPage;
 	} else {
-		lastPage = cnt / rowPerPage + 1;
+		lastPage = cnt / rowperPage + 1;
 	}
 	
 	// 공지 호출
-	ArrayList<HashMap<String, Object>> selectNoticeList = NoticeDAO.selectNoticeList(title);
+	ArrayList<HashMap<String, Object>> selectNoticeList = NoticeDAO.selectNoticeList(title , startRow, rowperPage);
 %>
 <!DOCTYPE html>
 <html>
