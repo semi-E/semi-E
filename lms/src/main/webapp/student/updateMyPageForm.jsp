@@ -76,7 +76,7 @@
 		
 		<tr>
 			<th>생년월일</th>
-			<td><%= m.get("birthday")%></td>
+			<td><input type="date" name="birthday" value="<%=m.get("birthday") %>"></td>
 		</tr>
 		
 		
@@ -102,7 +102,7 @@
  
 		<tr>
 			<th>학과</th>
-			<td><%=m.get("department") %>"></td>
+			<td><%=m.get("department") %></td>
 		</tr>
 
 	</table>

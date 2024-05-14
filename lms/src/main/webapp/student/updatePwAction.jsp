@@ -23,7 +23,7 @@
 	System.out.println(oldpw+"<----oldpw");
 	System.out.println(newpw+"<----newpw");
 	
-	int row = StudentDAO.insertPw(studentNo, oldpw, newpw);
+	int row = StudentPwHistoryDAO.insertPw(studentNo, oldpw, newpw);
 	
 	if(row == 1){
 		System.out.println("비밀번호 변경 완료");

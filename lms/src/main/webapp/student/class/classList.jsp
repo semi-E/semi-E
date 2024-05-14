@@ -19,19 +19,60 @@
 	int startRow = (currentPage-1)*rowPerPage;
 	
 	
-	int classApplyNo = Integer.parseInt(request.getParameter("classApplyNo"));
-	int studentNo = Integer.parseInt(request.getParameter("studentNo"));
+	String paramclassApplyNo = request.getParameter("classApplyNo");
+	String studentNo = request.getParameter("studentNo");
 	String studentName = request.getParameter("studentName");
 	String className = request.getParameter("className");
 	String subjectName = request.getParameter("subjectName");
 	String days = request.getParameter("days");
-	int periodStart = Integer.parseInt(request.getParameter("periodStart"));
-	int year = Integer.parseInt(request.getParameter("year"));
- 	int semester = Integer.parseInt(request.getParameter("semester"));
+	String periodStart = request.getParameter("periodStart");
+	String year = request.getParameter("year");
+ 	String semester = request.getParameter("semester");
 	String state = request.getParameter("state");
 	
 	
+	int classApplyNo = Integer.parseInt(request.getParameter("classApplyNo"));
+	if(paramclassApplyNo == null || paramclassApplyNo.equals("")){
+		paramclassApplyNo = "0";
+	}
 	
+	if(studentNo == null){
+		studenttNo = "";
+	}
+	
+	
+	
+	if(subjectName == null){
+		subjectName = "";
+	}
+	
+	if(studentName == null){
+		studentName = "";
+	}
+	
+	if(className == null){
+		className = "";
+	}
+	
+	if(days == null){
+		days = "";
+	}
+	
+	if(periodStart == null){
+		periodStart = "";
+	}
+	
+	if(year == null){
+		year = "";
+	}
+	
+	if(semester == null){
+		semester = "";
+	}
+	
+	if(state == null){
+		state = "";
+	}
 	
 	
 	ArrayList<HashMap<String, Object>> list = ClassOpenApplyDAO.selectClassOpenApplyList1(classApplyNo, studentNo, studentName, className, subjectName, days, periodStart, year, semester, state, startRow, rowPerPage);
