@@ -74,7 +74,7 @@ public class AssignmentDAO {
 		String sql = null;
 		sql = "SELECT class_apply_no classApplyNo, title title, content content, end_date endDate, create_date createDate "
 				+ "FROM assignment "
-				+ "WHERE class_apply_no = ?";
+				+ "WHERE assignment_no = ?";
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, assignmentNo);

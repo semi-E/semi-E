@@ -17,7 +17,7 @@
 	} else {
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
-	int classApplyNo = 1;//Integer.parseInt(request.getParameter("classApplyNo")); classBoardOne.jsp생기면 사용
+	int classApplyNo = Integer.parseInt(request.getParameter("classApplyNo"));
 	
 	//디버깅
 	System.out.println(currentPage + "<-- myClassAssignmentList param currentPage");
