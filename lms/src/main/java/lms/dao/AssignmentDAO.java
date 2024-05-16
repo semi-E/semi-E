@@ -7,6 +7,67 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AssignmentDAO {
+	// 과제 수정
+	// 파라미터 : int classApplyNo, String title, String content, String endDate
+	// 반환 값 : int
+	// 사용 페이지 : /lms/professor/classBoard/updateAssignmentAction.jsp 
+	public static int updateAssignment(int classApplyNo, String title, String content, String endDate,int assignmentNo ) throws Exception {
+		int row = 0;
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql1 ="UPDATE assignment SET "
+				+ "class_Apply_no = ?"
+				+ ",title = ?"
+				+ ",content = ?"
+				+ ", end_date = ?\n"
+				+ "WHERE assignment_no = ?";
+		
+		PreparedStatement stmt1 = conn.prepareStatement(sql1);
+		stmt1.setInt(1, classApplyNo);
+		stmt1.setString(2, title);
+		stmt1.setString(3, content);
+		stmt1.setString(4, endDate);
+		stmt1.setInt(5, assignmentNo);
+		System.out.println(stmt1);
+		
+		
+		row = stmt1.executeUpdate();
+		
+		return row;
+	}
+	
+	
+	
+	
+	
+	
+	
+	// 과제 추가
+	// 파라미터 : int classApplyNo, String title, String content, String endDate
+	// 반환 값 : int
+	// 사용 페이지 : /lms/professor/classBoard/addAssignmentAction.jsp 
+	public static int insertAssignment (int classApplyNo, String title, String content, String endDate) throws Exception {
+		int row = 0;
+		
+		Connection conn = DBHelper.getConnection();
+		
+		String sql1 ="INSERT INTO assignment (class_Apply_no,title,content,end_date) VALUES (?,?,?,?)";
+		
+		PreparedStatement stmt1 = conn.prepareStatement(sql1);
+		stmt1.setInt(1, classApplyNo);
+		stmt1.setString(2, title);
+		stmt1.setString(3, content);
+		stmt1.setString(4, endDate);
+		System.out.println(stmt1);
+			
+		row = stmt1.executeUpdate();
+					
+		return row;
+	}
+	
+	
+	
 	//과제 목록
 	//파라미터 : int classApplyNo, int startRow, int rowPerPage
 	//반환 값 : ArrayList<HashMap<String, Object>>
