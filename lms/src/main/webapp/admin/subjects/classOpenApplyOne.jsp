@@ -28,13 +28,11 @@
 	<body>
 		<h1>강의신청목록 상세보기</h1>
 		<form action="/lms/admin/subjects/updateClassOpenApplyAction.jsp" method="post">
-			<input type="hidden" name="classApplyNo" value="<%="classApplyNo"%>">
+			<input type="hidden" name="classApplyNo" value="<%=classApplyNo%>">
 			<table border="1">
 				<tr>
 					<th>과목이름</th>
 					<td>
-						<%=m.get("classApplyNo") %> 
-						<%=m.get("professorNo") %>
 						<%=m.get("subjectName") %>
 					</td>
 				</tr>
