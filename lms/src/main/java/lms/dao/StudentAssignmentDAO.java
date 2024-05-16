@@ -3,9 +3,45 @@ package lms.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StudentAssignmentDAO {
+	// 제출 과제 리스트
+	// 파라미터 : int classApplyNo, int assignmentNo
+	// 반환 값 : ArrayList<HashMap<String, Object>>
+	// 사용 페이지 :/lms/professor/classBoard/submitAssignmentList.jsp 
+	public static ArrayList<HashMap<String, Object>>selectStudentAssignmentList(int classApplyNo, int assignmentNo) throws Exception {
+	
+		
+		Connection conn = DBHelper.getConnection();
+		String sql = "SELECT title, file, content, update_date updateDate,create_date createDate,student_no studentNo\n"
+				+ "				FROM student_assignment \n"
+				+ "				WHERE assignment_no = ? AND class_apply_no = ? ";
+		
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1,assignmentNo);
+		stmt.setInt(2,classApplyNo);
+		
+		
+		System.out.println(stmt);
+		    
+		ResultSet rs1 = stmt.executeQuery();
+		
+		 ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
+		
+		while(rs1.next()) {
+		 HashMap<String, Object> m = new HashMap<String, Object>();
+	     m.put("title", rs1.getString("title"));
+	     m.put("updateDate", rs1.getString("updateDate"));
+	     m.put("createDate", rs1.getString("createDate"));
+	     m.put("studentNo", rs1.getString("studentNo"));
+	     
+	     list.add(m);
+		}	 
+		return list;
+	}
+	
 
 	//제출 과제 상세보기
 	//파라미터 : int assignmentNo, int studentNo
