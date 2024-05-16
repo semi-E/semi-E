@@ -336,14 +336,16 @@ public class ClassOpenApplyDAO {
 		
 		return list;
 	}
+
 	
-	// 공지사항 상세보기
+	
+	// 강의 상세보기
 	// 파라미터: int classApplyNo int professorNo
 	// 반환 값: HashMap<String, Object>
 	public static HashMap<String, Object> selecMyClassOpenApply( int classApplyNo, int professorNo ) throws Exception {
 		Connection conn = DBHelper.getConnection();
 		String sql1 ="SELECT subject_name subjectName, class_name className, period_start periodStart, "
-				+ "days, create_date createDate, update_date updateDate, admin_no adminNo "
+				+ "days, create_date createDate, update_date updateDate, state, admin_no adminNo , classroom "
 				+ "FROM class_open_apply "
 				+ "WHERE class_apply_no = ? AND professor_no = ?";
 			
@@ -363,11 +365,36 @@ public class ClassOpenApplyDAO {
 	        m.put("days", rs1.getString("days"));
 	        m.put("createDate", rs1.getString("createDate"));
 	        m.put("updateDate", rs1.getString("updateDate"));
+	        m.put("state", rs1.getString("state"));
 	        m.put("adminNo", rs1.getInt("adminNo"));
-
+	        m.put("classroom", rs1.getString("classroom"));
 	    }
 	    return m;
 	}
+	//강의신청 수정
+	//파라미터: int classApplyNo, String classRoom , Sting state
+	//반환값 : int
+	//사용페이지 : updateClassOpenApplyAction.jsp
+	public static int updateClassOpenApply(String classRoom,String state ,int classApplyNo)throws Exception{
+		int row= 0;
+		String sql= null;
+			sql="UPDATE class_open_apply "
+				+ "SET  classRoom = ? , state = ? "
+				+ "WHERE class_apply_no = ?";
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql); 
+		stmt.setString(1, classRoom);
+		stmt.setString(2, state);
+		stmt.setInt(3, classApplyNo);
+		
+		System.out.println(stmt + "<--updateClassOpenApply param stmt");
+		row=stmt.executeUpdate();
+		
+		conn.close();
+		return row;
+	}
+	
 	
 	
 	public static void main(String[] args) throws Exception {
