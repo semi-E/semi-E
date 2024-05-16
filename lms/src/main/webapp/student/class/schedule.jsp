@@ -97,15 +97,15 @@
     		    } else if (period == 3) {
     		        time = "(11:00~12:00)";
     		    } else if (period == 4) {
-    		        time = "(13:00~14:00)";
+    		        time = "(12:00~13:00)";
     		    } else if (period == 5) {
-    		        time = "(14:00~15:00)";
+    		        time = "(13:00~14:00)";
     		    } else if (period == 6) {
-    		        time = "(15:00~16:00)";
+    		        time = "(14:00~15:00)";
     		    } else if (period == 7) {
-    		        time = "(16:00~17:00)";
+    		        time = "(15:00~16:00)";
     		    } else if (period == 8) {
-    		        time = "(17:00~18:00)";
+    		        time = "(16:00~17:00)";
     		    } else {
     		        time = ""; 
     		    }	 		

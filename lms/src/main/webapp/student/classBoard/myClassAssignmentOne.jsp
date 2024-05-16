@@ -20,7 +20,7 @@
 	System.out.println(studentNo + "<-- myClassAssignmentOne session studentNo");
 	System.out.println(assignmentNo + "<-- myClassAssignmentOne param assignmentNo");
 	
-	HashMap<String ,Object> assignment = AssignmentDAO.selectAssignment(assignmentNo, studentNo);
+	HashMap<String ,Object> assignment = AssignmentDAO.selectAssignment(assignmentNo);
 	
 	HashMap<String ,Object> studentAssignment = StudentAssignmentDAO.selectStudentAssignment(assignmentNo, studentNo);
 %>

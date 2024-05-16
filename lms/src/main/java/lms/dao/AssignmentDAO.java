@@ -7,25 +7,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AssignmentDAO {
-	
 	//과제 목록
-	//파라미터 : int classApplyNo, int studentNo, int startRow, int rowPerPage
+	//파라미터 : int classApplyNo, int startRow, int rowPerPage
 	//반환 값 : ArrayList<HashMap<String, Object>>
 	//사용 페이지 : /student/classBoard/myClassAssignmentList.jsp
-	public static ArrayList<HashMap<String, Object>> selectAssignmentList(int classApplyNo, int studentNo,
-			int startRow, int rowPerPage) throws Exception{
+	// /professor/classBoard/assignmentList.jsp
+	public static ArrayList<HashMap<String, Object>> selectAssignmentList(int classApplyNo,int startRow, int rowPerPage) throws Exception{
 		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
 		String sql = null;
-		sql = "SELECT a.assignment_no assignmentNo, a.title title, a.end_date endDate, a.create_date createDate "
-				+ "FROM assignment a, my_class m "
-				+ "WHERE a.class_apply_no = m.class_apply_no AND a.class_apply_no = ? AND m.student_no = ? "
-				+ "LIMIT ?, ?";
+		sql = "SELECT assignment_no assignmentNo, title title, end_date endDate, create_date createDate \n"
+				+ "FROM assignment \n"
+				+ "WHERE class_apply_no = ? \n"
+				+ "LIMIT ?, ?;";
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, classApplyNo);
-		stmt.setInt(2, studentNo);
-		stmt.setInt(3, startRow);
-		stmt.setInt(4, rowPerPage);
+		stmt.setInt(2, startRow);
+		stmt.setInt(3, rowPerPage);
 		System.out.println(stmt);
 		ResultSet rs = stmt.executeQuery();
 		
@@ -67,19 +65,19 @@ public class AssignmentDAO {
 	}
 	
 	//과제 상세보기
-	//파라미터 : int assignmentNo, int studentNo
+	//파라미터 : int assignmentNo
 	//반환 값 : HashMap<String, Object>
 	//사용 페이지 : /student/classBoard/myClassAssignmentOne.jsp
-	public static HashMap<String, Object> selectAssignment(int assignmentNo, int studentNo) throws Exception{
+	// /professor/classBoard/assignmentList.jsp
+	public static HashMap<String, Object> selectAssignment(int assignmentNo) throws Exception{
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		String sql = null;
-		sql = "SELECT a.class_apply_no classApplyNo, a.title title, a.content content, a.end_date endDate, a.create_date createDate "
-				+ "FROM assignment a, my_class m "
-				+ "WHERE a.class_apply_no = m.class_apply_no AND a.assignment_no = ? AND m.student_no = ? ";
+		sql = "SELECT class_apply_no classApplyNo, title title, content content, end_date endDate, create_date createDate "
+				+ "FROM assignment "
+				+ "WHERE class_apply_no = ?";
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, assignmentNo);
-		stmt.setInt(2, studentNo);
 		System.out.println(stmt);
 		ResultSet rs = stmt.executeQuery();
 		
@@ -98,7 +96,7 @@ public class AssignmentDAO {
 		//디버깅
 		//System.out.println(AssignmentDAO.selectAssignmentList(2, 0, 10));
 		//System.out.println(AssignmentDAO.selectAssignmentCount(2));
-		System.out.println(AssignmentDAO.selectAssignment(2, 20240103));
+		System.out.println(AssignmentDAO.selectAssignment(2));
 	}
 
 }

@@ -11,19 +11,15 @@
 	}
 %>
 <%
-	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginStudent"));
-	int studentNo = (Integer)(sessionInfo.get("studentNo"));
-
 	int currentPage = 0;
 	if(request.getParameter("currentPage") == null){
 		currentPage = 1;
 	} else {
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
-	int classApplyNo = 2;//Integer.parseInt(request.getParameter("classApplyNo")); classBoardOne.jsp생기면 사용
+	int classApplyNo = 1;//Integer.parseInt(request.getParameter("classApplyNo")); classBoardOne.jsp생기면 사용
 	
 	//디버깅
-	System.out.println(studentNo + "<-- myClassAssignmentList session studentNo");
 	System.out.println(currentPage + "<-- myClassAssignmentList param currentPage");
 	System.out.println(classApplyNo + "<-- myClassAssignmentList param classApplyNo");
 	
@@ -41,7 +37,7 @@
 		lastPage = cnt / rowPerPage + 1;
 	}
 	
-	ArrayList<HashMap<String, Object>> assignmentList = AssignmentDAO.selectAssignmentList(classApplyNo, studentNo,startRow, rowPerPage);
+	ArrayList<HashMap<String, Object>> assignmentList = AssignmentDAO.selectAssignmentList(classApplyNo,startRow, rowPerPage);
 %>
 <!DOCTYPE html>
 <html>
