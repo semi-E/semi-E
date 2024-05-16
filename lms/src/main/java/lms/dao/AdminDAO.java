@@ -1,7 +1,5 @@
 package lms.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.*;
 import java.util.*;
 
@@ -149,8 +147,9 @@ public class AdminDAO {
 		// 파라미터 : String email, int phone, String address, String gender, String birthday
 		// 반환 값 : int
 		// 사용 페이지 : /lms/admin/updateMyPageAction.jsp
-		public static int updateAdmin(  String email,
-										int phone,
+		public static int updateAdmin(  int adminNo,
+										String email,
+										String phone,
 										String address,
 										String gender,
 										String birthday ) throws Exception {
@@ -159,9 +158,12 @@ public class AdminDAO {
 			String sql = "UPDATE admin SET "
 					+ "email = ?, "
 					+ "phone = ?, "
+					+ "address = ?, "
 					+ "gender = ?, "
 					+ "birthday = ? "
 					+ "WHERE admin_no = ?";
+			
+			
 			Connection conn = DBHelper.getConnection();
 			PreparedStatement stmt = null; 	
 			stmt = conn.prepareStatement(sql);
@@ -170,10 +172,11 @@ public class AdminDAO {
 			System.out.println(stmt+" <-- updateAdmin stmt");
 			
 			stmt.setString(1, email);
-			stmt.setInt(2, phone);
+			stmt.setString(2, phone);
 			stmt.setString(3, address);
 			stmt.setString(4, gender);
 			stmt.setString(5, birthday);
+			stmt.setInt(6, adminNo);
 			
 			row = stmt.executeUpdate();
 			
@@ -183,11 +186,47 @@ public class AdminDAO {
 		}
 		
 		
+		//관리자 상세보기
+		//파라미터 : int adminNo
+		//반환 값 : HashMap<String, Object>
+		//사용 페이지 : /lms/admin/myPage.jsp
+		public static HashMap<String, Object> selectAdmin(int adminNo) throws Exception{
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			String sql = null;
+			sql = "SELECT admin_no adminNo, name, gender, birthday, phone, address, email, grade "
+					+ "FROM admin "
+					+ "WHERE admin_no = ? ";
+			Connection conn = DBHelper.getConnection();
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, adminNo);
+			System.out.println(stmt);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				map.put("adminNo", rs.getInt("adminNo"));
+				map.put("name", rs.getString("name"));
+				map.put("gender", rs.getString("gender"));
+				map.put("birthday", rs.getString("birthday"));
+				map.put("phone", rs.getString("phone"));
+				map.put("address", rs.getString("address"));
+				map.put("email", rs.getString("email"));
+				map.put("grade", rs.getString("grade"));
+			}
+			
+			return map;
+		}
+		
+		
+		
+		
 		//디버깅 용
 		public static void main(String[] args) {
 			// TODO Auto-generated method stub
 			
 		}
-
+		
+		
+		
+		
+		
 	
 }

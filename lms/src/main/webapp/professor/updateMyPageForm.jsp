@@ -26,12 +26,12 @@
 </head>
 <body>
 	<h1>마이페이지 수정</h1>
-	<form method="post" action="/lms/professor/updateMyPageAction.jsp">
+	<form method="post" action="/lms/admin/updateMyPageAction.jsp">
 		<table border="1">
 			<tr>
 				<th>번호</th>
 				<td>
-					<%=m.get("professorNo") %>
+					<%=m.get("adminNo") %>
 				</td>
 				
 			</tr>
@@ -39,10 +39,7 @@
 				<th>이름</th>
 				<td><%=m.get("name") %></td>
 			</tr>
-			<tr>
-				<th>학과</th>
-				<td><%=m.get("department") %></td>
-			</tr>
+			
 			<tr>
 				<th>성별</th>
 				<td>
@@ -71,7 +68,6 @@
 					    %>
 					</select>
 				</td>
-				</td>
 			</tr>
 			<tr>
 				<th>생년월일</th>	
@@ -81,17 +77,14 @@
 				<th>핸드폰</th>
 				<td><input type="text" name="phone" value="<%=m.get("phone") %>"></td>
 			</tr>
-			<tr>
-				<th>상태</th>
-				<td><%=m.get("state") %></td>
-			</tr>
+			
 			<tr>
 				<th>이메일</th>
 				<td><input type="text" name="email" value="<%=m.get("email") %>"></td>
 			</tr>
 			<tr>
-				<th>연구실</th>
-				<td><%=m.get("officeNo") %></td>
+				<th>등급</th>
+				<td><%=m.get("grade") %></td>
 			</tr>
 		</table>
 		<button type="submit">수정</button>

@@ -1,25 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%
+	//ì„¸ì…˜ì¸ì¦ë¶„ê¸° - loginAdmin ì–´ë“œë¯¼ 
+	if(session.getAttribute("loginAdmin") == null) {
+		response.sendRedirect("/lms/loginForm.jsp");
+		return;
+	}
+%>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>¸ÞÀÎ ÆäÀÌÁö</title>
+<meta charset="UTF-8">
+<title>Main</title>
 </head>
 <body>
-<h1>¸ÞÀÎ ÆäÀÌÁö</h1>
-<a href="/lms/admin/myPage.jsp">¸¶ÀÌ ÆäÀÌÁö</a>
-<a href="/lms/admin/updateMyPageForm.jsp">³» Á¤º¸ ¼öÁ¤</a>
-<a href="/lms/admin/updatePwForm.jsp">ºñ¹Ð¹øÈ£ º¯°æ</a>
-<a href="/lms/admin/admins/adminList.jsp">°ü¸®ÀÚ ¸ñ·Ï</a>
-<a href="/lms/admin/admins/addAdminForm.jsp">°ü¸®ÀÚ Ãß°¡</a>
-<a href="/lms/admin/department/departmentList.jsp">ÇÐ°ú¸®½ºÆ®</a>
-<a href="/lms/admin/subjects/subjectList.jsp">°ú¸ñ¸®½ºÆ®</a>
-<a href="/lms/admin/notice/noticeList.jsp">°øÁö¸®½ºÆ®</a>
 
-<a href="/lms/logout.jsp">·Î±×¾Æ¿ô</a>
-
-
+	<h1>Main</h1>
+	
+	<a href="/lms/admin/myPage.jsp">ë§ˆì´ íŽ˜ì´ì§€</a>
+	<a href="/lms/admin/updateMyPageForm.jsp">ë‚´ ì •ë³´ ìˆ˜ì •</a>
+	<a href="/lms/admin/updatePwForm.jsp">ë¹„ë°€ë²ˆí˜¸ ë³€ê²½</a>
+	<a href="/lms/admin/admins/adminList.jsp">ê´€ë¦¬ìž ëª©ë¡</a>
+	<a href="/lms/admin/admins/addAdminForm.jsp">ê´€ë¦¬ìž ì¶”ê°€</a>
+	<a href="/lms/admin/department/departmentList.jsp">í•™ê³¼ë¦¬ìŠ¤íŠ¸</a>
+	<a href="/lms/admin/subjects/subjectList.jsp">ê³¼ëª©ë¦¬ìŠ¤íŠ¸</a>
+	<a href="/lms/admin/notice/noticeList.jsp">ê³µì§€ë¦¬ìŠ¤íŠ¸</a>
+	
+	<a href="/lms/logout.jsp">ë¡œê·¸ì•„ì›ƒ</a>
 
 </body>
 </html>

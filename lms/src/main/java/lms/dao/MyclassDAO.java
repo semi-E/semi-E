@@ -149,5 +149,32 @@ public class MyclassDAO {
 			return row;
 			
 		}
+		
+		
+		// 나의 수강신청 과목 삭제
+		// 파라미터 : int classApplyNo
+		// 반환 값 : int
+		// 사용 페이지 : /lms/student/classApply/deleteMyClassAction.jsp
+		public static int deleteMyClass( int studentNo, int classApplyNo ) throws Exception {
+			int row = 0;
+			
+			String sql = "DELETE FROM my_class "
+					+ "WHERE student_no = ? AND class_apply_no = ? " ;
+			Connection conn = DBHelper.getConnection();
+			PreparedStatement stmt = null; 	
+			stmt = conn.prepareStatement(sql);
+			
+			//디버깅
+			System.out.println(stmt+" <-- deleteAdmin stmt");
+			
+			stmt.setInt(1, studentNo);
+			stmt.setInt(1, classApplyNo);
+			row = stmt.executeUpdate();
+			
+			//DB자원 반납
+			conn.close();
+			return row;
+		}
+
 
 }
