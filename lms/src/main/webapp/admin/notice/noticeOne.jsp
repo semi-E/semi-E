@@ -60,6 +60,8 @@
 				</td>
 			</tr>
 		</table>
-		<a href="/lms/admin/notice/noticeList.jsp">공지리스트로 돌아가기</a>
+		<a href="/lms/admin/notice/noticeList.jsp">리스트</a>
+		<a href="/lms/admin/notice/updateNoticeForm.jsp?noticeNo=<%= noticeNo %>">수정하기</a>
+
 	</body>
 </html>

@@ -61,7 +61,7 @@
 			%> 
 				<tr>
 					<td><a href="/lms/admin/notice/noticeOne.jsp?noticeNo=<%=m.get("noticeNo")%>"><%=m.get("title") %></a></td><!-- 공지  -->
-					<td><a href="/lms/admin/notice/deleteNoticeAction.jsp?title=<%=(String)(m.get("title"))%>">삭제</a></td>	
+					<td><a href="/lms/admin/notice/deleteNoticeAction.jsp?noticeNo=<%=(Integer)(m.get("noticeNo"))%>">삭제</a></td>	
 				</tr>
 			<%
 				}

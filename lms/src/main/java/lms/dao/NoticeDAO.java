@@ -12,6 +12,7 @@ public class NoticeDAO {
 	// 파라미터 : String title
 	// 사용 페이지: /lms/professor/notice/noticeList.jsp
 	// 반환 값 : ArrayList<HashMap<String, Object>> 
+	// 사용페이지: /lms/admin/notice/noticeList.jsp
 	public static ArrayList<HashMap<String, Object>> selectNoticeList (String title , int startRow, int rowperPage) throws Exception {
 		
 		
@@ -52,7 +53,7 @@ public class NoticeDAO {
 	//공지 개수 카운트
 	//파라미터 : String title
 	//반환 값 : int
-	//사용 페이지 : /lms/professor/class/classList.jsp
+	//사용 페이지 : /lms/professor/class/classList.jsp, /lms/admin/notice/noticeList.jsp
 	public static int selectNoticeCount(String title) throws Exception{
 		int cnt = 0;
 		String sql = null;
@@ -79,6 +80,7 @@ public class NoticeDAO {
 	// 공지사항 상세보기
 	// 파라미터: int noticeNo
 	// 반환 값: HashMap<String, Object>
+	//사용페이지: NoticeOne.jsp
 	public static HashMap<String, Object> selectNotice(int noticeNo) throws Exception {
 		Connection conn = DBHelper.getConnection();
 		String sql1 ="SELECT notice_no noticeNo,admin_no adminNo, create_date createDate,update_date updateDate,title, content "
@@ -104,6 +106,79 @@ public class NoticeDAO {
 	    return m;
 	}
 			
-	
+	//공지사항 추가
+	//파리미터: int adminNo,String title, String content
+	//반환값 int
+	//사용페이지: addNoticeAction.jsp
+	public static int addNotice( int adminNo  ,String title,String content)throws Exception{
+		int row= 0;
+		String sql= null;
+			sql="INSERT INTO Notice( admin_no , title, content) "
+				+"VALUES (?,?,?); ";
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql); 
+		stmt.setInt(1, adminNo); 
+		stmt.setString(2, title);
+		stmt.setString(3, content);
+		//디버깅
+		System.out.println(stmt + "<--addNotice stmt" );
+		row=stmt.executeUpdate();
 		
-}
+		conn.close();
+		return row;
+	}
+	//공지사항 수정
+	//파리미터: int adminNo,String title, String content
+	//반환값 int
+	//사용페이지: updateNoticeAction.jsp
+	public static int updateNotice(String title,String content ,int noticeNo)throws Exception{
+		int row= 0;
+		String sql= null;
+			sql="UPDATE notice "
+				+ "SET  title = ? , content = ? "
+				+ "WHERE notice_no = ?";
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql); 
+		stmt.setString(1, title);
+		stmt.setString(2, content);
+		stmt.setInt(3, noticeNo);
+		
+		System.out.println(stmt + "<--updateNotice param stmt");
+		//디버깅
+		System.out.println(stmt + "<--addNotice stmt" );
+		row=stmt.executeUpdate();
+		
+		conn.close();
+		return row;
+	}
+	
+	//공지사항 삭제
+	//파라미터 : int noticeNo
+	//반환값 int
+	//사용페이지 : deleteNoticeACtion.jsp
+	public static int deleteNotice(int noticeNo)throws Exception{
+		int row=0;
+		String sql= null;
+				sql="DELETE FROM Notice "
+				+ "WHERE notice_no = ? ";
+
+				// DB 접근
+				Connection conn = DBHelper.getConnection();
+				PreparedStatement stmt = null;
+				stmt = conn.prepareStatement(sql);
+				
+				//디버깅
+				System.out.println(stmt + "<-- deleteNotice stmt");
+				
+				stmt.setInt(1, noticeNo);
+				row=stmt.executeUpdate();
+				
+				conn.close();
+				return row;
+			}
+				
+	}
+		
+
