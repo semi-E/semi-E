@@ -98,7 +98,7 @@
 <body>
 	<h1>강의 신청 목록</h1>
 	<a href="/lms/professor/class/addClassOpenApplyForm.jsp">강의 신청</a>
-	<form method="get" action="/lms/professor/class/classList.jsp">
+	<form method="get" action="/lms/professor/class/classOpenApplyList.jsp">
 		강의 번호 : <input type="number" name="classApplyNo">
 		과목 명 : <input type="text"  name="subjectName">
 		강의 명 : <input type="text" name="className"><br>

@@ -39,7 +39,10 @@
 				<th>이름</th>
 				<td><%=m.get("name") %></td>
 			</tr>
-			
+			<tr>
+				<th>학과</th>
+				<td><%=m.get("department") %></td>
+			</tr>
 			<tr>
 				<th>성별</th>
 				<td>
@@ -83,8 +86,8 @@
 				<td><input type="text" name="email" value="<%=m.get("email") %>"></td>
 			</tr>
 			<tr>
-				<th>등급</th>
-				<td><%=m.get("grade") %></td>
+				<th>연구실</th>
+				<td><%=m.get("officeNo") %></td>
 			</tr>
 		</table>
 		<button type="submit">수정</button>

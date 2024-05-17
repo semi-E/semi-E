@@ -17,7 +17,7 @@
 <%
 	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginAdmin"));
 	int adminNo = (Integer)(sessionInfo.get("adminNo"));
-	
+
 
 	HashMap<String, Object> m = AdminDAO.selectAdmin(adminNo);
 	

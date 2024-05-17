@@ -61,7 +61,7 @@
 	<a href="/lms/professor/class/subjectList.jsp">과목 목록</a>
 	<a href="/lms/professor/class/classList.jsp">강의 목록</a>
 	<a href="/lms/professor/class/classOpenApplyList.jsp">내 강의 신청 목록</a>
-	<form method="get" action="/lms/professor/class/classList.jsp">
+	<form method="get" action="/lms/professor/class/myClassList.jsp">
 		년도 : <input type="number" step="any" name="year">
 		학기 : 
 		<select name="semester">

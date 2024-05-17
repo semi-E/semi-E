@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="lms.dao.DepartmentDAO"%>
 <%@page import="lms.dao.ProfessorDAO"%>
 <%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -16,6 +18,8 @@
 	System.out.println(professorNo + "<-- professorOne param professorNo");
 	
 	HashMap<String, Object> m = ProfessorDAO.selectProfessor(professorNo);
+	
+	ArrayList<HashMap<String, Object>> departmentList = DepartmentDAO.selectDepartmentList();
 	
 %>
 <!DOCTYPE html>
@@ -42,7 +46,23 @@
 			</tr>
 			<tr>
 				<th>학과</th>
-				<td><input type="text" name="department" value="<%=m.get("department") %>"></td>
+				<td>
+					<select name="department">
+						<%
+							for(HashMap map : departmentList){
+								if((map.get("department")).equals(m.get("department"))){
+						%>
+									<option value=<%=map.get("department") %> selected><%=map.get("department") %></option>
+						<%
+								} else {
+						%>
+									<option value=<%=map.get("department") %>><%=map.get("department") %></option>
+						<%			
+								}
+							}
+						%>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<th>성별</th>
@@ -67,7 +87,7 @@
 							    <option value="휴직">휴직</option>
 							    <option value="퇴직">퇴직</option>
 					    <%
-					    	} else if(m.get("state").equals("재직")){
+					    	} else if(m.get("state").equals("휴직")){
 					    %>
 					    		<option value="재직">재직</option>
 							    <option value="휴직" selected>휴직</option>

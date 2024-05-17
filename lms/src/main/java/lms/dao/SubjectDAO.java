@@ -109,6 +109,30 @@ public class SubjectDAO {
 		return row;
 	}
 	
+	//과목 목록
+	//파라미터 : X
+	//반환 값 : ArrayList<HashMap<String, Object>>
+	//사용 페이지 : /lms/professor/class/addClassOpenApplyForm.jsp
+	public static ArrayList<HashMap<String, Object>> selectSubjectList() throws Exception{
+		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
+		String sql = null;
+		sql = "SELECT subject_name subjectName, admin_no adminNo, credit "
+				+ "FROM subject ";
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		ResultSet rs = stmt.executeQuery();
+		
+		while(rs.next()) {
+			HashMap<String, Object> m = new HashMap<String, Object>();
+			m.put("subjectName", rs.getString("subjectName"));
+			m.put("adminNo", rs.getInt("adminNo"));
+			m.put("credit", rs.getInt("credit"));
+			
+			list.add(m);
+		}
+		
+		return list;
+	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

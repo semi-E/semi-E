@@ -22,7 +22,7 @@
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 	Part part = request.getPart("file");  
-	String saveName = null;
+	String saveName = "";
 	if(part.getSize() > 0){
 		String originalName = part.getSubmittedFileName();
 		String ext = originalName.substring(originalName.lastIndexOf("."));
@@ -42,7 +42,7 @@
 	
 	if(row == 1){
 		System.out.println("제출 성공");
-		if(saveName != null){
+		if(saveName != ""){
 			String uploadPath = request.getServletContext().getRealPath("upload");
 			System.out.println(uploadPath);
 			

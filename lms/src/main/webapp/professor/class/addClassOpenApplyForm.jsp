@@ -1,3 +1,6 @@
+<%@page import="lms.dao.SubjectDAO"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -6,6 +9,9 @@
 		response.sendRedirect("/lms/loginForm.jsp");
 		return;
 	}
+%>
+<%
+	ArrayList<HashMap<String, Object>> list = SubjectDAO.selectSubjectList();
 %>
 <!DOCTYPE html>
 <html>
@@ -17,7 +23,16 @@
 	<h1>강의 신청</h1>
 	<form method="post" action="/lms/professor/class/addClassOpenApplyAction.jsp">
 		<!-- DAO로 과목 리스트 뽑아와서 select 사용해서 만들기 -->
-		과목 명 : <input type="text" name="subjectName" required><br>
+		과목 명 : 
+		<select name="department">
+			<%
+				for(HashMap m : list){
+			%>
+					<option value=<%=m.get("subjectName") %>><%=m.get("subjectName") %></option>
+			<%
+				}
+			%>
+		</select><br>
 		강의 명 : <input type="text" name="className" required><br>
 		요일 :
 		<select name="days">
