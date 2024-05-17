@@ -97,12 +97,12 @@
 		%>
 		<tr>
 			<form method="get" action="/lms/professor/classBoard/updateGradeAction.jsp">
-				<td><input type="number" placeholder="<%=m.get("classApplyNo") %>" name = "classApplyNo" readonly></td>
-				<td><input type="text" placeholder="<%=m.get("className") %>" name = "className" readonly></td>
-				<td><input type="number" placeholder="<%=m.get("studentNo") %>" name = "studentNo" readonly></td>
-				<td><input type="text" placeholder="<%=m.get("name") %>" name = "name" readonly></td>
-				<td><input type="number" placeholder="<%=m.get("midExam") %>" name = "midExam"> </td>
-				<td><input type="number" placeholder="<%=m.get("finalExam") %>" name = "finalExam"> </td>
+				<td><input type="number" value="<%=m.get("classApplyNo") %>" name = "classApplyNo" readonly></td>
+				<td><input type="text" value="<%=m.get("className") %>" name = "className" readonly></td>
+				<td><input type="number" value="<%=m.get("studentNo") %>" name = "studentNo" readonly></td>
+				<td><input type="text" value="<%=m.get("name") %>" name = "name" readonly></td>
+				<td><input type="number" value="<%=m.get("midExam") %>" placeholder="<%=m.get("midExam") %>" name = "midExam"> </td>
+				<td><input type="number" value="<%=m.get("finalExam") %>" placeholder="<%=m.get("finalExam") %>" name = "finalExam"> </td>
 				<td><button type="submit">수정</button></td>
 			</form>
 		</tr>

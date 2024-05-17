@@ -12,6 +12,8 @@
 %>
 
 <%
+	System.out.println("updateGradeAction 진입");
+	
 	String paramStudentNo = request.getParameter("studentNo");
 	String paramClassApplyNo = request.getParameter("classApplyNo");
 	String  paramMidExam = request.getParameter("midExam");
