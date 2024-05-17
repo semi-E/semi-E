@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@page import="java.util.HashMap"%> 
 <%@ page import="lms.dao.*" %>
 
 <%
@@ -11,6 +12,11 @@
 %>
 
 <%
+	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginAdmin"));
+	int adminNo = (Integer)(sessionInfo.get("adminNo"));
+%>
+
+<%
 	//페이지 진입했는지 확인
 	System.out.println("updatePwAction진입");
 
@@ -19,9 +25,6 @@
 
 	String oldPw = request.getParameter("oldPw");
 	System.out.println(oldPw + " <-- updatePwAction oldPw");
-	int adminNo = Integer.valueOf(request.getParameter("adminNo"));
-	System.out.println(adminNo + " <-- updatePwAction adminNo");
-	
 	
 	//전 비밀번호가 맞는지 확인
 	int checkOldPw = AdminPwHistoryDAO.selectOldPw(oldPw, adminNo);

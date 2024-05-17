@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@page import="java.util.HashMap"%>     
 <%
 	// 세션인증분기 - loginAdmin 관리자
 	if(session.getAttribute("loginAdmin") == null) {
@@ -8,6 +8,8 @@
 		return;
 	}
 %>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -18,16 +20,18 @@
 <body>
 	<form method="post" action="/lms/admin/updatePwAction.jsp">
 		<div>
-			예전 비밀번호: <input type="text" name = "oldPw">
+			예전 비밀번호: <input type="password" name = "oldPw">
 		</div>
 		<div>
-			새 비밀번호: <input type="text" name = "newPw">
+			새 비밀번호: <input type="password" name = "newPw">
 		</div>
 		<!-- 테스트용 -->
-		<div>
-			어드민 번호: <input type="text" name = "adminNo">
-		</div>
+		
 		<button type="submit">제출</button>
 	</form>
+	<a href="/lms/admin/updatePwForm.jsp">비밀번호 변경</a>
+	
+	
+	
 </body>
 </html>

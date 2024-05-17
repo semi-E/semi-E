@@ -1,9 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*" %>
     
 <%
 	// 세션인증분기 - loginAdmin 관리자
 	if(session.getAttribute("loginAdmin") == null) {
+		response.sendRedirect("/lms/loginForm.jsp");
+		return;
+	}
+%>
+<%
+	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginAdmin"));
+	String grade = (String)(sessionInfo.get("grade"));
+	
+	
+	if(!grade.equals("마스터")){
 		response.sendRedirect("/lms/loginForm.jsp");
 		return;
 	}
@@ -16,7 +27,7 @@
 <title>관리자 추가</title>
 </head>
 <body>
-	<form method="post" action="/lms/admin/admins/addAdminAction.jsp">
+	<form method="get" action="/lms/admin/admins/addAdminAction.jsp">
 		<div>
 			<input type="text" name = "adminNo" placeholder="관리자 번호">
 		</div>

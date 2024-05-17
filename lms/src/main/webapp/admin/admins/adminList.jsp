@@ -9,6 +9,17 @@
 		response.sendRedirect("/lms/loginForm.jsp");
 		return;
 	}
+	
+%>
+<%
+	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginAdmin"));
+	String grade = (String)(sessionInfo.get("grade"));
+	
+	
+	if(!grade.equals("마스터")){
+		response.sendRedirect("/lms/loginForm.jsp");
+		return;
+	}
 %>
 
 <%
@@ -23,6 +34,18 @@
 <body>
 	<h1>직원 목록</h1>
 	<table border = 1>
+		<tr>
+			<td>관리자번호</td>
+			<td>이름</td>
+			<td>성별</td>
+			<td>생일</td>
+			<td>핸드폰번호</td>
+			<td>주소</td>
+			<td>이메일</td>
+			<td>등급</td>
+			<td>삭제</td>
+		</tr>
+		
 		<%
 			for(HashMap m : selectAdminList){
 		
@@ -40,9 +63,11 @@
 						<a href="/lms/admin/admins/deleteAdminAction.jsp?adminNo=<%=(String)(m.get("admin_no"))%>">삭제</a>
 					</td>
 				<tr>
+				
 		<%
 			}
 		%>
 	</table>
+	<a href="/lms/admin/admins/addAdminForm.jsp">관리자 추가</a>
 </body>
 </html>
