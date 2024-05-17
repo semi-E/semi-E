@@ -55,6 +55,10 @@
 </head>
 	<body>
 		<h1>과목 리스트</h1>
+		<form action="/lms/admin/subjects/subjectList.jsp">
+			<input type="text" name="subjectName">
+			<button type="submit">검색</button>
+		</form>
 		<table border="1">
 			<%
 				for(HashMap m : selectSubjectList){

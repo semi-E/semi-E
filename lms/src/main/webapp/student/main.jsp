@@ -30,6 +30,7 @@
 	<a href="/lms/student/class/myClassList.jsp">내 강의리스트</a>
 	<a href="/lms/student/class/schedule.jsp">학생시간표</a>
 	<a href="/lms/student/classBoard/myClassBoardList.jsp">나의 강의 게시판</a>
+	<a href="/lms/student/classBoard/attendanceList.jsp">나의 출석</a>
 	<a href="/lms/logout.jsp">로그아웃</a>
 	
 
