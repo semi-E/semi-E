@@ -42,10 +42,11 @@
 				<label for="department">학과</label>
 				<input type="text" required id="department" name="department" maxlength="20"> 
 			</div>
-			<div>
-				<label for="adminNo">관리자 번호</label>
-				<input type="text" required id="adminNo" name="adminNo" maxlength="9">
-			</div>
+			<%
+				HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginAdmin"));			
+				int adminNo = (Integer)(sessionInfo.get("adminNo"));
+			 %>				
+			관리자번호<input type="text" value="<%=adminNo%>" readonly>
 			<button type="submit">추가하기</button>
 		</form>
 	</body>

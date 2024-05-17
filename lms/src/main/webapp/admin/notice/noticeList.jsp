@@ -78,6 +78,7 @@
 				}
 			%>
 		</table>
+		<a href="/lms/admin/notice/addNoticeForm.jsp">공지 추가</a>
 
 	<%
 		if(currentPage > 1){

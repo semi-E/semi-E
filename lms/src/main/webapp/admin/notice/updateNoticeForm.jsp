@@ -36,7 +36,7 @@
 			</div>
 			<div>
 				<label for="content">내용</label>
-				<textarea  name="content" id="content"></textarea>
+				<textarea name="content" id="content"><%= m.get("content") %></textarea>
 			</div>
 			<button type= "submit">수정하기</button>
 		</form>

@@ -69,23 +69,17 @@
 				<tr>
 					<th>허용상태</th>
 					<td>
-						<select>
-							<option><%=m.get("state") %></option>
-							<option>승인</option>
-							<option>승인거절</option>
+						<select name="state">
+							<option value="승인대기">승인대기</option>
+							<option value="승인">승인</option>
+							<option value="승인거절">승인거절</option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<th>강의실</th>
-						<td>
-						<select>
-							<option><%=m.get("classroom") %></option>
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-						</select>
+					<td>
+						<input type="text" name="classRoom">
 					</td>
 				</tr>
 			</table>
