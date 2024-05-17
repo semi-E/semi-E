@@ -3,7 +3,9 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.net.*"%>
 <%@ page import = "java.util.*" %>       
-<%@ page import = "lms.dao.*" %>    
+<%@ page import = "lms.dao.*" %> 
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.ArrayList"%>   
  
  <%
 	// 세션인증분기 - loginAdmin 관리자
@@ -19,6 +21,8 @@
 	System.out.println(studentNo+"<------studentNo");
 	
 	HashMap<String, Object> m = StudentDAO.selectStudent(studentNo);
+	
+	ArrayList<HashMap<String, Object>> List = DepartmentDAO.selectDepartmentList();
 
 %>    
 <!DOCTYPE html>
@@ -101,7 +105,15 @@
 
 		<tr>
 			<th>학과</th>
-			<td><input type="text" name="department" value="<%=m.get("department") %>"></td>
+			<td><select name="department">
+			<%
+				for(HashMap m1 : List){
+			%>
+					<option value=<%=m1.get("department") %>><%=m1.get("department") %></option>
+			<%
+				}
+			%>
+		</select></td>
 		</tr>
 
 	</table>

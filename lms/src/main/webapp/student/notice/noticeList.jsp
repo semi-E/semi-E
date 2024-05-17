@@ -58,7 +58,7 @@
 
 	<h1>공지 리스트</h1>
 	
-	<form method="get" action="/lms/professor/notice/noticeList.jsp">
+	<form method="get" action="/lms/student/notice/noticeList.jsp">
 		제목 : <input type="text" name="title">
 		
 		<button type="submit">검색</button>
@@ -90,8 +90,8 @@
 	<%
 		if(currentPage > 1){
 	%>
-			<a href="/lms/professor/notice/noticeList.jsp?currentPage=1&title=<%=title%>">처음</a>
-			<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=currentPage - 1 %>&title=<%=title%>">이전</a>
+			<a href="/lms/student/notice/noticeList.jsp?currentPage=1&title=<%=title%>">처음</a>
+			<a href="/lms/student/notice/noticeList.jsp?currentPage=<%=currentPage - 1 %>&title=<%=title%>">이전</a>
 	<%
 		}
 	%>
@@ -99,8 +99,8 @@
 	<%
 		if(currentPage < lastPage){
 	%>
-			<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=currentPage %>&title=<%=title%>">다음</a>
-			<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=lastPage%>&title=<%=title%>">마지막</a>
+			<a href="/lms/student/notice/noticeList.jsp?currentPage=<%=currentPage %>&title=<%=title%>">다음</a>
+			<a href="/lms/student/notice/noticeList.jsp?currentPage=<%=lastPage%>&title=<%=title%>">마지막</a>
 	<%
 		}
 	%>

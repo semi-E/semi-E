@@ -53,7 +53,7 @@
 		lastPage = cnt / rowPerPage + 1;
 	}
 	
-	
+	int row = StudentDAO.selectstudentCount(studentNo, name, department);
 	
 	ArrayList<HashMap<String, Object>> studentList = StudentDAO.selectstudentList(studentNo, name, department, startRow, rowPerPage);
 	
@@ -102,6 +102,26 @@
 		   		 } 
 		    %>
 		</table>
+		
+		
+		<!-- 페이징 -->
+	<%
+		if(currentPage > 1){
+	%>
+			<a href="/lms/admin/students/studentList.jsp?currentPage=1&studentNo=<%=studentNo%>&name=<%=name%>&department=<%=department%>">처음</a>
+			<a href="/lms/admin/students/studentList.jsp?currentPage=<%=currentPage - 1 %>&studentNo=<%=studentNo%>&name=<%=name%>&department=<%=department%>">이전</a>
+	<%
+		}
+	%>
+	
+	<%
+		if(currentPage < lastPage){
+	%>
+			<a href="/lms/admin/students/studentList.jsp?currentPage=<%=currentPage + 1 %>&studentNo=<%=studentNo%>&name=<%=name%>&department=<%=department%>">다음</a>
+			<a href="/lms/admin/students/studentList.jsp?currentPage=<%=lastPage%>&studentNo=<%=studentNo%>&name=<%=name%>&department=<%=department%>">마지막</a>
+	<%
+		}
+	%>
 		
 		
 		

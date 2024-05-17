@@ -8,6 +8,52 @@ import java.util.HashMap;
 
 public class GradeDAO {
 	
+		// 학생 성적 리스트
+		// 파라미터 : int studentNo, int classApplyNo
+		// 반환 값 : ArrayList<HashMap<String, Object>> 
+		// 사용 페이지 :/lms/student/grade/gradeList.jsp
+		public static ArrayList<HashMap<String, Object>> selectGradeList1(int studentNo, int classApplyNo) throws Exception{
+			ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();	
+			Connection conn = DBHelper.getConnection();
+
+			String sql = "SELECT \n"
+					+ "    g.student_no AS studentNo, g.mid_exam as midexam, g.final_exam AS finalexam, a.state AS attendance, s.state AS assignment,\n"
+					+ "    (g.mid_exam * 0.3 / 30 * 100) + (g.final_exam * 0.3 / 30 * 100) + (a.state * 0.2 / 20 * 100) + (s.state * 0.2 / 20 * 100) AS totalscore\n"
+					+ "FROM \n"
+					+ "    grade g\n"
+					+ "JOIN \n"
+					+ "    student_assignment s ON g.student_no = s.student_no AND g.class_apply_no = s.class_apply_no\n"
+					+ "JOIN \n"
+					+ "    attendance a ON g.student_no = a.student_no AND g.class_apply_no = a.class_apply_no\n"
+					+ "WHERE \n"
+					+ "    g.student_no = 20240102 AND g.class_apply_no = 1;\n"
+					+ "    ";
+					
+
+			
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1,studentNo);
+			stmt.setInt(2,classApplyNo );
+			System.out.println(stmt);
+			ResultSet rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				HashMap<String, Object> m = new HashMap<String, Object>();
+				m.put("studentNo", rs.getInt("studentNo"));
+		        m.put("midexam", rs.getInt("midexam"));
+		        m.put("finalexam", rs.getInt("finalexam"));
+		        m.put("attendance", rs.getString("attendance"));
+		        m.put("assignment", rs.getString("assignment"));
+		        m.put("totalscore", rs.getInt("totalscore"));
+			
+				
+				list.add(m);
+			}
+			
+			return list;
+		}
+	
+	
 	//성적 개수 카운트
 	//파라미터 :int currentPage, int studentNo, int classApplyNo, String name 
 	//반환 값 : int
