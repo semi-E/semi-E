@@ -7,6 +7,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StudentAssignmentDAO {
+	// 제출 과제 상태 수정
+	// 파라미터 : int assignmentNo, String state, int studentNo
+	// 반환 값 : int
+	// 사용페이지 : /lms/professor/classBoard/updatesubmitAssignmentAction.jsp 
+	public static int updatesubmitAssignment(int assignmentNo, String state, int studentNo) throws Exception {
+		int row = 0;
+		
+		String sql1 = "UPDATE student_assignment SET state = ? \n"
+				+ "WHERE assignment_no = ? AND student_no = ?";
+
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt1 = conn.prepareStatement(sql1);
+		stmt1.setString(1, state);
+		stmt1.setInt(2, assignmentNo);
+		stmt1.setInt(3, studentNo);
+		System.out.println(stmt1);
+		row = stmt1.executeUpdate();
+		
+		return row;
+	}
+	
 	// 제출 과제 리스트
 	// 파라미터 : int classApplyNo, int assignmentNo
 	// 반환 값 : ArrayList<HashMap<String, Object>>
@@ -50,7 +71,7 @@ public class StudentAssignmentDAO {
 	public static HashMap<String, Object> selectStudentAssignment(int assignmentNo, int studentNo) throws Exception{
 		HashMap<String, Object> map = null;
 		String sql = null;
-		sql = "SELECT title, file, content, update_date updateDate,create_date createDate "
+		sql = "SELECT title, file, content, update_date updateDate,create_date createDate, state "
 				+ "FROM student_assignment "
 				+ "WHERE assignment_no = ? AND student_no = ? ";
 		Connection conn = DBHelper.getConnection();
@@ -67,6 +88,7 @@ public class StudentAssignmentDAO {
 			map.put("content", rs.getString("content"));
 			map.put("updateDate", rs.getString("updateDate"));
 			map.put("createDate", rs.getString("createDate"));
+			map.put("state", rs.getString("state"));
 		}
 		
 		return map;

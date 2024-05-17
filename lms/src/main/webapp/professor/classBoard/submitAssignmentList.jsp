@@ -14,8 +14,8 @@
   
     
  <%
-	int classApplyNo = 3; // 
- 	int assignmentNo = 3;
+	int classApplyNo = 3;//Integer.parseInt(request.getParameter("classApplyno")); 
+ 	int assignmentNo = 3; //Integer.parseInt(request.getParameter("assignmentNo")); 
  	
  	System.out. println(classApplyNo+"<----classApplyNo");
  	System.out. println(assignmentNo+"<---assignmentNo");
@@ -46,7 +46,7 @@
 		for( HashMap<String, Object> m  : list) {
 	%>
 		<tr>
-			<td><a href ="/lms/professor/classBoard/submitAssignmentOne.jsp?assignmentNo=<%=assignmentNo%>&studentNo=<%=m.get("studentNo") %>"><%=m.get("title") %></a></td>
+			<td><a href="/lms/professor/classBoard/submitAssignmentOne.jsp?assignmentNo=<%=assignmentNo%>&studentNo=<%=m.get("studentNo")%>"><%= m.get("title")%></a></td>
 			<td><%=m.get("updateDate") %></td>
 			<td><%=m.get("createDate") %></td>
 		</tr>

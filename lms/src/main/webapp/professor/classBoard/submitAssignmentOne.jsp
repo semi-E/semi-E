@@ -15,6 +15,8 @@
  <%
 
  	int assignmentNo = Integer.parseInt((request.getParameter("assignmentNo")));
+ 
+ 	
  	
  	int studentNo = Integer.parseInt((request.getParameter("studentNo")));
  	
@@ -33,7 +35,11 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+	
 	<h1>제출 과제 리스트 상세보기</h1>
+	
+	<form method="post" action="/lms/professor/classBoard/updatesubmitAssignmentAction.jsp ">
 	<table border ="1">
 		<tr>
 			<td>제목</td>
@@ -58,10 +64,25 @@
 			<td>생성날짜</td>
 			<td><%=m.get("createDate") %></td>
 		</tr>	
-
+		
+		<tr>
+			<td>제출상태</td>
+			<td>
+		        <select name="state">
+		            <option value="o">o</option>
+		            <option value="x">x</option>
+		        </select> 
+		        <%=m.get("state") %>
+		        <input type="hidden" name="assignmentNo" value="<%=assignmentNo%>">
+		        <input type="hidden" name="studentNo" value="<%=studentNo%>">
+    		</td>
+		</tr>	
+		
+		
 	</table>
+		  <button type="submit">제출과제 수정</button>
 
 
-
+</form>
 </body>
 </html>
