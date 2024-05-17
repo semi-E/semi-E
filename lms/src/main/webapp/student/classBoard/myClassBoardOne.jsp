@@ -30,7 +30,7 @@
 <table border ="1">
 		<tr>
 			<td>강의번호</td>
-			<td><%=m.get("className") %></td>
+			<td><%=m.get("classApplyNo") %></td>
 		</tr>	
 		
 		<tr>
@@ -75,7 +75,7 @@
 			<td>학기</td>
 			<td><%=m.get("semester") %></td>		
 		</tr>
-		
 	</table>
+	<a href="/lms/student/classBoard/attendanceList.jsp?classApplyNo=<%=m.get("classApplyNo") %>">출석</a>
 </body>
 </html>
