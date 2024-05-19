@@ -10,8 +10,6 @@
 		return;
 	}
 
-	
-
 	int classApplyNo = Integer.parseInt(request.getParameter("classApplyNo"));
 	
 	System.out.println(classApplyNo+"<------classApplyNo");

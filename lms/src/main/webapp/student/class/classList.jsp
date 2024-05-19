@@ -102,8 +102,27 @@
 		교수번호:<input type="text" name = "professorNo">
 		강의이름:<input type="text" name = "className">
 		과목이름:<input type="text" name = "subjectName">
-		요일:<input type="text" name = "days">
-		시작교시:<input type="text" name = "periodStart">
+		요일 :
+		<select name="days">
+			<option value="">선택</option>
+			<option value="월">월</option>
+			<option value="화">화</option>
+			<option value="수">수</option>
+			<option value="목">목</option>
+			<option value="금">금</option>
+		</select>
+		시작 교시 : 
+		<select name="periodStart">
+			<option value="">선택</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+			<option value="7">7</option>
+			<option value="8">8</option>
+		</select>
 	
 		<button type="submit">검색</button>
 		

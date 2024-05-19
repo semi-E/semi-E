@@ -27,7 +27,7 @@
 	
 	if(row == 1){
 		System.out.println("과제 추가 성공");
-		response.sendRedirect("/lms/professor/classBoard/assignmentOne.jsp");
+		response.sendRedirect("/lms/professor/classBoard/assignmentList.jsp");
 	} else {
 		System.out.println("과제 추가 실패");
 		response.sendRedirect(" /lms/professor/classBoard/addAssignmentForm.jsp");

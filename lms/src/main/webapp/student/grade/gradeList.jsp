@@ -6,12 +6,16 @@
 <%@ page import = "lms.dao.*" %>   
 
 <%
-	//session
+	//세션인증분기 - loginProfessor 학생
+	if(session.getAttribute("loginStudent") == null) {
+		response.sendRedirect("/lms/loginForm.jsp");
+		return;
+	}
 %>
 	
 <%
-	int studentNo = 1;
-	int classApplyNo = 1;
+	int studentNo = 20240102; //Integer.parseInt(request.getParameter("studentNo"));
+	int classApplyNo = 3; // Integer.parseInt(request.getParameter("classApplyNo"));
 	
 	System.out.println(studentNo+"<------studentNo");
 	System.out.println(classApplyNo+"<------classApplyNo");
@@ -48,9 +52,9 @@
 				<td><%=m.get("studentNo") %></td>
 				<td><%=m.get("midexam") %></td>
 				<td><%=m.get("finalexam") %></td>
-				<td><%=m.get("attendance") %></td>
-				<td><%=m.get("assignment") %></td>
-				<td><%=m.get("totalscore") %></td>
+				<td><%=m.get("attendanceScore") %></td>
+				<td><%=m.get("assignmentScore") %></td>
+				<td><%=m.get("totalScore") %></td>
 			</tr>
 		
 		<%		

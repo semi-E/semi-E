@@ -71,9 +71,18 @@ public class StudentAssignmentDAO {
 	public static HashMap<String, Object> selectStudentAssignment(int assignmentNo, int studentNo) throws Exception{
 		HashMap<String, Object> map = null;
 		String sql = null;
-		sql = "SELECT title, file, content, update_date updateDate,create_date createDate, state "
-				+ "FROM student_assignment "
-				+ "WHERE assignment_no = ? AND student_no = ? ";
+		sql = "SELECT s.name\n"
+				+ "       ,sa.title\n"
+				+ "       ,sa.file\n"
+				+ "       ,sa.content\n"
+				+ "       ,sa.update_date AS updateDate\n"
+				+ "       ,sa.create_date AS createDate\n"
+				+ "       ,sa.state\n"
+				+ "	FROM student_assignment sa\n"
+				+ "	JOIN student s\n"
+				+ "	 ON (sa.student_no = s.student_no)\n"
+				+ "	WHERE sa.assignment_no = 1\n"
+				+ "	AND sa.student_no = 20240102;";
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, assignmentNo);
@@ -83,6 +92,7 @@ public class StudentAssignmentDAO {
 		
 		if(rs.next()) {
 			map =  new HashMap<String, Object>();
+			map.put("name", rs.getString("name"));
 			map.put("title", rs.getString("title"));
 			map.put("file", rs.getString("file"));
 			map.put("content", rs.getString("content"));

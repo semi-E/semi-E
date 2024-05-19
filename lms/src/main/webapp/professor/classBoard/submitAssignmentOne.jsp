@@ -41,6 +41,17 @@
 	
 	<form method="post" action="/lms/professor/classBoard/updatesubmitAssignmentAction.jsp ">
 	<table border ="1">
+	
+		<tr>
+			<td>이름</td>
+			<td><%=m.get("name") %></td>
+		</tr>	
+	
+		<tr>
+			<td>학번</td>
+			<td><%=studentNo%></td>
+		</tr>	
+		
 		<tr>
 			<td>제목</td>
 			<td><%=m.get("title") %></td>

@@ -12,22 +12,48 @@ public class GradeDAO {
 		// 파라미터 : int studentNo, int classApplyNo
 		// 반환 값 : ArrayList<HashMap<String, Object>> 
 		// 사용 페이지 :/lms/student/grade/gradeList.jsp
+		// 중간(30), 기말(30), 출석(20), 과제(20) = 총점 100
+		// 출석은 O,X와 지각(/) 으로 인해서 비율 계산 때 출석의 절반인 0.5로 더해줌
 		public static ArrayList<HashMap<String, Object>> selectGradeList1(int studentNo, int classApplyNo) throws Exception{
 			ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();	
 			Connection conn = DBHelper.getConnection();
 
-			String sql = "SELECT \n"
-					+ "    g.student_no AS studentNo, g.mid_exam as midexam, g.final_exam AS finalexam, a.state AS attendance, s.state AS assignment,\n"
-					+ "    (g.mid_exam * 0.3 / 30 * 100) + (g.final_exam * 0.3 / 30 * 100) + (a.state * 0.2 / 20 * 100) + (s.state * 0.2 / 20 * 100) AS totalscore\n"
-					+ "FROM \n"
-					+ "    grade g\n"
-					+ "JOIN \n"
-					+ "    student_assignment s ON g.student_no = s.student_no AND g.class_apply_no = s.class_apply_no\n"
-					+ "JOIN \n"
-					+ "    attendance a ON g.student_no = a.student_no AND g.class_apply_no = a.class_apply_no\n"
-					+ "WHERE \n"
-					+ "    g.student_no = 20240102 AND g.class_apply_no = 1;\n"
-					+ "    ";
+			String sql = "SELECT g.student_no AS studentNo\n"
+					+ "     , g.mid_exam AS midexam\n"
+					+ "     , g.final_exam AS finalexam\n"
+					+ "     , (CAL_COUNT * 20) AS attendanceScore\n"
+					+ "     ,( ASS_COUNT * 20) AS assignmentScore\n"
+					+ "     , TRUNCATE (((g.mid_exam * 0.3 / 30 * 100) + (g.final_exam * 0.3 / 30 * 100) + \n"
+					+ "    (CAL_COUNT * 20)),0) AS totalScore\n"
+					+ "  FROM grade g\n"
+					+ "  JOIN student_assignment s \n"
+					+ "    ON (g.student_no = s.student_no \n"
+					+ "	 AND g.class_apply_no = s.class_apply_no)\n"
+					+ "  JOIN (\n"
+					+ "        SELECT student_no\n"
+					+ "             , TRUNCATE ( SUM(CASE WHEN state = 'O' THEN 1 \n"
+					+ "			                          WHEN STATE = '/' THEN 0.5 \n"
+					+ "			                          ELSE 0 END\n"
+					+ "							         ) / COUNT(*) \n"
+					+ "					         , 2) AS CAL_COUNT\n"
+					+ "          FROM attendance \n"
+					+ "         GROUP BY student_no\n"
+					+ "		  ) a \n"
+					+ "	  ON (g.student_no = a.student_no)\n"
+					+ "	JOIN (\n"
+					+ "	      SELECT student_no\n"
+					+ "	      		,  CASE WHEN COUNT(*) = 0 THEN 0\n"
+					+ "					        ELSE TRUNCATE ( SUM(CASE WHEN state = 'O' THEN 1 \n"
+					+ "			                          ELSE 0 END\n"
+					+ "							         ) / COUNT(*) \n"
+					+ "					         , 2) END AS ASS_COUNT\n"
+					+ "	        FROM student_assignment X\n"
+					+ "	       WHERE 1 = 1\n"
+					+ "	       GROUP BY student_no\n"
+					+ "	     ) SA\n"
+					+ "	   ON (S.STUDENT_NO = SA.STUDENT_NO)\n"
+					+ "  WHERE g.student_no = ? \n"
+					+ "    AND g.class_apply_no = ?";
 					
 
 			
@@ -42,9 +68,9 @@ public class GradeDAO {
 				m.put("studentNo", rs.getInt("studentNo"));
 		        m.put("midexam", rs.getInt("midexam"));
 		        m.put("finalexam", rs.getInt("finalexam"));
-		        m.put("attendance", rs.getString("attendance"));
-		        m.put("assignment", rs.getString("assignment"));
-		        m.put("totalscore", rs.getInt("totalscore"));
+		        m.put("attendanceScore", rs.getString("attendanceScore"));
+		        m.put("assignmentScore", rs.getString("assignmentScore"));
+		        m.put("totalScore", rs.getInt("totalScore"));
 			
 				
 				list.add(m);
