@@ -11,27 +11,36 @@
 	}
 %>
 
-<%
+<%	
 	
 	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginStudent"));
 	int studentNo = (Integer)(sessionInfo.get("studentNo"));
 	
-	int classApplyNo = Integer.parseInt(request.getParameter("classApplyNo"));
+	
 	
 	//디버깅
-	System.out.println(classApplyNo + " <-- addMyClassAction classApplyNo");
 	System.out.println(studentNo + " <-- addMyClassAction StudentNo");
 	
-	int row = MyclassDAO.insertMyClass(studentNo, classApplyNo);
 	
-	
-	if(row == 1){
-		System.out.println("내 강의 추가 성공");
-		response.sendRedirect("/lms/student/classApply/myClassList.jsp");
+	ArrayList<HashMap<String, Object>> selectClassBasketList = ClassBasketDAO.selectClassBasketList(studentNo);
+	for(HashMap m : selectClassBasketList){
 		
-	}else {
-		System.out.println("내 강의 추가 실패");	
-		response.sendRedirect("/lms/student/classApply/classBasketList.jsp"); 
-	
+			int classApplyNo = (Integer)(m.get("classApplyNo"));
+			
+			int row = MyclassDAO.insertMyClass(studentNo, classApplyNo);
+		
+		
+			if(row == 1){
+				System.out.println("내 강의 추가 성공");
+				int  insertGrade = GradeDAO.insertGrade(studentNo, classApplyNo);
+			}else {
+				System.out.println("내 강의 추가 실패");	
+				response.sendRedirect("/lms/student/classApply/classBasketList.jsp?"); 
+			
+			}
 	}
+	System.out.println("내 강의 추가 최종 성공");	
+	response.sendRedirect(" /lms/student/class/myClassList.jsp"); 
+	
+	
 %>

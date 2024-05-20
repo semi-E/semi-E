@@ -297,5 +297,30 @@ public class GradeDAO {
 		
 		return row;
 	}
+	
+	
+	//성적 정보 수정
+	//파라미터 : int studentNo, int classApplyNo
+	//반환 값 : int
+	//사용 페이지 : addMyClassAction.jsp
+	public static int insertGrade(	int studentNo,
+										int classApplyNo) throws Exception {
+		int row = 0;
+		String sql = null;
+		sql = 	"INSERT INTO grade "
+				+ "(student_no, "
+				+ "class_apply_no, "
+				+ "mid_exam, "
+				+ "final_exam) "
+				+ "VALUES(?, ?, 0, 0);";
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, studentNo);
+		stmt.setInt(2, classApplyNo);
+		System.out.println(stmt);
+		row = stmt.executeUpdate();
+		
+		return row;
+	}
 
 }

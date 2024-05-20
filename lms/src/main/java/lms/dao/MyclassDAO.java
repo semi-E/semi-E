@@ -138,7 +138,8 @@ public class MyclassDAO {
 			
 			
 			stmt.setInt(1, studentNo);
-			stmt.setInt(1, classApplyNo);
+			stmt.setInt(2, classApplyNo);
+			
 			//디버깅
 			System.out.println(stmt+" <-- insertMyClass stmt");
 			
