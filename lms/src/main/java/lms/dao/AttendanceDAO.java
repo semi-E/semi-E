@@ -96,6 +96,33 @@ public class AttendanceDAO {
 		return row;
 	}
 	
+	
+	//최종 수강신청이 될 때 출결 테이블을 추가해줌
+	//파라미터 : int classApplyNo, int studentNo, int week
+	//반환 값 : int
+	//사용 페이지 : addMyClassAction.jsp
+	public static int insertAttendance(int classApplyNo, int studentNo, int week ) throws Exception {
+		int row = 0;
+		String sql = null;
+		sql = "INSERT INTO attendance "
+				+ "(week, student_no, class_apply_no) "
+				+ "VALUES(?, ?, ?)";
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, week);
+		stmt.setInt(2, studentNo);
+		stmt.setInt(3, classApplyNo);
+		System.out.println(stmt);
+		row = stmt.executeUpdate();
+		
+		//자원반납
+		conn.close();
+		
+		return row;
+	}
+
+	
+	
 	public static void main(String[] args) throws Exception {
 		//디버깅
 		System.out.println(AttendanceDAO.selectAttendanceList(2));

@@ -33,6 +33,18 @@
 			if(row == 1){
 				System.out.println("내 강의 추가 성공");
 				int  insertGrade = GradeDAO.insertGrade(studentNo, classApplyNo);
+				
+				if(insertGrade == 1){ // 성공했을 때
+					System.out.println("성적 추가 성공");
+					for (int week = 1 ;  week <= 15 ; week++ ){
+						int insertAttendance = AttendanceDAO.insertAttendance(classApplyNo, studentNo, week);
+					}
+				} else { //실패했을 때
+					System.out.println("성적 추가 실패");
+				}
+				
+				
+				
 			}else {
 				System.out.println("내 강의 추가 실패");	
 				response.sendRedirect("/lms/student/classApply/classBasketList.jsp?"); 
