@@ -61,12 +61,6 @@
 					</td>
 				</tr>
 				<tr>
-					<th>수정일시</th>
-					<td>
-						<input type="datetime" name="updateDate" id="updateDate" value="<%= m.get("updateDate") %>">
-					</td>
-				</tr>
-				<tr>
 					<th>허용상태</th>
 					<td>
 						<select name="state">

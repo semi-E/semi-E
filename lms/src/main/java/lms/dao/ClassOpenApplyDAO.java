@@ -375,19 +375,18 @@ public class ClassOpenApplyDAO {
 	//파라미터: int classApplyNo, String classRoom , Sting state
 	//반환값 : int
 	//사용페이지 : updateClassOpenApplyAction.jsp
-	public static int updateClassOpenApply(String classRoom,String state , String updateDate, int classApplyNo)throws Exception{
+	public static int updateClassOpenApply(String classRoom,String state, int classApplyNo)throws Exception{
 		int row= 0;
 		String sql= null;
 			sql="UPDATE class_open_apply "
-				+ "SET  classRoom = ? , state = ? , update_date = ? "
+				+ "SET  classRoom = ? , state = ? , update_date = NOW() "
 				+ "WHERE class_apply_no = ?";
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = null;
 		stmt = conn.prepareStatement(sql); 
 		stmt.setString(1, classRoom);
 		stmt.setString(2, state);
-		stmt.setString(3, updateDate);
-		stmt.setInt(4, classApplyNo);
+		stmt.setInt(3, classApplyNo);
 		
 		System.out.println(stmt + "<--updateClassOpenApply param stmt");
 		row=stmt.executeUpdate();
