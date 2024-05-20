@@ -98,5 +98,54 @@ import java.util.List;
 			
 			return list;
 		}
+		
+
+	  //장바구니 삭제
+    // 파라미터: classApplyNo, int StudentNo
+    // 반환값: int
+    // 사용 페이지: addClassBasketAction
+    public static int deleteClassBasket(  int classApplyNo, int studentNo) throws Exception {
+       int row = 0;
+       
+       String sql = "DELETE FROM class_basket "
+             + "WHERE class_apply_no = ? AND student_no = ?";
+       
+       Connection conn = DBHelper.getConnection();
+       PreparedStatement stmt = null;    
+       stmt = conn.prepareStatement(sql);
+       
+       
+       stmt.setInt(1, classApplyNo);
+       stmt.setInt(2, studentNo);
+       
+       //디버깅
+       System.out.println(stmt+" <-- delete stmt");
+       
+       row = stmt.executeUpdate();
+       
+       //DB자원 반납
+       conn.close();
+       return row;
+    
+    }
+
+	
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
