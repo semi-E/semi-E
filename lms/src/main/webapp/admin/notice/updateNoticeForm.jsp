@@ -32,11 +32,15 @@
 			</div>
 			<div>
 				<label for="title">제목</label>
-				<input type="text" name="title" id="title">
+				<input type="text" name="title" id="title" value="<%= m.get("title") %>">
 			</div>
 			<div>
 				<label for="content">내용</label>
 				<textarea name="content" id="content"><%= m.get("content") %></textarea>
+			</div>
+				<div>
+				<label for="updateDate">수정날짜</label>
+				<input type="datetime" name="updateDate" id="updateDate" value="<%= m.get("updateDate") %>">
 			</div>
 			<button type= "submit">수정하기</button>
 		</form>

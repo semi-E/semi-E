@@ -73,6 +73,7 @@
 				}
 			%>
 		</table>
+	 	<a href="/lms/admin/subjects/addSubjectForm.jsp" >과목 추가하기</a>
 		
 	<%
 		if(currentPage > 1){

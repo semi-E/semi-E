@@ -12,13 +12,15 @@
 	String title = request.getParameter("title");
 	String content = request.getParameter("content");
 	int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
+	String updateDate = request.getParameter("updateDate");
 	
 	//디버깅
 	System.out.println(title + "<-- updateNoticeAction param title");
 	System.out.println(content + "<-- updateNoticeAction param content");
 	System.out.println(noticeNo + "<-- updateNoticeAction noticeNo");
+	System.out.println(updateDate + "<-- updateNoticeAction updateDate");
 
-	int row = NoticeDAO.updateNotice(title, content, noticeNo);
+	int row = NoticeDAO.updateNotice(title, content, noticeNo, updateDate);
 	if(row == 1){
 		System.out.println(" 공지사항 수정 성공");
 		response.sendRedirect("/lms/admin/notice/noticeList.jsp");

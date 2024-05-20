@@ -63,7 +63,7 @@
 				<tr>
 					<th>수정일시</th>
 					<td>
-						<%=m.get("updateDate") %>
+						<input type="datetime" name="updateDate" id="updateDate" value="<%= m.get("updateDate") %>">
 					</td>
 				</tr>
 				<tr>

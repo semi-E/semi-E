@@ -132,18 +132,20 @@ public class NoticeDAO {
 	//파리미터: int adminNo,String title, String content
 	//반환값 int
 	//사용페이지: updateNoticeAction.jsp
-	public static int updateNotice(String title,String content ,int noticeNo)throws Exception{
+	public static int updateNotice(String title,String content ,int noticeNo, String updateDate)throws Exception{
 		int row= 0;
 		String sql= null;
 			sql="UPDATE notice "
-				+ "SET  title = ? , content = ? "
+				+ "SET  title = ? , content = ? , update_date = ? "
 				+ "WHERE notice_no = ?";
 		Connection conn = DBHelper.getConnection();
 		PreparedStatement stmt = null;
 		stmt = conn.prepareStatement(sql); 
 		stmt.setString(1, title);
 		stmt.setString(2, content);
-		stmt.setInt(3, noticeNo);
+		stmt.setString(3, updateDate);
+		stmt.setInt(4, noticeNo);
+		
 		
 		System.out.println(stmt + "<--updateNotice param stmt");
 		//디버깅

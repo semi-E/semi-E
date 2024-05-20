@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%@page import="lms.dao.MyclassDAO"%>
 <%@page import="java.util.*"%>
@@ -76,6 +75,8 @@
 			<td><%=m.get("semester") %></td>		
 		</tr>
 	</table>
-	<a href="/lms/student/classBoard/attendanceList.jsp?classApplyNo=<%=m.get("classApplyNo") %>">출석</a>
+	<a href="/lms/student/classBoard/attendanceList.jsp?classApplyNo=<%=m.get("classApplyNo")%>&studnetNo<%=m.get("studnetNo")%>">출석</a>
+</body>
+</html>
 </body>
 </html>

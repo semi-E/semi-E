@@ -13,10 +13,14 @@
 	//student/classBoard/myClassBoardOne.jsp ->강의번호별 출석을 볼수있음
 	int classApplyNo = Integer.parseInt(request.getParameter("classApplyNo")); // 수강하고있는 강의의 번호 - 강의에 따라서 출석이 다름
 	
+
+	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginStudent"));
+	int studentNo = (Integer)(sessionInfo.get("studentNo"));
+	
 	//디버깅
 	System.out.println(classApplyNo + "<-- attendanceList param classApplyNo");
 	
-	ArrayList<HashMap<String, Object>> attendanceList = AttendanceDAO.selectAttendanceList(classApplyNo);
+	ArrayList<HashMap<String, Object>> attendanceList = AttendanceDAO.selectAttendanceList(classApplyNo, studentNo);
 %>
 <!DOCTYPE html>
 <html>

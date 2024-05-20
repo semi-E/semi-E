@@ -12,13 +12,15 @@
 	String state = request.getParameter("state");
 	String classRoom = request.getParameter("classRoom");
 	int classApplyNo = Integer.parseInt(request.getParameter("classApplyNo"));
+	String updateDate = request.getParameter("updateDate");
 	
 	//디버깅
 	System.out.println(state + "<-- updateNoticeAction param state");
 	System.out.println(classRoom + "<-- updateNoticeAction param classRoom");
 	System.out.println(classApplyNo + "<-- updateNoticeAction classApplyNo");
+	System.out.println(updateDate + "<-- updateNoticeAction updateDate");
 
-	int row = ClassOpenApplyDAO.updateClassOpenApply(classRoom, state, classApplyNo);
+	int row = ClassOpenApplyDAO.updateClassOpenApply(classRoom, state, updateDate, classApplyNo);
 	if(row == 1){
 		System.out.println("수강신청상세보기 수정 성공");
 		response.sendRedirect("/lms/admin/subjects/classOpenApplyList.jsp");
