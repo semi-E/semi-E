@@ -396,6 +396,33 @@ public class ClassOpenApplyDAO {
 		return row;
 	}
 	
+	//과목신청번호 검색으로 과목 삭제 검증
+	//파라미터 : subjectName
+	//반환 값 : int
+	//사용 페이지: /lms/admin/subject/deleteSubject.jsp
+	public static int selectClassOpenApply(String subjectName)throws Exception{
+		int row = 0;
+		String  sql="select subject_name subjectName "
+				+ "from class_open_apply "
+				+ "where subject_name = ?";
+		
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		
+		
+		stmt.setString(1, subjectName);
+		//디버깅
+		System.out.println(stmt + "<-- select class_open_apply stmt");
+		ResultSet rs=stmt.executeQuery();
+		
+		if(rs.next()) {
+			row=1;
+			
+		}
+		conn.close();
+		return row;
+	}
 	
 	
 	public static void main(String[] args) throws Exception {

@@ -245,6 +245,33 @@ public class StudentDAO {
 		}
 
 	
+	//학생 검색으로 학과 삭제 검증
+	//파라미터 : department
+	//반환 값 : int
+	//사용 페이지: /lms/admin/department/deleteDepartment.jsp
+	public static int selectStudent(String department)throws Exception{
+		int row = 0;
+		String sql="select department "
+					+ "from student "
+					+ "where department = ?";
+			
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		
+		
+		stmt.setString(1, department);
+		//디버깅
+		System.out.println(stmt + "<-- select student stmt");
+		ResultSet rs=stmt.executeQuery();
+		
+		if(rs.next()) {
+			row=1;
+		}
+		//DB자원 반납
+		conn.close();
+		return row;
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

@@ -92,7 +92,4 @@ public class DepartmentDAO {
 			conn.close();
 			return row;
 		}
-		
-		
-
 }

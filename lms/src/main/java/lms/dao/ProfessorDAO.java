@@ -222,7 +222,34 @@ public class ProfessorDAO {
 		
 		return row;
 	}
-	
+	//교수 검색으로 학과 삭제 검증
+	//파라미터 : department
+	//반환 값 : int
+	//사용 페이지: /lms/admin/department/deleteDepartment.jsp
+	public static int selectProfessor(String department)throws Exception{
+		int row = 0;
+		String 
+		sql="select department "
+				+ "from professor "
+				+ "where department = ?";
+		
+		Connection conn = DBHelper.getConnection();
+		PreparedStatement stmt = null;
+		stmt = conn.prepareStatement(sql);
+		
+		
+		stmt.setString(1, department);
+		//디버깅
+		System.out.println(stmt + "<-- select professor stmt");
+		ResultSet rs=stmt.executeQuery();
+		
+		if(rs.next()) {
+			row=1;	
+		}
+		//DB자원 반납
+		conn.close();
+		return row;
+		}
 	public static void main(String[] args) throws Exception {
 		//디버깅
 		//System.out.println(selectProfessorList(0, "", "", 0, 5));
