@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@page import="lms.dao.*"%>
 <%@page import="java.util.*" %>
 
@@ -9,7 +9,7 @@
 	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginStudent"));
 	int studentNo = (Integer)(sessionInfo.get("studentNo"));
 	
-	//µð¹ö±ë
+	//ë””ë²„ê¹…
 	System.out.println(classApplyNo + " <-- deleteClassBasketAction classApplyNo");
 	System.out.println(studentNo + " <-- deleteClassBasketAction StudentNo");
 	
@@ -17,9 +17,9 @@
 	int row = ClassBasketDAO.deleteClassBasket(classApplyNo, studentNo);
 	
 	if(row == 1){
-		System.out.println("»èÁ¦ ¼º°ø");
+		System.out.println("ì‚­ì œ ì„±ê³µ");
 	} else {
-		System.out.println("»èÁ¦ ½ÇÆÐ");
+		System.out.println("ì‚­ì œ ì‹¤íŒ¨");
 	}
 	
 	response.sendRedirect("/lms/student/classApply/classBasketList.jsp");
