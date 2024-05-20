@@ -141,7 +141,7 @@ public class StudentAssignmentDAO {
 		PreparedStatement stmt = null;
 		if(file == null) {
 			sql = "UPDATE student_assignment "
-					+ "SET title = ?, content = ? "
+					+ "SET title = ?, content = ?, update_date = now() "
 					+ "WHERE assignment_no = ? AND student_no = ?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, title);
@@ -150,7 +150,7 @@ public class StudentAssignmentDAO {
 			stmt.setInt(4, studentNo);	
 		} else {
 			sql = "UPDATE student_assignment "
-					+ "SET title = ?, content = ?, file = ? "
+					+ "SET title = ?, content = ?, file = ?, update_date = now() "
 					+ "WHERE assignment_no = ? AND student_no = ?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, title);
