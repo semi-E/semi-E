@@ -34,12 +34,21 @@
         background-size: cover;
         position: relative;
     }
+    .content::before {
+    position: absolute;
+    content: "";
+    top:0px;
+    left:0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+	}
     .login-form {
         background-color: rgba(255, 255, 255, 0.9);
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        z-index: 1;
+        z-index: 100;
         width: 350px;
         text-align: center;
     }

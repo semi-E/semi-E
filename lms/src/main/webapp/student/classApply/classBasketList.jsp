@@ -20,7 +20,7 @@
 	ArrayList<HashMap<String, Object>> selectClassBasketList = ClassBasketDAO.selectClassBasketList(studentNo);
 	
 
-%>
+%>w
 
 <!DOCTYPE html>
 <html>
