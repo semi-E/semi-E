@@ -49,7 +49,13 @@
 			<td>
 				<select  name="gender">
 						<%
-							if(m.get("gender").equals("남")){
+							if(m.get("gender") == null){
+					    %>
+					    		<option selected>선택</option>
+								<option value="남">남</option>
+							    <option value="여">여</option>
+						<%
+							}else if(m.get("gender").equals("남")){
 						%>
 								<option>선택</option>
 								<option value="남" selected>남</option>
