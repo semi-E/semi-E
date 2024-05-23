@@ -53,7 +53,9 @@
 <meta charset="UTF-8">
 <title>공지 리스트</title>
 </head>
-	<body>
+<body>
+	<div class="container-scroller">
+		<jsp:include page="/admin/include/header.jsp"></jsp:include>
 		<h1>공지 리스트</h1>
 		<form action="/lms/admin/notice/noticeList.jsp" method="get">
 			<input  type="text" name="title">
@@ -97,5 +99,6 @@
 	<%
 		}
 	%>
-	</body>
+	</div>
+</body>
 </html>

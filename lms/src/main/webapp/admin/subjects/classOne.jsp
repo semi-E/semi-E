@@ -25,7 +25,9 @@
 <meta charset="UTF-8">
 <title>classOpenApplyOne</title>
 </head>
-	<body>
+<body>
+	<div class="container-scroller">
+		<jsp:include page="/admin/include/header.jsp"></jsp:include>
 		<h1>강의목록 상세보기</h1>	
 			<table border="1">
 				<tr>
@@ -78,5 +80,5 @@
 				</tr>
 		</table>
 		<a href="/lms/admin/subjects/classList.jsp">리스트</a>
-	</body>
+</body>
 </html>

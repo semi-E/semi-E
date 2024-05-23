@@ -96,90 +96,93 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>강의 신청 목록</h1>
-	<a href="/lms/professor/class/addClassOpenApplyForm.jsp">강의 신청</a>
-	<form method="get" action="/lms/professor/class/classOpenApplyList.jsp">
-		강의 번호 : <input type="number" name="classApplyNo">
-		과목 명 : <input type="text"  name="subjectName">
-		강의 명 : <input type="text" name="className"><br>
-		요일 :
-		<select name="days">
-			<option value="">선택</option>
-			<option value="월">월</option>
-			<option value="화">화</option>
-			<option value="수">수</option>
-			<option value="목">목</option>
-			<option value="금">금</option>
-		</select>
-		시작 교시 : 
-		<select name="periodStart">
-			<option value="">선택</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-		</select>
-		년도 : <input type="number" step="any" name="year">
-		학기 : 
-		<select name="semester">
-			<option value="1">1</option>
-			<option value="2">2</option>
-		</select>
-		<button type="submit">검색</button>
-	</form>
-	<table border="1">
-		<tr>
-			<th>강의 번호</th>
-			<th>과목 명</th>
-			<th>강의 명</th>
-			<th>학점</th>
-			<th>요일</th>
-			<th>시작 교시</th>
-			<th>년도</th>
-			<th>학기</th>
-			<th>상태</th>
-		</tr>
-		<%
-			for(HashMap m : classList){
+	<div class="container-scroller">
+		<jsp:include page="/professor/include/header.jsp"></jsp:include>
+		<h1>강의 신청 목록</h1>
+		<a href="/lms/professor/class/addClassOpenApplyForm.jsp">강의 신청</a>
+		<form method="get" action="/lms/professor/class/classOpenApplyList.jsp">
+			강의 번호 : <input type="number" name="classApplyNo">
+			과목 명 : <input type="text"  name="subjectName">
+			강의 명 : <input type="text" name="className"><br>
+			요일 :
+			<select name="days">
+				<option value="">선택</option>
+				<option value="월">월</option>
+				<option value="화">화</option>
+				<option value="수">수</option>
+				<option value="목">목</option>
+				<option value="금">금</option>
+			</select>
+			시작 교시 : 
+			<select name="periodStart">
+				<option value="">선택</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+			</select>
+			년도 : <input type="number" step="any" name="year">
+			학기 : 
+			<select name="semester">
+				<option value="1">1</option>
+				<option value="2">2</option>
+			</select>
+			<button type="submit">검색</button>
+		</form>
+		<table border="1">
+			<tr>
+				<th>강의 번호</th>
+				<th>과목 명</th>
+				<th>강의 명</th>
+				<th>학점</th>
+				<th>요일</th>
+				<th>시작 교시</th>
+				<th>년도</th>
+				<th>학기</th>
+				<th>상태</th>
+			</tr>
+			<%
+				for(HashMap m : classList){
+			%>
+					<tr>
+						<td><%=m.get("classApplyNo") %></td>
+						<td><%=m.get("subjectName") %></td>
+						<td><%=m.get("className") %></td>
+						<td><%=m.get("credit") %></td>
+						<td><%=m.get("days") %></td>
+						<td><%=m.get("periodStart") %></td>
+						<td><%=m.get("year") %></td>
+						<td><%=m.get("semester") %></td>
+						<td><%=m.get("state") %></td>
+						<td><a href="/lms/professor/class/deleteClassOpenApplyAction.jsp?classApplyNo=<%=m.get("classApplyNo") %>">삭제</a></td>
+					</tr>
+			<%
+				}
+			%>
+			
+		</table>
+		
+			<%
+			if(currentPage > 1){
 		%>
-				<tr>
-					<td><%=m.get("classApplyNo") %></td>
-					<td><%=m.get("subjectName") %></td>
-					<td><%=m.get("className") %></td>
-					<td><%=m.get("credit") %></td>
-					<td><%=m.get("days") %></td>
-					<td><%=m.get("periodStart") %></td>
-					<td><%=m.get("year") %></td>
-					<td><%=m.get("semester") %></td>
-					<td><%=m.get("state") %></td>
-					<td><a href="/lms/professor/class/deleteClassOpenApplyAction.jsp?classApplyNo=<%=m.get("classApplyNo") %>">삭제</a></td>
-				</tr>
+				<a href="/lms/professor/class/classLOpenApplyist.jsp?currentPage=1&classApplyNo=<%=paramClassApplyNo%>&className=<%=className%>&subjectName=<%=subjectName%>&days=<%=days%>&periodStart=<%=paramPeriodStart%>&year=<%=year%>&semester=<%=semester%>">처음</a>
+				<a href="/lms/professor/class/classOpenApplyList.jsp?currentPage=<%=currentPage - 1 %>&classApplyNo=<%=paramClassApplyNo %>&className=<%=className%>&subjectName=<%=subjectName%>&days=<%=days%>&periodStart=<%=paramPeriodStart%>&year=<%=year%>&semester=<%=semester%>">이전</a>
 		<%
 			}
 		%>
 		
-	</table>
-	
 		<%
-		if(currentPage > 1){
-	%>
-			<a href="/lms/professor/class/classLOpenApplyist.jsp?currentPage=1&classApplyNo=<%=paramClassApplyNo%>&className=<%=className%>&subjectName=<%=subjectName%>&days=<%=days%>&periodStart=<%=paramPeriodStart%>&year=<%=year%>&semester=<%=semester%>">처음</a>
-			<a href="/lms/professor/class/classOpenApplyList.jsp?currentPage=<%=currentPage - 1 %>&classApplyNo=<%=paramClassApplyNo %>&className=<%=className%>&subjectName=<%=subjectName%>&days=<%=days%>&periodStart=<%=paramPeriodStart%>&year=<%=year%>&semester=<%=semester%>">이전</a>
-	<%
-		}
-	%>
-	
-	<%
-		if(currentPage < lastPage){
-	%>
-			<a href="/lms/professor/class/classOpenApplyList.jsp?currentPage=<%=currentPage + 1 %>&classApplyNo=<%=paramClassApplyNo %>&className=<%=className%>&subjectName=<%=subjectName%>&days=<%=days%>&periodStart=<%=paramPeriodStart%>&year=<%=year%>&semester=<%=semester%>">다음</a>
-			<a href="/lms/professor/class/classOpenApplyList.jsp?currentPage=<%=lastPage%>&classApplyNo=<%=paramClassApplyNo %>&className=<%=className%>&subjectName=<%=subjectName%>&days=<%=days%>&periodStart=<%=paramPeriodStart%>&year=<%=year%>&semester=<%=semester%>">마지막</a>
-	<%
-		}
-	%>
+			if(currentPage < lastPage){
+		%>
+				<a href="/lms/professor/class/classOpenApplyList.jsp?currentPage=<%=currentPage + 1 %>&classApplyNo=<%=paramClassApplyNo %>&className=<%=className%>&subjectName=<%=subjectName%>&days=<%=days%>&periodStart=<%=paramPeriodStart%>&year=<%=year%>&semester=<%=semester%>">다음</a>
+				<a href="/lms/professor/class/classOpenApplyList.jsp?currentPage=<%=lastPage%>&classApplyNo=<%=paramClassApplyNo %>&className=<%=className%>&subjectName=<%=subjectName%>&days=<%=days%>&periodStart=<%=paramPeriodStart%>&year=<%=year%>&semester=<%=semester%>">마지막</a>
+		<%
+			}
+		%>
+	</div>
 </body>
 </html>

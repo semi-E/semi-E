@@ -52,28 +52,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>전체 과목 목록</h1>
-	<a href="/lms/professor/class/classList.jsp">강의 목록</a>
-	<form method="get" action="/lms/professor/class/subjectList.jsp">
-		과목 명 <input type="text" name="subjectName">
-		<button type="submit">검색</button>
-	</form>
-	<table border="1">
-		<tr>
-			<th>과목 명</th>
-			<th>학점</th>
-		</tr>
-		<%
-			for(HashMap m : subjectList){
-		%>
-				<tr>
-					<td><%=m.get("subjectName") %></td>
-					<td><%=m.get("credit") %></td>
-				</tr>
-		<%
-			}
-		%>
-		
-	</table>
+	<div class="container-scroller">
+		<jsp:include page="/professor/include/header.jsp"></jsp:include>
+		<h1>전체 과목 목록</h1>
+		<a href="/lms/professor/class/classList.jsp">강의 목록</a>
+		<form method="get" action="/lms/professor/class/subjectList.jsp">
+			과목 명 <input type="text" name="subjectName">
+			<button type="submit">검색</button>
+		</form>
+		<table border="1">
+			<tr>
+				<th>과목 명</th>
+				<th>학점</th>
+			</tr>
+			<%
+				for(HashMap m : subjectList){
+			%>
+					<tr>
+						<td><%=m.get("subjectName") %></td>
+						<td><%=m.get("credit") %></td>
+					</tr>
+			<%
+				}
+			%>
+			
+		</table>
+	</div>
 </body>
 </html>

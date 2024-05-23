@@ -17,8 +17,10 @@
 <meta charset="UTF-8">
 <title>addNoticeForm</title>
 </head>
-	<h1>공지추가하기</h1>
-	<body>
+<body>
+	<div class="container-scroller">
+		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<h1>공지추가하기</h1>
 		<form action="/lms/admin/notice/addNoticeAction.jsp" method="post">
 			<div>
 				<label for="title">제목</label>
@@ -30,5 +32,6 @@
 			</div>
 			<button type="submit">공지 추가하기</button>
 		</form>
+	</div>
 </body>
 </html>

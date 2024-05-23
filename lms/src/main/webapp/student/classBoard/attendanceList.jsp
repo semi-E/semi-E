@@ -29,7 +29,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>출결 관리</h1>
+	<div class="container-scroller">
+		<jsp:include page="/student/include/header.jsp"></jsp:include>
+		<h1>출결 관리</h1>
 		<table border="1">
 			<tr>
 				<th>학번</th>
@@ -68,5 +70,6 @@
 				%>
 			</tr>
 		</table>
+	</div>
 </body>
 </html>

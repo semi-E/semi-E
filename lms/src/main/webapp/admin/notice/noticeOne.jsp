@@ -21,7 +21,9 @@
 <meta charset="UTF-8">
 <title>NoticeOne</title>
 </head>
-	<body>
+<body>
+	<div class="container-scroller">
+		<jsp:include page="/admin/include/header.jsp"></jsp:include>
 		<table border="1">
 			<tr>
 				<th>공지번호</th>
@@ -62,6 +64,6 @@
 		</table>
 		<a href="/lms/admin/notice/noticeList.jsp">리스트</a>
 		<a href="/lms/admin/notice/updateNoticeForm.jsp?noticeNo=<%= noticeNo %>">수정하기</a>
-
-	</body>
+	</div>
+</body>
 </html>

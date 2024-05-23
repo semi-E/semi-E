@@ -53,7 +53,9 @@
 <meta charset="UTF-8">
 <title>과목 리스트</title>
 </head>
-	<body>
+<body>
+	<div class="container-scroller">
+		<jsp:include page="/admin/include/header.jsp"></jsp:include>
 		<h1>과목 리스트</h1>
 		<form action="/lms/admin/subjects/subjectList.jsp">
 			<input type="text" name="subjectName">
@@ -92,5 +94,6 @@
 	<%
 		}
 	%>
-	</body>
+	</div>
+</body>
 </html>

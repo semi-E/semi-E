@@ -24,36 +24,38 @@
 <title>공지사항</title>
 </head>
 <body>
-	<h1>내 강의 상세보기</h1>
-	<table border ="1">
-		<tr>
-			<td>공지번호</td>
-			<td><%=m.get("noticeNo") %></td>
-		</tr>	
-		
-		<tr>
-			<td>관리자번호</td>
-			<td><%=m.get("adminNo") %></td>
-		</tr>	
-		<tr>
-			<td>업로드날짜</td>
-			<td><%=m.get("createDate") %></td>
-		</tr>	
-		
-		<tr>
-			<td>수정날짜</td>
-			<td><%=m.get("updateDate") %></td>
-		</tr>	
-		<tr>	
-			<td>제목</td>
-			<td><%=m.get("title") %></td>		
-		</tr>	
-		
-		<tr>	
-			<td>내용</td>
-			<td><%=m.get("content") %></td>		
-		</tr>	
-	</table>
-	
+	<div class="container-scroller">
+		<jsp:include page="/professor/include/header.jsp"></jsp:include>
+		<h1>내 강의 상세보기</h1>
+		<table border ="1">
+			<tr>
+				<td>공지번호</td>
+				<td><%=m.get("noticeNo") %></td>
+			</tr>	
+			
+			<tr>
+				<td>관리자번호</td>
+				<td><%=m.get("adminNo") %></td>
+			</tr>	
+			<tr>
+				<td>업로드날짜</td>
+				<td><%=m.get("createDate") %></td>
+			</tr>	
+			
+			<tr>
+				<td>수정날짜</td>
+				<td><%=m.get("updateDate") %></td>
+			</tr>	
+			<tr>	
+				<td>제목</td>
+				<td><%=m.get("title") %></td>		
+			</tr>	
+			
+			<tr>	
+				<td>내용</td>
+				<td><%=m.get("content") %></td>		
+			</tr>	
+		</table>
+	</div>
 </body>
 </html>

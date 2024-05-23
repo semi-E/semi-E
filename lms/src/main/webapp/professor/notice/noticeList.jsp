@@ -52,42 +52,44 @@
 <title>공지사항</title>
 </head>
 <body>
-	<h1>공지사항</h1>
-	<form method="get" action="/lms/professor/notice/noticeList.jsp">
-		제목 : <input type="text" name="title">
-	</form>
-	<table border = 1>
-		<tr>
-			<th>공지번호</th><th>제목</th>
-		</tr>
-		<%
-			for(HashMap m : selectNoticeList){
-		%>
+	<div class="container-scroller">
+		<jsp:include page="/professor/include/header.jsp"></jsp:include>
+		<h1>공지사항</h1>
+		<form method="get" action="/lms/professor/notice/noticeList.jsp">
+			제목 : <input type="text" name="title">
+		</form>
+		<table border = 1>
 			<tr>
-				<td><a href="/lms/professor/notice/noticeOne.jsp?noticeNo=<%=m.get("noticeNo") %>"><%=m.get("noticeNo") %></a></td>
-				<td><a href="/lms/professor/notice/noticeOne.jsp?noticeNo=<%=m.get("noticeNo") %>"><%=m.get("title") %></a></td>
+				<th>공지번호</th><th>제목</th>
 			</tr>
+			<%
+				for(HashMap m : selectNoticeList){
+			%>
+				<tr>
+					<td><a href="/lms/professor/notice/noticeOne.jsp?noticeNo=<%=m.get("noticeNo") %>"><%=m.get("noticeNo") %></a></td>
+					<td><a href="/lms/professor/notice/noticeOne.jsp?noticeNo=<%=m.get("noticeNo") %>"><%=m.get("title") %></a></td>
+				</tr>
+			<%
+				}
+			%>
+		</table>
+		<%
+			if(currentPage > 1){
+		%>
+				<a href="/lms/professor/notice/noticeList.jsp?currentPage=1&title=<%=title%>">처음</a>
+				<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=currentPage - 1 %>&title=<%=title%>">이전</a>
 		<%
 			}
 		%>
-	</table>
-	<%
-		if(currentPage > 1){
-	%>
-			<a href="/lms/professor/notice/noticeList.jsp?currentPage=1&title=<%=title%>">처음</a>
-			<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=currentPage - 1 %>&title=<%=title%>">이전</a>
-	<%
-		}
-	%>
-	
-	<%
-		if(currentPage < lastPage){
-	%>
-			<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=currentPage %>&title=<%=title%>">다음</a>
-			<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=lastPage%>&title=<%=title%>">마지막</a>
-	<%
-		}
-	%>
 		
+		<%
+			if(currentPage < lastPage){
+		%>
+				<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=currentPage %>&title=<%=title%>">다음</a>
+				<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=lastPage%>&title=<%=title%>">마지막</a>
+		<%
+			}
+		%>
+	</div>
 </body>
 </html>

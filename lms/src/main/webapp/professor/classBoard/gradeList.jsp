@@ -73,61 +73,64 @@
 <title>성적 목록</title>
 </head>
 <body>
-	<h1>전체 강의 목록</h1>
-	<form method="get" action="/lms/professor/classBoard/gradeList.jsp">
+	<div class="container-scroller">
+		<jsp:include page="/professor/include/header.jsp"></jsp:include>
+		<h1>전체 강의 목록</h1>
+		<form method="get" action="/lms/professor/classBoard/gradeList.jsp">
+			
+			강의번호 : <input type="number" name="classApplyNo">
+			학번 : <input type="number" name= "studentNo">
+			이름 : <input type="text"  name="name" size=10>
+			강의명 : <input type="text"  name="className" size=10>
+			<button type="submit">검색</button>
+		</form>
+		<table border="1">
+			<tr>
+				<th>강의번호</th>
+				<th>과목명</th>
+				<th>학번</th>
+				<th>이름</th>
+				<th>중간고사</th>
+				<th>기말고사</th>
+				<th>수정</th>
+			</tr>
+			<%
+				for(HashMap m : list){
+			%>
+			<tr>
+				<form method="get" action="/lms/professor/classBoard/updateGradeAction.jsp">
+					<td><input type="number" value="<%=m.get("classApplyNo") %>" name = "classApplyNo" readonly></td>
+					<td><input type="text" value="<%=m.get("className") %>" name = "className" readonly></td>
+					<td><input type="number" value="<%=m.get("studentNo") %>" name = "studentNo" readonly></td>
+					<td><input type="text" value="<%=m.get("name") %>" name = "name" readonly></td>
+					<td><input type="number" value="<%=m.get("midExam") %>" placeholder="<%=m.get("midExam") %>" name = "midExam"> </td>
+					<td><input type="number" value="<%=m.get("finalExam") %>" placeholder="<%=m.get("finalExam") %>" name = "finalExam"> </td>
+					<td><button type="submit">수정</button></td>
+				</form>
+			</tr>
+			<%
+				}
+			%>
+			
+		</table>
 		
-		강의번호 : <input type="number" name="classApplyNo">
-		학번 : <input type="number" name= "studentNo">
-		이름 : <input type="text"  name="name" size=10>
-		강의명 : <input type="text"  name="className" size=10>
-		<button type="submit">검색</button>
-	</form>
-	<table border="1">
-		<tr>
-			<th>강의번호</th>
-			<th>과목명</th>
-			<th>학번</th>
-			<th>이름</th>
-			<th>중간고사</th>
-			<th>기말고사</th>
-			<th>수정</th>
-		</tr>
 		<%
-			for(HashMap m : list){
+			if(currentPage > 1){
 		%>
-		<tr>
-			<form method="get" action="/lms/professor/classBoard/updateGradeAction.jsp">
-				<td><input type="number" value="<%=m.get("classApplyNo") %>" name = "classApplyNo" readonly></td>
-				<td><input type="text" value="<%=m.get("className") %>" name = "className" readonly></td>
-				<td><input type="number" value="<%=m.get("studentNo") %>" name = "studentNo" readonly></td>
-				<td><input type="text" value="<%=m.get("name") %>" name = "name" readonly></td>
-				<td><input type="number" value="<%=m.get("midExam") %>" placeholder="<%=m.get("midExam") %>" name = "midExam"> </td>
-				<td><input type="number" value="<%=m.get("finalExam") %>" placeholder="<%=m.get("finalExam") %>" name = "finalExam"> </td>
-				<td><button type="submit">수정</button></td>
-			</form>
-		</tr>
+				<a href="/lms/professor/classBoard/gradeList.jsp?currentPage=1&classApplyNo=<%=classApplyNo%>&studentNo=<%=studentNo%>&name=<%=name%>&className=<%=className%>">처음</a>
+				<a href="/lms/professor/classBoard/gradeList.jsp?currentPage=<%=currentPage - 1 %>&studentNo=<%=studentNo%>&name=<%=name%>&className=<%=className%>">이전</a>
 		<%
 			}
 		%>
 		
-	</table>
-	
-	<%
-		if(currentPage > 1){
-	%>
-			<a href="/lms/professor/classBoard/gradeList.jsp?currentPage=1&classApplyNo=<%=classApplyNo%>&studentNo=<%=studentNo%>&name=<%=name%>&className=<%=className%>">처음</a>
-			<a href="/lms/professor/classBoard/gradeList.jsp?currentPage=<%=currentPage - 1 %>&studentNo=<%=studentNo%>&name=<%=name%>&className=<%=className%>">이전</a>
-	<%
-		}
-	%>
-	
-	<%
-		if(currentPage < lastPage){
-	%>
-			<a href="/lms/professor/classBoard/gradeList.jsp?currentPage=<%=currentPage + 1 %>&studentNo=<%=studentNo%>&name=<%=name%>&className=<%=className%>">다음</a>
-			<a href="/lms/professor/classBoard/gradeList.jsp?currentPage=<%=lastPage%>&studentNo=<%=studentNo%>&name=<%=name%>&className=<%=className%>">마지막</a>
-	<%
-		}
-	%>
+		<%
+			if(currentPage < lastPage){
+		%>
+				<a href="/lms/professor/classBoard/gradeList.jsp?currentPage=<%=currentPage + 1 %>&studentNo=<%=studentNo%>&name=<%=name%>&className=<%=className%>">다음</a>
+				<a href="/lms/professor/classBoard/gradeList.jsp?currentPage=<%=lastPage%>&studentNo=<%=studentNo%>&name=<%=name%>&className=<%=className%>">마지막</a>
+		<%
+			}
+		%>
+	</div>
 </body>
 </html>

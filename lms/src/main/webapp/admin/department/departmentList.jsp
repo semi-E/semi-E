@@ -19,7 +19,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-	<body>
+<body>
+	<div class="container-scroller">
+		<jsp:include page="/admin/include/header.jsp"></jsp:include>
 		<h1>학과 리스트</h1>
 		<table border="1">
 			<%
@@ -49,5 +51,6 @@
 			관리자번호<input type="text" value="<%=adminNo%>" readonly>
 			<button type="submit">추가하기</button>
 		</form>
-	</body>
+	</div>
+</body>
 </html>

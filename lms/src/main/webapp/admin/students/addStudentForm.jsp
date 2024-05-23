@@ -22,37 +22,38 @@
 </head>
 <body>
 
+	<div class="container-scroller">
+		<jsp:include page="/admin/include/header.jsp"></jsp:include>
 
-
-	<form method="post" action="/lms/admin/students/addStudentAction.jsp">
-		<div>
-			<label for="studentNo">studentNo</label>
-			<input type="text"name="studentNo" id="studentNo">
-		</div>
-	
-		<div>
-			<label for="name">이름</label> 
-			<input type="text" name="name" id="name">
-		</div>
+		<form method="post" action="/lms/admin/students/addStudentAction.jsp">
+			<div>
+				<label for="studentNo">studentNo</label>
+				<input type="text"name="studentNo" id="studentNo">
+			</div>
 		
-		<div>
-			<label for="department">학과</label> 
-			<select name="department">
-			<%
-				for(HashMap m : departmentList){
-			%>
-					<option value=<%=m.get("department") %>><%=m.get("department") %></option>
-			<%
-				}
-			%>
-		</select>
-		</div>
-		
-		<div><button type="submit">학생추가</button></div>
-	</form>
+			<div>
+				<label for="name">이름</label> 
+				<input type="text" name="name" id="name">
+			</div>
+			
+			<div>
+				<label for="department">학과</label> 
+				<select name="department">
+				<%
+					for(HashMap m : departmentList){
+				%>
+						<option value=<%=m.get("department") %>><%=m.get("department") %></option>
+				<%
+					}
+				%>
+			</select>
+			</div>
+			
+			<div><button type="submit">학생추가</button></div>
+		</form>
 
 
-
+	</div>
 
 
 

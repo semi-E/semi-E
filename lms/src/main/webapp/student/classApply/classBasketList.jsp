@@ -20,50 +20,53 @@
 	ArrayList<HashMap<String, Object>> selectClassBasketList = ClassBasketDAO.selectClassBasketList(studentNo);
 	
 
-%>w
+%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>수강신청 목록</title>
 </head>
 <body>
-	<h1>수강신청 목록</h1>
-	<table border = 1>
-		<tr>
-			<th>강의번호</th><th>교수명</th><th>과명</th><th>강의이름</th><th>학점</th>
-			<th>요일</th><th>시작교시</th><th>강의실</th><th>년도</th><th>학기</th><th>취소</th>
-		</tr>
-		<%
-			for(HashMap m : selectClassBasketList){
-		%>
+	<div class="container-scroller">
+		<jsp:include page="/student/include/header.jsp"></jsp:include>
+		<h1>수강신청 목록</h1>
+		<table border = 1>
 			<tr>
-				<td><%=m.get("classApplyNo") %></td>
-				<td><%=m.get("name") %></td>
-				<td><%=m.get("subjectName") %></td>
-				<td><%=m.get("className") %></td>
-				<td><%=m.get("credit") %></td>
-				<td><%=m.get("days") %></td>
-				<td><%=m.get("periodStart") %></td>
-				<td><%=m.get("classroom") %></td>
-				<td><%=m.get("year") %></td>
-				<td><%=m.get("semester") %></td>
-				<td><a href="/lms/student/classApply/deleteClassBasketAction.jsp?classApplyNo=<%=m.get("classApplyNo") %>">취소</a></td>
+				<th>강의번호</th><th>교수명</th><th>과명</th><th>강의이름</th><th>학점</th>
+				<th>요일</th><th>시작교시</th><th>강의실</th><th>년도</th><th>학기</th><th>취소</th>
 			</tr>
+			<%
+				for(HashMap m : selectClassBasketList){
+			%>
+				<tr>
+					<td><%=m.get("classApplyNo") %></td>
+					<td><%=m.get("name") %></td>
+					<td><%=m.get("subjectName") %></td>
+					<td><%=m.get("className") %></td>
+					<td><%=m.get("credit") %></td>
+					<td><%=m.get("days") %></td>
+					<td><%=m.get("periodStart") %></td>
+					<td><%=m.get("classroom") %></td>
+					<td><%=m.get("year") %></td>
+					<td><%=m.get("semester") %></td>
+					<td><a href="/lms/student/classApply/deleteClassBasketAction.jsp?classApplyNo=<%=m.get("classApplyNo") %>">취소</a></td>
+				</tr>
+			<%
+				}
+			%>
+		</table>
+		<a href="/lms/student/classApply/classApplyList.jsp">추가 신청</a>
+		
+		<%
+			if(5 <= selectClassBasketList.size() && selectClassBasketList.size() <= 8){
+		%>
+				<a href="/lms/student/classApply/addMyClassAction.jsp">수강 신청</a>
 		<%
 			}
 		%>
-	</table>
-	<a href="/lms/student/classApply/classApplyList.jsp">추가 신청</a>
-	
-	<%
-		if(5 <= selectClassBasketList.size() && selectClassBasketList.size() <= 8){
-	%>
-			<a href="/lms/student/classApply/addMyClassAction.jsp">수강 신청</a>
-	<%
-		}
-	%>
+	</div>
 	
 </body>
 </html>

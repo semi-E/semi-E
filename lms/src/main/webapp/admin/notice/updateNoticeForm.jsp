@@ -22,7 +22,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-	<body>
+<body>
+	<div class="container-scroller">
+		<jsp:include page="/admin/include/header.jsp"></jsp:include>
 		<h1>공지수정하기</h1>
 		<form method="post" action="/lms/admin/notice/updateNoticeAction.jsp">
 			<div>
@@ -40,5 +42,6 @@
 			</div>
 			<button type= "submit">수정하기</button>
 		</form>
-	</body>
+	</div>
+</body>
 </html>

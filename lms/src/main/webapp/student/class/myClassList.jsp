@@ -33,36 +33,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>내 강의 목록</h1>
-	<table border ="1">
-		<tr>
-			<td>강의 번호</td>
-			<td>강의 이름</td>
-			<td>교수 번호</td>
-			<td>과목 이름</td>
-			<td>요일</td>
-			<td>시작 교시</td>
-			<td>학점</td>
-		</tr>
-		<%
-			for(HashMap<String,Object> m : list) {
-		%>
+	<div class="container-scroller">
+		<jsp:include page="/student/include/header.jsp"></jsp:include>
+		<h1>내 강의 목록</h1>
+		<table border ="1">
 			<tr>
-				<td><a href="/lms/student/class/myClassOne.jsp?classApplyNo=<%=m.get("classApplyNo") %>"><%=m.get("classApplyNo") %></a></td>
-				<td><%=m.get("className") %></td>
-				<td><%=m.get("professorNo") %></td>
-				<td><%=m.get("subjectName") %></td>
-				<td><%=m.get("days") %></td>
-				<td><%=m.get("periodStart") %></td>
-				<td><%=m.get("credit") %></td>
+				<td>강의 번호</td>
+				<td>강의 이름</td>
+				<td>교수 번호</td>
+				<td>과목 이름</td>
+				<td>요일</td>
+				<td>시작 교시</td>
+				<td>학점</td>
 			</tr>
-		<%
-			}
-		%>
-	
+			<%
+				for(HashMap<String,Object> m : list) {
+			%>
+				<tr>
+					<td><a href="/lms/student/class/myClassOne.jsp?classApplyNo=<%=m.get("classApplyNo") %>"><%=m.get("classApplyNo") %></a></td>
+					<td><%=m.get("className") %></td>
+					<td><%=m.get("professorNo") %></td>
+					<td><%=m.get("subjectName") %></td>
+					<td><%=m.get("days") %></td>
+					<td><%=m.get("periodStart") %></td>
+					<td><%=m.get("credit") %></td>
+				</tr>
+			<%
+				}
+			%>
 		
-	</table>
-	
+			
+		</table>
+	</div>
 	
 	
 </body>

@@ -23,33 +23,35 @@
 <title>Insert title here</title>
 </head>	
 <body>
-	<h1>과제 추가</h1>
-	
-		<form method="post"action="/lms/professor/classBoard/addAssignmentAction.jsp " >
+	<div class="container-scroller">
+		<jsp:include page="/professor/include/header.jsp"></jsp:include>
+		<h1>과제 추가</h1>
 		
-		<table>
-		<tr>
-	    <td><input type="hidden" id="classApplyNo" name="classApplyNo" value="<%=classApplyNo%>"></td>
-		</tr>
-		
-		<tr>
-	 	<td><label for="title">제목:</label></td>
-	    <td><input type="text" id="title" name="title" required></td>
-	    </tr>
-	    
-	    <tr>
-	   	<td> <label for="content">내용:</label></td>
-	   	<td> <textarea id="content" name="content" rows="4" cols="50" required></textarea></td>
-	     </tr>
-	     <tr>
-	    <td><label for="endDate">종료일:</label></td>
-	    <td><input type="date" id="endDate" name="endDate" required></td>
-	 
-	     </tr>
-	    
-	       </table>
-	   <button type ="submit">과제 추가</button>
-</form>
-
+			<form method="post"action="/lms/professor/classBoard/addAssignmentAction.jsp " >
+			
+				<table>
+				<tr>
+			    <td><input type="hidden" id="classApplyNo" name="classApplyNo" value="<%=classApplyNo%>"></td>
+				</tr>
+				
+				<tr>
+			 	<td><label for="title">제목:</label></td>
+			    <td><input type="text" id="title" name="title" required></td>
+			    </tr>
+			    
+			    <tr>
+			   	<td> <label for="content">내용:</label></td>
+			   	<td> <textarea id="content" name="content" rows="4" cols="50" required></textarea></td>
+			     </tr>
+			     <tr>
+			    <td><label for="endDate">종료일:</label></td>
+			    <td><input type="date" id="endDate" name="endDate" required></td>
+			 
+			     </tr>
+			    
+			       </table>
+			   <button type ="submit">과제 추가</button>
+		</form>
+	</div>
 </body>
 </html>

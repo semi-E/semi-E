@@ -25,7 +25,9 @@
 <meta charset="UTF-8">
 <title>classOpenApplyOne</title>
 </head>
-	<body>
+<body>
+	<div class="container-scroller">
+		<jsp:include page="/admin/include/header.jsp"></jsp:include>
 		<h1>강의신청목록 상세보기</h1>
 		<form action="/lms/admin/subjects/updateClassOpenApplyAction.jsp" method="post">
 			<input type="hidden" name="classApplyNo" value="<%=classApplyNo%>">
@@ -79,5 +81,6 @@
 			</table>
 			<button type="submit">수정하기</button>
 		</form>
-	</body>
+	</div>
+</body>
 </html>

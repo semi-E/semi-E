@@ -14,14 +14,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>교수 메인</h1>
-	<a href="/lms/professor/myPage.jsp">마이 페이지</a>
-	<a href="/lms/professor/class/myClassList.jsp">강의</a>
-	<a href="/lms/professor/classBoard/myClassBoardList.jsp">강의 게시판</a>
-	<a href="/lms/professor/notice/noticeList.jsp">공지사항</a>
-	<a href="/lms/professor/classBoard/gradeList.jsp">성적 목록</a>
-	
-	<a href="/lms/logout.jsp">로그아웃</a>
-	
+	<div class="container-scroller">
+		<jsp:include page="/professor/include/header.jsp"></jsp:include>
+		<h1>교수 메인</h1>
+		<a href="/lms/professor/myPage.jsp">마이 페이지</a>
+		<a href="/lms/professor/class/myClassList.jsp">강의</a>
+		<a href="/lms/professor/classBoard/myClassBoardList.jsp">강의 게시판</a>
+		<a href="/lms/professor/notice/noticeList.jsp">공지사항</a>
+		<a href="/lms/professor/classBoard/gradeList.jsp">성적 목록</a>
+		
+		<a href="/lms/logout.jsp">로그아웃</a>
+	</div>
 </body>
 </html>
