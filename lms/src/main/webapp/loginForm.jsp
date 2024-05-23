@@ -28,16 +28,20 @@
       <div class="container">
         <div class="row align-items-center justify-content-center">
           <div class="col-md-7">
-            <h3>Login to <strong>eno technology uni</strong></h3>
+            <h3>Login to <strong>inno technology uni</strong></h3>
             <p class="mb-4">이노 기술대에 오신 것을 환영합니다.</p>
             <form action="/lms/loginAction.jsp" method="post">
               <div class="form-group first">
                 <label for="username">ID</label>
-                <input type="text" class="form-control" placeholder="아이디를 입력하세요" id="id" name="id">
+                <input type="text" class="form-control" placeholder="아이디를 입력하세요" id="id" name="id" required>
               </div>
-              <div class="form-group last mb-3">
+              <div class="form-group last mb-1">
                 <label for="password">Password</label>
-                <input type="password" class="form-control" placeholder="비밀번호를 입력하세요" id="pw" name="pw">
+                <input type="password" class="form-control" placeholder="비밀번호를 입력하세요" id="pw" name="pw" required>
+              </div>
+              
+              <div class="d-flex mb-3 align-items-center">
+                <span class="ml-auto"><a href="/lms/findPwForm.jsp" class="forgot-pass">Forgot Password</a></span> 
               </div>
               
               
