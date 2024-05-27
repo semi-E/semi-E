@@ -105,7 +105,7 @@
 	<div class="container-scroller">
 		<jsp:include page="/student/include/header.jsp"></jsp:include>
 		<h1>Main</h1>	
-		 <div class="main-panel">
+		 <div>
         <div class="content-wrapper">
           <div class="row">
             <div class="col-md-12 grid-margin">

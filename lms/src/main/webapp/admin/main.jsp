@@ -1,41 +1,114 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import = "java.util.*" %>
-    
+<%@page import="lms.dao.NoticeDAO"%>      
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.HashMap"%>  
+<%@page import="lms.dao.MyclassDAO"%>
+<%@page import="lms.dao.DepartmentDAO"%>     
+
 <%
-	//세션인증분기 - loginAdmin 어드민 
+	// 세션인증분기 - loginAdmin 관리자
 	if(session.getAttribute("loginAdmin") == null) {
 		response.sendRedirect("/lms/loginForm.jsp");
 		return;
 	}
-%>
+%>  
+
+
 <%
-	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginAdmin"));
-	String grade = (String)(sessionInfo.get("grade"));
+	int currentPage = 0;
+	if(request.getParameter("currentPage") == null){
+		currentPage = 1;
+	} else {
+		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+	}
+	
+	String title = request.getParameter("title");
+	//디버깅
+	System.out.println(title + "<-- noticeList title");
+	
+	// title을 검색하지 않았을 경우
+	if(title == null){
+		title = "";
+	}
+	
+	// 검색된 notice의 개수
+	int cnt = NoticeDAO.selectNoticeCount(title);
+	int lastPage = 0;
+	
+	int rowperPage = 10;
+	int startRow = (currentPage - 1) * rowperPage;
+	
+	
+	if(cnt % rowperPage == 0){
+		lastPage = cnt / rowperPage;
+	} else {
+		lastPage = cnt / rowperPage + 1;
+	}
+	
+	
+	
+	ArrayList<HashMap<String, Object>> list = NoticeDAO.selectNoticeList(title, startRow, rowperPage);
 %>
 
+<%
+	ArrayList<HashMap<String, Object>> selectDepartmentList = DepartmentDAO.selectDepartmentList();
+%>
+
+
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Main</title>
-<!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+<style>
+	   table.table-bordered {
+	    width: 100%;
+	    border-collapse: collapse;
+	}
+	
+	table.table-bordered th,
+	table.table-bordered td {
+	    border: 1px solid black;
+	    padding: 8px;
+	    text-align: center;
+	}
+	
+	table.table-bordered th {
+	    background-color: #f2f2f2;
+	}
+	
+	table.table-bordered .python {
+	    background-color: #6dbb1a; 
+	    color: white;
+	}
+	
+	table.table-bordered .java {
+	    background-color: #007bff; 
+	    color: white;
+	}
+	
+	table.table-bordered .architecture {
+	    background-color: #dc3545; 
+	    color: white;
+	}
+</style>
+
+
 </head>
 <body>
+	
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<h1>Main</h1>
-		
-		 <div class="main-panel">
+		<h1>Main</h1>	
+		 <div>
         <div class="content-wrapper">
           <div class="row">
             <div class="col-md-12 grid-margin">
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Welcome Aamir</h3>
+                  <h3 class="font-weight-bold">Welcome admin!</h3>
                   <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
                 </div>
                 <div class="col-12 col-xl-4">
@@ -57,9 +130,8 @@
             </div>
           </div>
         
-              <div class="card tale-bg">
-                <div class="card-dd mt-auto">
-                  <img src="/lms/upload/dd.jpg" alt="dd">
+              <div class="card tale-bg">           
+                  <img src="/lms/upload/nnn.PNG" alt="dd">
                   <div class="weather-info">
                     <div class="d-flex">
                       <div>
@@ -70,8 +142,7 @@
                         <h6 class="font-weight-normal">한국</h6>
                       </div>
                     </div>	
-                  </div>
-                </div>          
+                  </div>                   
             </div>
                
           <div class="row">
@@ -95,64 +166,34 @@
               </div>
             </div>
           </div>
-          <div class="row">
+        
+           <div class="row">
             <div class="col-md-7 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <p class="card-title mb-0">공지사항</p>
                   <div class="table-responsive">
                     <table class="table table-striped table-borderless">
-                      <thead>
-                        <tr>
-                          <th>Product</th>
-                          <th>Price</th>
-                          <th>Date</th>
-                          <th>Status</th>
-                        </tr>  
+                      <thead>       
+                         <tr>
+			<td>공지번호</td>
+			<td>제목</td>
+		</tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>Search Engine Marketing</td>
-                          <td class="font-weight-bold">$362</td>
-                          <td>21 Sep 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                        </tr>
-                        <tr>
-                          <td>Search Engine Optimization</td>
-                          <td class="font-weight-bold">$116</td>
-                          <td>13 Jun 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                        </tr>
-                        <tr>
-                          <td>Display Advertising</td>
-                          <td class="font-weight-bold">$551</td>
-                          <td>28 Sep 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                        </tr>
-                        <tr>
-                          <td>Pay Per Click Advertising</td>
-                          <td class="font-weight-bold">$523</td>
-                          <td>30 Jun 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                        </tr>
-                        <tr>
-                          <td>E-Mail Marketing</td>
-                          <td class="font-weight-bold">$781</td>
-                          <td>01 Nov 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-danger">Cancelled</div></td>
-                        </tr>
-                        <tr>
-                          <td>Referral Marketing</td>
-                          <td class="font-weight-bold">$283</td>
-                          <td>20 Mar 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                        </tr>
-                        <tr>
-                          <td>Social media marketing</td>
-                          <td class="font-weight-bold">$897</td>
-                          <td>26 Oct 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                        </tr>
+                      
+	<%
+		for(HashMap<String, Object> m : list){
+	%>
+		<tr>
+			<td><%=m.get("noticeNo") %></td>
+			<td><a href="/lms/admin/notice/noticeOne.jsp?noticeNo=<%=m.get("noticeNo") %>"><%=m.get("title") %></a></td>
+		</tr>
+	
+	<%		
+		}
+	%>
+
                       </tbody>
                     </table>
                   </div>
@@ -162,58 +203,28 @@
             <div class="col-md-5 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">시간표 or x</h4>
+									<h4 class="card-title">학과</h4>
 									<div class="list-wrapper pt-2">
-										<ul class="d-flex flex-column-reverse todo-list todo-list-custom">
-											<li>
-												<div class="form-check form-check-flat">
-													<label class="form-check-label">
-														<input class="checkbox" type="checkbox">
-														Meeting with Urban Team
-													</label>
-												</div>
-												<i class="remove ti-close"></i>
-											</li>
-											<li class="completed">
-												<div class="form-check form-check-flat">
-													<label class="form-check-label">
-														<input class="checkbox" type="checkbox" checked>
-														Duplicate a project for new customer
-													</label>
-												</div>
-												<i class="remove ti-close"></i>
-											</li>
-											<li>
-												<div class="form-check form-check-flat">
-													<label class="form-check-label">
-														<input class="checkbox" type="checkbox">
-														Project meeting with CEO
-													</label>
-												</div>
-												<i class="remove ti-close"></i>
-											</li>
-											<li class="completed">
-												<div class="form-check form-check-flat">
-													<label class="form-check-label">
-														<input class="checkbox" type="checkbox" checked>
-														Follow up of team zilla
-													</label>
-												</div>
-												<i class="remove ti-close"></i>
-											</li>
-											<li>
-												<div class="form-check form-check-flat">
-													<label class="form-check-label">
-														<input class="checkbox" type="checkbox">
-														Level up for Antony
-													</label>
-												</div>
-												<i class="remove ti-close"></i>
-											</li>
-										</ul>
+										<div class="container-scroller">
+		<h2>학과 리스트</h2>
+		<table  class="table table-striped table-borderless">
+		    <%
+				for(HashMap m : selectDepartmentList){
+			%>
+				<tr>
+					<td><%=(String)(m.get("department"))%></td> <!-- 학과 --> 
+					<td><%=(Integer)(m.get("admin_no"))%></td> <!-- 관리자번호 --> 
+					<td><a href="/lms/admin/department/deleteDepartment.jsp?department=<%=(String)(m.get("department"))%>">삭제</a></td>	
+				</tr>
+			<%
+				}
+			%>
+  
+       </table>
+	</div>
                   </div>
                   <div class="add-items d-flex mb-0 mt-2">
-										<input type="text" class="form-control todo-list-input"  placeholder="Add new task">
+										<input type="text" class="form-control todo-list-input"  placeholder="memo">
 										<button class="add btn btn-icon text-primary todo-list-add-btn bg-transparent"><i class="icon-circle-plus"></i></button>
 									</div>
 								</div>
@@ -222,17 +233,13 @@
           </div>
         </div>
 		
-		<%
-		
-			if(grade.equals("마스터")){
-		%>
-				<a href="/lms/admin/admins/adminList.jsp">관리자 목록</a>
-		<%
-			}
-		%>
-		
-		
-		<a href="/lms/logout.jsp">로그아웃</a>
 	</div>
+	
+	</div>
+	</div>
+	</div>
+	</div>
+
+
 </body>
 </html>
