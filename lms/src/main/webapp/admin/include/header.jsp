@@ -25,8 +25,6 @@
   <link rel="stylesheet" href="/lms/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="images/favicon.png" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </head>    
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     	<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
@@ -57,7 +55,7 @@
 	          	</ul>
           	</li>
         	<li class="nav-item dropdown">
-          		<a class="nav-link dropdown-toggle" href="/lms/subjects/classList.jsp" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          		<a class="nav-link dropdown-toggle" href="/lms/subjects/classList.jsp" role="button" data-toggle="dropdown" aria-expanded="false">
             		강의 관리
           		</a>
           		<ul class="dropdown-menu" style="position:absolute;">
