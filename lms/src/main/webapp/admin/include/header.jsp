@@ -1,5 +1,11 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginAdmin"));
+	String grade = (String)(sessionInfo.get("grade"));
+	String name = (String)(sessionInfo.get("name"));
+%>
 <head>
 	<!-- Required meta tags -->
   <meta charset="utf-8">
@@ -39,7 +45,13 @@
             		인원 관리
           		</a>
           		<ul class="dropdown-menu" style="position:absolute;">
-	            	<li><a class="dropdown-item" href="/lms/admin/admins/adminList.jsp">관리자 관리</a></li>
+          			<%
+          				if(grade.equals("마스터")){
+          			%>
+	            			<li><a class="dropdown-item" href="/lms/admin/admins/adminList.jsp">관리자 관리</a></li>
+	            	<%
+          				}
+	            	%>
 	            	<li><a class="dropdown-item" href="/lms/admin/students/studentList.jsp">학생 관리</a></li>
 	            	<li><a class="dropdown-item" href="/lms/admin/professor/professorList.jsp">교수 관리</a></li>
 	          	</ul>
@@ -61,6 +73,16 @@
           		</a>
           	</li>
      		</ul>
+   		<ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item">
+           		<b><%=name %></b>님
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" " href="/lms/logout.jsp" role="button">
+            	로그아웃
+            </a>
+          </li>
+        </ul>
    	</div>
 </nav>
 

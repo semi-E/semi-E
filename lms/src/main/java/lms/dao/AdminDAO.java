@@ -112,7 +112,7 @@ public class AdminDAO {
 		Connection conn = DBHelper.getConnection();
 
 		
-		String sql = "SELECT admin_pw_history.admin_no , admin_pw_history.pw ,grade "
+		String sql = "SELECT admin_pw_history.admin_no , admin_pw_history.pw ,grade, name "
 				+"FROM admin,admin_pw_history "
 				+"WHERE admin.admin_no = admin_pw_history.admin_no AND admin_pw_history.admin_no= ? "
 				+"AND (select pw FROM admin_pw_history WHERE admin_no = ? "
@@ -133,6 +133,7 @@ public class AdminDAO {
 			resultMap = new HashMap<String,Object>();
 			resultMap.put("adminNo",rs.getInt("admin_no"));
 			resultMap.put("grade",rs.getString("grade"));
+			resultMap.put("name",rs.getString("name"));
 			
 			//디버깅
 			System.out.println(rs.getInt("admin_no"));

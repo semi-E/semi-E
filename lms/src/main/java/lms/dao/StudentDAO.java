@@ -219,7 +219,7 @@ public class StudentDAO {
 		Connection conn = DBHelper.getConnection();
 
 		
-		String sql = "SELECT student_pw_history.student_no  studentNo, student_pw_history.pw "
+		String sql = "SELECT student_pw_history.student_no  studentNo, student_pw_history.pw, name "
 					+"FROM student, student_pw_history "
 					+"WHERE student.student_no = student_pw_history.student_no "
 					+"AND student_pw_history.student_no = ? "
@@ -236,6 +236,7 @@ public class StudentDAO {
 			
 			resultMap = new HashMap<String,Object>();
 			resultMap.put("studentNo",rs.getInt("studentNo"));
+			resultMap.put("name",rs.getString("name"));
 			//디버깅
 			System.out.println(rs.getInt("studentNo"));	
 		}

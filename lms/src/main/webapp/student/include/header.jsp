@@ -1,5 +1,10 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginStudent"));
+	String name = (String)(sessionInfo.get("name"));
+%>
 <head>
 	<!-- Required meta tags -->
   <meta charset="utf-8">
@@ -61,6 +66,16 @@
           		</a>
           	</li>
      		</ul>
+   		<ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item">
+           		<b><%=name %></b>님
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" " href="/lms/logout.jsp" role="button">
+            	로그아웃
+            </a>
+          </li>
+        </ul>
    	</div>
 </nav>
 
