@@ -22,6 +22,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<jsp:include page="/admin/include/professorSidebar.jsp"></jsp:include>
 		<h1>교수 등록</h1>
 		<form method="post" action="/lms/admin/professor/addProfessorAction.jsp">
 			<!-- javascript로 최소 글자 9자로 지정할수있게 나중에 해야함, 첫글자는 무조건2, 6~7은 학과에 맞게 -->

@@ -29,6 +29,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
 		<h1>마이페이지 수정</h1>
 		<form method="post" action="/lms/admin/updateMyPageAction.jsp">
 			<table border="1">

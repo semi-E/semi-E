@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
     
 <%
@@ -28,6 +27,7 @@
 </head>
 <body>
 	<div class="container-scroller">
+		<jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
 		<form method="get" action="/lms/admin/admins/addAdminAction.jsp">
 			<div>

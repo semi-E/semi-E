@@ -24,6 +24,7 @@
 
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<jsp:include page="/admin/include/studentSidebar.jsp"></jsp:include>
 
 		<form method="post" action="/lms/admin/students/addStudentAction.jsp">
 			<div>

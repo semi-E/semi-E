@@ -24,6 +24,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<jsp:include page="/admin/include/noticeSidebar.jsp"></jsp:include>
 		<table border="1">
 			<tr>
 				<th>공지번호</th>

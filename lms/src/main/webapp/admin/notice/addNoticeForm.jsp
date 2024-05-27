@@ -20,6 +20,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<jsp:include page="/admin/include/noticeSidebar.jsp"></jsp:include>
 		<h1>공지추가하기</h1>
 		<form action="/lms/admin/notice/addNoticeAction.jsp" method="post">
 			<div>

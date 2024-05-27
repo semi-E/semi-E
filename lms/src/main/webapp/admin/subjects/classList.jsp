@@ -99,6 +99,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<jsp:include page="/admin/include/classListSidebar.jsp"></jsp:include>
 		<h1>승인처리된 강의 목록</h1>
 			<form method="get" action="/lms/admin/subjects/classList.jsp">
 				강의 번호 : <input type="number" name="classApplyNo">

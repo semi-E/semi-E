@@ -33,6 +33,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
 		<h1>myPage</h1>
 	
 		<table border="1">

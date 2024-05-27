@@ -31,6 +31,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<jsp:include page="/admin/include/professorSidebar.jsp"></jsp:include>
 		<h1>교수 상세보기</h1>
 		<form method="post" action="/lms/admin/professor/updateProfessorAction.jsp">
 			<table border="1">

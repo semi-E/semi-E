@@ -22,6 +22,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<jsp:include page="/admin/include/departmentListSidebar.jsp"></jsp:include>
 		<h1>학과 리스트</h1>
 		<table border="1">
 			<%

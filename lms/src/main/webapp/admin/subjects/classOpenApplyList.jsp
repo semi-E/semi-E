@@ -113,6 +113,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<jsp:include page="/admin/include/classOpenApplyListSidebar.jsp"></jsp:include>
 		<h1>강의 신청 목록</h1>
 		<a href="/lms/admin/subjects/classList.jsp">승인 신청된 강의 리스트 가기</a>
 		<form method="get" action="/lms/admin/subjects/classOpenApplyList.jsp">

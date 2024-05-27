@@ -64,6 +64,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<jsp:include page="/admin/include/professorSidebar.jsp"></jsp:include>
 		<h1>교수 목록</h1>
 		<a href="/lms/admin/professor/addProfessorForm.jsp">교수 등록</a>
 		<form method="get" action="/lms/admin/professor/professorList.jsp">

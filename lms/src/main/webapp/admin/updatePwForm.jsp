@@ -20,12 +20,13 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<jsp:include page="/admin/include/pwSidebar.jsp"></jsp:include>
 		<form method="post" action="/lms/admin/updatePwAction.jsp">
 			<div>
 				예전 비밀번호: <input type="password" name = "oldPw">
 			</div>
 			<div>
-				새 비밀번호: <input type="password" name = "newPw">
+				새 비밀번호: <input type="p assword" name = "newPw">
 			</div>
 			<!-- 테스트용 -->
 			
