@@ -74,6 +74,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/student/include/header.jsp"></jsp:include>
+		<jsp:include page="/student/include/classSidebar.jsp"></jsp:include>
 		<h1>강의 시간표</h1>
 		<table  class="table table-bordered">
 		    <tr>

@@ -35,6 +35,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/student/include/header.jsp"></jsp:include>
+		<jsp:include page="/student/include/classSidebar.jsp"></jsp:include>
 		<h1>내 강의 목록</h1>
 		<table border ="1">
 			<tr>
