@@ -41,7 +41,7 @@
           		</a>
         	</li>
         	<li class="nav-item dropdown">
-          		<a class="nav-link dropdown-toggle" href="/lms/admin/students/studentList.jsp" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          		<a class="nav-link dropdown-toggle" href="/lms/admin/students/studentList.jsp" role="button" data-toggle="dropdown" aria-expanded="false">
             		인원 관리
           		</a>
           		<ul class="dropdown-menu" style="position:absolute;">
