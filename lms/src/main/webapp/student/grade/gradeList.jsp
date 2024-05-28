@@ -36,40 +36,43 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/student/include/header.jsp"></jsp:include>
-		<jsp:include page="/student/include/myPageSidebar.jsp"></jsp:include>
-	
-		<h1>성적 리스트</h1>
-		<table border = "1">
-			<tr>
-				<td>학생번호</td>
-				<td>중간고사</td>
-				<td>기말고사</td>
-				<td>출석</td>
-				<td>과제</td>
-				<td>전체성적</td>
-			</tr>
-			
-			<%
-				for(HashMap m : list){
-			%>
+		<div class="container-fluid page-body-wrapper">
+			<jsp:include page="/student/include/myPageSidebar.jsp"></jsp:include>
+		
+			<h1>성적 리스트</h1>
+			<table border = "1">
 				<tr>
-					<td><%=m.get("studentNo") %></td>
-					<td><%=m.get("midexam") %></td>
-					<td><%=m.get("finalexam") %></td>
-					<td><%=m.get("attendanceScore") %></td>
-					<td><%=m.get("assignmentScore") %></td>
-					<td><%=m.get("totalScore") %></td>
+					<td>학생번호</td>
+					<td>중간고사</td>
+					<td>기말고사</td>
+					<td>출석</td>
+					<td>과제</td>
+					<td>전체성적</td>
 				</tr>
-			
-			<%		
-				}
-			%>
-			
-			
-			
-		</table>
+				
+				<%
+					for(HashMap m : list){
+				%>
+					<tr>
+						<td><%=m.get("studentNo") %></td>
+						<td><%=m.get("midexam") %></td>
+						<td><%=m.get("finalexam") %></td>
+						<td><%=m.get("attendanceScore") %></td>
+						<td><%=m.get("assignmentScore") %></td>
+						<td><%=m.get("totalScore") %></td>
+					</tr>
+				
+				<%		
+					}
+				%>
+				
+				
+				
+			</table>
+		
 	
-
+		</div>
 	</div>
+	
 </body>
 </html>
