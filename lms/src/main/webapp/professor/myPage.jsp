@@ -28,49 +28,52 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/professor/include/header.jsp"></jsp:include>
-		<h1>마이페이지</h1>
-		<table border="1">
-			<tr>
-				<th>번호</th>
-				<td>
-					<%=m.get("professorNo") %>
-				</td>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td><%=m.get("name") %></td>
-			</tr>
-			<tr>
-				<th>학과</th>
-				<td><%=m.get("department") %></td>
-			</tr>
-			<tr>
-				<th>성별</th>
-				<td><%=m.get("gender") %></td>
-			</tr>
-			<tr>
-				<th>생년월일</th>	
-				<td><%=m.get("birthday") %></td>
-			</tr>
-			<tr>
-				<th>핸드폰</th>
-				<td><%=m.get("phone") %></td>
-			</tr>
-			<tr>
-				<th>상태</th>
-				<td><%=m.get("state")%></td>
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td><%=m.get("email") %></td>
-			</tr>
-			<tr>
-				<th>연구실</th>
-				<td><%=m.get("officeNo") %></td>
-			</tr>
-		</table>
-		<a href="/lms/professor/updateMyPageForm.jsp">수정</a>
-		<a href="/lms/professor/updatePwForm.jsp">비밀번호 변경</a>
+		<div class="container-fluid page-body-wrapper">
+			<jsp:include page="/professor/include/myPageSidebar.jsp"></jsp:include>
+			<h1>마이페이지</h1>
+			<table border="1">
+				<tr>
+					<th>번호</th>
+					<td>
+						<%=m.get("professorNo") %>
+					</td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td><%=m.get("name") %></td>
+				</tr>
+				<tr>
+					<th>학과</th>
+					<td><%=m.get("department") %></td>
+				</tr>
+				<tr>
+					<th>성별</th>
+					<td><%=m.get("gender") %></td>
+				</tr>
+				<tr>
+					<th>생년월일</th>	
+					<td><%=m.get("birthday") %></td>
+				</tr>
+				<tr>
+					<th>핸드폰</th>
+					<td><%=m.get("phone") %></td>
+				</tr>
+				<tr>
+					<th>상태</th>
+					<td><%=m.get("state")%></td>
+				</tr>
+				<tr>
+					<th>이메일</th>
+					<td><%=m.get("email") %></td>
+				</tr>
+				<tr>
+					<th>연구실</th>
+					<td><%=m.get("officeNo") %></td>
+				</tr>
+			</table>
+			<a href="/lms/professor/updateMyPageForm.jsp">수정</a>
+			<a href="/lms/professor/updatePwForm.jsp">비밀번호 변경</a>
+		</div>
 	</div>
 </body>
 </html>
