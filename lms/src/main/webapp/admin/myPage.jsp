@@ -31,56 +31,60 @@
 <title>myPage</title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
-		<h1>myPage</h1>
-	
-		<table border="1">
-			<tr>
-				<th>번호</th>
-				<td><%=m.get("adminNo") %></td>
-			</tr>
-	
-			<tr>
-				<th>이름</th>
-				<td><%= m.get("name")%></td>
-			</tr>
-	
-			<tr>
-				<th>성별</th>
-				<td><%= m.get("gender")%></td>
-			</tr>
+	<jsp:include page="/admin/include/header.jsp"></jsp:include>
+	<div class="container-fluid page-body-wrapper">
+		<jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
+		<div class="main-panel">
+			<div class="content-wrapper">
+				<h1>myPage</h1>
 			
-			<tr>
-				<th>생년월일</th>
-				<td><%= m.get("birthday")%></td>
-			</tr>
+				<table border="1">
+					<tr>
+						<th>번호</th>
+						<td><%=m.get("adminNo") %></td>
+					</tr>
 			
+					<tr>
+						<th>이름</th>
+						<td><%= m.get("name")%></td>
+					</tr>
 			
-			<tr>
-				<th>전화번호</th>
-				<td><%= m.get("phone")%></td>
-			</tr>
-	
-			<tr>
-				<th>주소</th>
-				<td><%= m.get("address")%></td>
-			</tr>
-	
-			<tr>
-				<th>이메일</th>
-				<td><%= m.get("email")%></td>
-			</tr>
-	
-			<tr>
-				<th>등급</th>
-				<td><%=m.get("grade") %></td>
-			</tr>
-	
-		</table>
-		
-		<a href = "/lms/admin/updateMyPageForm.jsp">수정</a>
+					<tr>
+						<th>성별</th>
+						<td><%= m.get("gender")%></td>
+					</tr>
+					
+					<tr>
+						<th>생년월일</th>
+						<td><%= m.get("birthday")%></td>
+					</tr>
+					
+					
+					<tr>
+						<th>전화번호</th>
+						<td><%= m.get("phone")%></td>
+					</tr>
+			
+					<tr>
+						<th>주소</th>
+						<td><%= m.get("address")%></td>
+					</tr>
+			
+					<tr>
+						<th>이메일</th>
+						<td><%= m.get("email")%></td>
+					</tr>
+			
+					<tr>
+						<th>등급</th>
+						<td><%=m.get("grade") %></td>
+					</tr>
+			
+				</table>
+				
+				<a href = "/lms/admin/updateMyPageForm.jsp">수정</a>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

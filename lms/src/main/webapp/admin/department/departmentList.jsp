@@ -17,41 +17,45 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>학과 관리</title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/departmentListSidebar.jsp"></jsp:include>
-		<h1>학과 리스트</h1>
-		<table border="1">
-			<%
-				for(HashMap m : selectDepartmentList){
-			%>
-				<tr>
-					<td><%=(String)(m.get("department"))%></td> <!-- 학과 --> 
-					<td><%=(Integer)(m.get("admin_no"))%></td> <!-- 관리자번호 --> 
-					<td><a href="/lms/admin/department/deleteDepartment.jsp?department=<%=(String)(m.get("department"))%>">삭제</a></td>	
-				</tr>
-			<%
-				}
-			%>
-		</table>
-		<hr>
-		<br>
-		<h2>학과 추가</h2>
-		<form action="/lms/admin/department/addDepartment.jsp" method="post">
-			<div>
-				<label for="department">학과</label>
-				<input type="text" required id="department" name="department" maxlength="20"> 
+	<jsp:include page="/admin/include/header.jsp"></jsp:include>
+	<div class="container-fluid page-body-wrapper">
+		<jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
+		<div class="main-panel">
+			<div class="content-wrapper">
+				<h1>학과 리스트</h1>
+				<table border="1">
+					<%
+						for(HashMap m : selectDepartmentList){
+					%>
+						<tr>
+							<td><%=(String)(m.get("department"))%></td> <!-- 학과 --> 
+							<td><%=(Integer)(m.get("admin_no"))%></td> <!-- 관리자번호 --> 
+							<td><a href="/lms/admin/department/deleteDepartment.jsp?department=<%=(String)(m.get("department"))%>">삭제</a></td>	
+						</tr>
+					<%
+						}
+					%>
+				</table>
+				<hr>
+				<br>
+				<h2>학과 추가</h2>
+				<form action="/lms/admin/department/addDepartment.jsp" method="post">
+					<div>
+						<label for="department">학과</label>
+						<input type="text" required id="department" name="department" maxlength="20"> 
+					</div>
+					<%
+						HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginAdmin"));			
+						int adminNo = (Integer)(sessionInfo.get("adminNo"));
+					 %>				
+					관리자번호<input type="text" value="<%=adminNo%>" readonly>
+					<button type="submit">추가하기</button>
+				</form>
 			</div>
-			<%
-				HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginAdmin"));			
-				int adminNo = (Integer)(sessionInfo.get("adminNo"));
-			 %>				
-			관리자번호<input type="text" value="<%=adminNo%>" readonly>
-			<button type="submit">추가하기</button>
-		</form>
-	</div>
+		</div>
+		</div>
 </body>
 </html>

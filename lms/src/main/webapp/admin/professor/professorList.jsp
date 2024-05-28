@@ -62,58 +62,62 @@
 <title>ProfessorList</title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/professorSidebar.jsp"></jsp:include>
-		<h1>교수 목록</h1>
-		<a href="/lms/admin/professor/addProfessorForm.jsp">교수 등록</a>
-		<form method="get" action="/lms/admin/professor/professorList.jsp">
-			번호 :<input type="text" name="professorNo">
-			이름 : <input type="text" name="name">
-			학과 : <input type="text" name="department">
-			<button type="submit">검색</button>	
-		</form>
-		<table border="1">
-			<tr>
-				<th>번호</th>
-				<th>이름</th>
-				<th>학과</th>
-				<th>상태</th>
-			</tr>
-			<%
-				for(HashMap<String, Object> m : professorList){
-			%>
+	<jsp:include page="/admin/include/header.jsp"></jsp:include>
+	<div class="container-fluid page-body-wrapper">
+		<jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
+		<div class="main-panel">
+			<div class="content-wrapper">
+				<h1>교수 목록</h1>
+				<a href="/lms/admin/professor/addProfessorForm.jsp">교수 등록</a>
+				<form method="get" action="/lms/admin/professor/professorList.jsp">
+					번호 :<input type="text" name="professorNo">
+					이름 : <input type="text" name="name">
+					학과 : <input type="text" name="department">
+					<button type="submit">검색</button>	
+				</form>
+				<table border="1">
 					<tr>
-						<td><a href="/lms/admin/professor/professorOne.jsp?professorNo=<%=m.get("professorNo")%>"><%=m.get("professorNo") %></a></td>
-						<td><%=m.get("name") %></td>
-						<td><%=m.get("department") %></td>
-						<td><%=m.get("state") %></td>
+						<th>번호</th>
+						<th>이름</th>
+						<th>학과</th>
+						<th>상태</th>
 					</tr>
-			<%
-				}
-			
-				//페이징 추가 필요
-			%>
-			
-		</table>
-		
-		<%
-			if(currentPage > 1){
-		%>
-				<a href="/lms/admin/professor/professorList.jsp?currentPage=1&professrNo=<%=professorNo%>&name=<%=name%>&department=<%=department%>">처음</a>
-				<a href="/lms/admin/professor/professorList.jsp?currentPage=<%=currentPage - 1 %>&professrNo=<%=professorNo%>&name=<%=name%>&department=<%=department%>">이전</a>
-		<%
-			}
-		%>
-		
-		<%
-			if(currentPage < lastPage){
-		%>
-				<a href="/lms/admin/professor/professorList.jsp?currentPage=<%=currentPage + 1 %>&professrNo=<%=professorNo%>&name=<%=name%>&department=<%=department%>">다음</a>
-				<a href="/lms/admin/professor/professorList.jsp?currentPage=<%=lastPage%>&professrNo=<%=professorNo%>&name=<%=name%>&department=<%=department%>">마지막</a>
-		<%
-			}
-		%>
+					<%
+						for(HashMap<String, Object> m : professorList){
+					%>
+							<tr>
+								<td><a href="/lms/admin/professor/professorOne.jsp?professorNo=<%=m.get("professorNo")%>"><%=m.get("professorNo") %></a></td>
+								<td><%=m.get("name") %></td>
+								<td><%=m.get("department") %></td>
+								<td><%=m.get("state") %></td>
+							</tr>
+					<%
+						}
+					
+						//페이징 추가 필요
+					%>
+					
+				</table>
+				
+				<%
+					if(currentPage > 1){
+				%>
+						<a href="/lms/admin/professor/professorList.jsp?currentPage=1&professrNo=<%=professorNo%>&name=<%=name%>&department=<%=department%>">처음</a>
+						<a href="/lms/admin/professor/professorList.jsp?currentPage=<%=currentPage - 1 %>&professrNo=<%=professorNo%>&name=<%=name%>&department=<%=department%>">이전</a>
+				<%
+					}
+				%>
+				
+				<%
+					if(currentPage < lastPage){
+				%>
+						<a href="/lms/admin/professor/professorList.jsp?currentPage=<%=currentPage + 1 %>&professrNo=<%=professorNo%>&name=<%=name%>&department=<%=department%>">다음</a>
+						<a href="/lms/admin/professor/professorList.jsp?currentPage=<%=lastPage%>&professrNo=<%=professorNo%>&name=<%=name%>&department=<%=department%>">마지막</a>
+				<%
+					}
+				%>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

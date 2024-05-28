@@ -27,15 +27,14 @@ ArrayList<HashMap<String, Object>> selectAdminList = AdminDAO.selectAdminList();
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 리스트</title>
+<title>직원 목록</title>
 </head>
 <body>
-		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<div class="container-fluid page-body-wrapper">
-			<jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
-			<div class="main-panel">
-				<div class="content-wrapper">
-				<h1>직원 목록</h1>
+	<jsp:include page="/admin/include/header.jsp"></jsp:include>
+	<div class="container-fluid page-body-wrapper">
+		<jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
+		<div class="main-panel">
+			<div class="content-wrapper">
 				<table border=1>
 					<tr>
 						<td>관리자번호</td>

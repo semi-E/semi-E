@@ -54,52 +54,56 @@
 <title>공지 리스트</title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/noticeSidebar.jsp"></jsp:include>
-		<h1>공지 리스트</h1>
-		<form action="/lms/admin/notice/noticeList.jsp" method="get">
-			<input  type="text" name="title">
-			<button type="submit">검색</button>
-		</form>
+	<jsp:include page="/admin/include/header.jsp"></jsp:include>
+	<div class="container-fluid page-body-wrapper">
+		<jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
+		<div class="main-panel">
+			<div class="content-wrapper">
+				<h1>공지 리스트</h1>
+				<form action="/lms/admin/notice/noticeList.jsp" method="get">
+					<input  type="text" name="title">
+					<button type="submit">검색</button>
+				</form>
+				
+				
+				
+				<table border="1">
+						<tr>
+							<th>게시물 이름</th>
+							<th></th>
+						</tr>
+					<%
+						for(HashMap m : selectNoticeList){
+					%> 
+						<tr>
+							<td><a href="/lms/admin/notice/noticeOne.jsp?noticeNo=<%=m.get("noticeNo")%>"><%=m.get("title") %></a></td><!-- 공지  -->
+							<td><a href="/lms/admin/notice/deleteNoticeAction.jsp?noticeNo=<%=(Integer)(m.get("noticeNo"))%>">삭제</a></td>	
+						</tr>
+					<%
+						}
+					%>
+				</table>
+				<a href="/lms/admin/notice/addNoticeForm.jsp">공지 추가</a>
 		
-		
-		
-		<table border="1">
-				<tr>
-					<th>게시물 이름</th>
-					<th></th>
-				</tr>
 			<%
-				for(HashMap m : selectNoticeList){
-			%> 
-				<tr>
-					<td><a href="/lms/admin/notice/noticeOne.jsp?noticeNo=<%=m.get("noticeNo")%>"><%=m.get("title") %></a></td><!-- 공지  -->
-					<td><a href="/lms/admin/notice/deleteNoticeAction.jsp?noticeNo=<%=(Integer)(m.get("noticeNo"))%>">삭제</a></td>	
-				</tr>
+				if(currentPage > 1){
+			%>
+					<a href="/lms/admin/notice/noticeList.jsp?currentPage=1&title=<%=title%>">처음</a>
+					<a href="/lms/admin/notice/noticeList.jsp?currentPage=<%=currentPage - 1 %>&title=<%=title%>">이전</a>
 			<%
 				}
 			%>
-		</table>
-		<a href="/lms/admin/notice/addNoticeForm.jsp">공지 추가</a>
-
-	<%
-		if(currentPage > 1){
-	%>
-			<a href="/lms/admin/notice/noticeList.jsp?currentPage=1&title=<%=title%>">처음</a>
-			<a href="/lms/admin/notice/noticeList.jsp?currentPage=<%=currentPage - 1 %>&title=<%=title%>">이전</a>
-	<%
-		}
-	%>
-	
-	<%
-		if(currentPage < lastPage){
-	%>
-			<a href="/lms/admin/notice/noticeList.jsp?currentPage=<%=currentPage + 1 %>&title=<%=title%>">다음</a>
-			<a href="/lms/admin/notice/noticeList.jsp?currentPage=<%=lastPage%>&title=<%=title%>">마지막</a>
-	<%
-		}
-	%>
+			
+			<%
+				if(currentPage < lastPage){
+			%>
+					<a href="/lms/admin/notice/noticeList.jsp?currentPage=<%=currentPage + 1 %>&title=<%=title%>">다음</a>
+					<a href="/lms/admin/notice/noticeList.jsp?currentPage=<%=lastPage%>&title=<%=title%>">마지막</a>
+			<%
+				}
+			%>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

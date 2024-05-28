@@ -54,47 +54,51 @@
 <title>과목 리스트</title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/subjectSidebar.jsp"></jsp:include>
-		<h1>과목 리스트</h1>
-		<form action="/lms/admin/subjects/subjectList.jsp">
-			<input type="text" name="subjectName">
-			<button type="submit">검색</button>
-		</form>
-		<table border="1">
+	<jsp:include page="/admin/include/header.jsp"></jsp:include>
+	<div class="container-fluid page-body-wrapper">
+		<jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
+		<div class="main-panel">
+			<div class="content-wrapper">
+				<h1>과목 리스트</h1>
+				<form action="/lms/admin/subjects/subjectList.jsp">
+					<input type="text" name="subjectName">
+					<button type="submit">검색</button>
+				</form>
+				<table border="1">
+					<%
+						for(HashMap m : selectSubjectList){
+					%>
+						<tr>
+							<td><%=(String)(m.get("subjectName"))%></td> <!-- 과목 --> 
+							<td><%=(Integer)(m.get("adminNo"))%></td> <!-- 관리자번호 --> 
+							<td><%=(Integer)(m.get("credit"))%></td> <!-- 학점 --> 
+							<td><a href="/lms/admin/subjects/deleteSubjectAction.jsp?subjectName=<%=(String)(m.get("subjectName"))%>">삭제</a></td>	
+						</tr>
+					<%
+						}
+					%>
+				</table>
+			 	<a href="/lms/admin/subjects/addSubjectForm.jsp" >과목 추가하기</a>
+				
 			<%
-				for(HashMap m : selectSubjectList){
+				if(currentPage > 1){
 			%>
-				<tr>
-					<td><%=(String)(m.get("subjectName"))%></td> <!-- 과목 --> 
-					<td><%=(Integer)(m.get("adminNo"))%></td> <!-- 관리자번호 --> 
-					<td><%=(Integer)(m.get("credit"))%></td> <!-- 학점 --> 
-					<td><a href="/lms/admin/subjects/deleteSubjectAction.jsp?subjectName=<%=(String)(m.get("subjectName"))%>">삭제</a></td>	
-				</tr>
+					<a href="/lms/admin/subjects/subjectList.jsp?currentPage=1&subjectName=<%=subjectName%>">처음</a>
+					<a href="/lms/admin/subjects/subjectList.jsp?currentPage=<%=currentPage - 1 %>&subjectName=<%=subjectName%>">이전</a>
 			<%
 				}
 			%>
-		</table>
-	 	<a href="/lms/admin/subjects/addSubjectForm.jsp" >과목 추가하기</a>
-		
-	<%
-		if(currentPage > 1){
-	%>
-			<a href="/lms/admin/subjects/subjectList.jsp?currentPage=1&subjectName=<%=subjectName%>">처음</a>
-			<a href="/lms/admin/subjects/subjectList.jsp?currentPage=<%=currentPage - 1 %>&subjectName=<%=subjectName%>">이전</a>
-	<%
-		}
-	%>
-	
-	<%
-		if(currentPage < lastPage){
-	%>
-			<a href="/lms/admin/subjects/subjectList.jsp?currentPage=<%=currentPage + 1 %>&subjectName=<%=subjectName%>">다음</a>
-			<a href="/lms/admin/subjects/subjectList.jsp?currentPage=<%=lastPage%>&subjectName=<%=subjectName%>">마지막</a>
-	<%
-		}
-	%>
+			
+			<%
+				if(currentPage < lastPage){
+			%>
+					<a href="/lms/admin/subjects/subjectList.jsp?currentPage=<%=currentPage + 1 %>&subjectName=<%=subjectName%>">다음</a>
+					<a href="/lms/admin/subjects/subjectList.jsp?currentPage=<%=lastPage%>&subjectName=<%=subjectName%>">마지막</a>
+			<%
+				}
+			%>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
