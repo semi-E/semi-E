@@ -55,10 +55,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/student/include/header.jsp"></jsp:include>
-		<div class="container-fluid page-body-wrapper">
-			<jsp:include page="/student/include/noticeSidebar.jsp"></jsp:include>
+
+	<jsp:include page="/student/include/header.jsp"></jsp:include>
+	<div class="container-fluid page-body-wrapper">
+		<jsp:include page="/student/include/noticeSidebar.jsp"></jsp:include>
+			<div class="main-panel">
+				<div class="content-wrapper">
 	
 			<h1>공지 리스트</h1>
 			
@@ -109,6 +111,7 @@
 				}
 			%>
 		
+			</div>
 		</div>
 	</div>
 </body>

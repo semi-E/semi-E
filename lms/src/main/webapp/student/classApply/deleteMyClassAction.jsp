@@ -1,7 +1,7 @@
 <%@page import="lms.dao.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+ <%@page import="java.util.HashMap"%>  
 <%
 	//세션인증분기 - loginStudent 학생
 	if(session.getAttribute("loginStudent") == null) {
@@ -9,12 +9,17 @@
 		return;
 	}
 %>
+<%
+	HashMap<String, Object> sessionInfo = (HashMap<String, Object>)(session.getAttribute("loginStudent"));
+	int studentNo = (Integer)(sessionInfo.get("studentNo"));
+	
+	System.out.println(studentNo+"<-----studentNo");
+%>
 
 <%
 //현재 페이지 시스템 알림
 System.out.println("페이지: deleteAdminAction.jsp");
 
-int studentNo = Integer.valueOf(request.getParameter("studentNo"));  
 int classApplyNo = Integer.valueOf(request.getParameter("classApplyNo"));  
 
 int row = MyclassDAO.deleteMyClass(studentNo, classApplyNo);

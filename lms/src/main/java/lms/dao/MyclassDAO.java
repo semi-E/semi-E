@@ -169,7 +169,7 @@ public class MyclassDAO {
 			System.out.println(stmt+" <-- deleteAdmin stmt");
 			
 			stmt.setInt(1, studentNo);
-			stmt.setInt(1, classApplyNo);
+			stmt.setInt(2, classApplyNo);
 			row = stmt.executeUpdate();
 			
 			//DB자원 반납

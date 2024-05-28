@@ -53,45 +53,47 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/student/include/header.jsp"></jsp:include>
+	<jsp:include page="/student/include/header.jsp"></jsp:include>
+	<div class="container-fluid page-body-wrapper">
 		<jsp:include page="/student/include/classSidebar.jsp"></jsp:include>
-		<h1>과목 리스트</h1>
-		
-		<form method="get" action="/lms/student/class/subjectList.jsp">
-			과목이름:<input type="text" name = "subjectName">
-			학점:<input type="text" name = "credit">
-		
-			<button type="submit">검색</button>
-			
-		</form>
-		
-		
-		
-		
-		<table border = "1">
-		
-			<tr>
-				<td>과목이름</td>
-				<td>학점</td>		
-			</tr>	
+		<div class="main-panel">
+			<div class="content-wrapper">
+				<h1>과목 리스트</h1>
+				
+				<form method="get" action="/lms/student/class/subjectList.jsp">
+					과목이름:<input type="text" name = "subjectName">
+					학점:<input type="text" name = "credit">
+				
+					<button type="submit">검색</button>
 					
-	        <%
-	            for(HashMap<String, Object> m : subjectList){
-	        %>
-	        
-		        <tr>
-		            <td><%= m.get("subjectName") %></td>
-		            <td><%= m.get("credit") %></td>
-		        </tr>
-	        	
-	        <%
-	            }
-	        %>
-		
-		</table>
+				</form>
+				
+				
+				
+				
+				<table border = "1">
+				
+					<tr>
+						<td>과목이름</td>
+						<td>학점</td>		
+					</tr>	
+							
+			        <%
+			            for(HashMap<String, Object> m : subjectList){
+			        %>
+			        
+				        <tr>
+				            <td><%= m.get("subjectName") %></td>
+				            <td><%= m.get("credit") %></td>
+				        </tr>
+			        	
+			        <%
+			            }
+			        %>
+				
+				</table>
+			</div>
+		</div>
 	</div>
-
-	
 </body>
 </html>

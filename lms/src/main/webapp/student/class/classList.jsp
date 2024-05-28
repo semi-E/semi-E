@@ -95,85 +95,89 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/student/include/header.jsp"></jsp:include>
+	<jsp:include page="/student/include/header.jsp"></jsp:include>
+		<div class="container-fluid page-body-wrapper">
 		<jsp:include page="/student/include/classSidebar.jsp"></jsp:include>
-		<h1>강의 리스트</h1>
-		
-		<form method="get" action="/lms/student/class/classList.jsp">
-			강의번호:<input type="text" name = "classApplyNo">
-			교수번호:<input type="text" name = "professorNo">
-			강의이름:<input type="text" name = "className">
-			과목이름:<input type="text" name = "subjectName">
-			요일 :
-			<select name="days">
-				<option value="">선택</option>
-				<option value="월">월</option>
-				<option value="화">화</option>
-				<option value="수">수</option>
-				<option value="목">목</option>
-				<option value="금">금</option>
-			</select>
-			시작 교시 : 
-			<select name="periodStart">
-				<option value="">선택</option>
-				<option value="1">1</option>
-				<option value="2">2</option>
-				<option value="3">3</option>
-				<option value="4">4</option>
-				<option value="5">5</option>
-				<option value="6">6</option>
-				<option value="7">7</option>
-				<option value="8">8</option>
-			</select>
-		
-			<button type="submit">검색</button>
-			
-		</form>
-		
-		
-		
-		
-		<table border = "1">
-			<tr>
-				<th>강의 번호</th>
-				<th>교수 번호</th>
-				<th>교수 이름</th>
-				<th>과목 명</th>
-				<th>강의 명</th>
-				<th>학점</th>
-				<th>요일</th>
-				<th>시작 교시</th>
-				<th>강의실</th>
-				<th>년도</th>
-				<th>학기</th>
+		<div class="main-panel">
+			<div class="content-wrapper">
+				<h1>강의 리스트</h1>
 				
-			</tr>
-			
-			<%
-				for(HashMap<String,Object> m : list) {
-			%>
-				<tr>
-					<td><%=m.get("classApplyNo")%></td>
-					<td><%=m.get("professorNo")%></td>
-					<td><%=m.get("professorName")%></td>
-					<td><%=m.get("subjectName")%></td>
-					<td><%=m.get("className")%></td>
-					<td><%=m.get("credit")%></td>
-					<td><%=m.get("days")%></td>
-					<td><%=m.get("periodStart")%></td>
-					<td><%=m.get("classroom")%></td>
-					<td><%=m.get("year")%></td>
-					<td><%=m.get("semester")%></td>
-				</tr>
-			
-			
-			<% 	
-				}	
-			%>
-		
-		
-		</table>
+				<form method="get" action="/lms/student/class/classList.jsp">
+					강의번호:<input type="text" name = "classApplyNo">
+					교수번호:<input type="text" name = "professorNo">
+					강의이름:<input type="text" name = "className">
+					과목이름:<input type="text" name = "subjectName">
+					요일 :
+					<select name="days">
+						<option value="">선택</option>
+						<option value="월">월</option>
+						<option value="화">화</option>
+						<option value="수">수</option>
+						<option value="목">목</option>
+						<option value="금">금</option>
+					</select>
+					시작 교시 : 
+					<select name="periodStart">
+						<option value="">선택</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+					</select>
+				
+					<button type="submit">검색</button>
+					
+				</form>
+				
+				
+				
+				
+				<table border = "1">
+					<tr>
+						<th>강의 번호</th>
+						<th>교수 번호</th>
+						<th>교수 이름</th>
+						<th>과목 명</th>
+						<th>강의 명</th>
+						<th>학점</th>
+						<th>요일</th>
+						<th>시작 교시</th>
+						<th>강의실</th>
+						<th>년도</th>
+						<th>학기</th>
+						
+					</tr>
+					
+					<%
+						for(HashMap<String,Object> m : list) {
+					%>
+						<tr>
+							<td><%=m.get("classApplyNo")%></td>
+							<td><%=m.get("professorNo")%></td>
+							<td><%=m.get("professorName")%></td>
+							<td><%=m.get("subjectName")%></td>
+							<td><%=m.get("className")%></td>
+							<td><%=m.get("credit")%></td>
+							<td><%=m.get("days")%></td>
+							<td><%=m.get("periodStart")%></td>
+							<td><%=m.get("classroom")%></td>
+							<td><%=m.get("year")%></td>
+							<td><%=m.get("semester")%></td>
+						</tr>
+					
+					
+					<% 	
+						}	
+					%>
+				
+				
+				</table>
+			</div>
+		</div>
 	</div>
 	
 </body>
