@@ -28,7 +28,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/classOpenApplyListSidebar.jsp"></jsp:include>
+		<jsp:include page="/admin/include/classListSidebar.jsp"></jsp:include>
 		<h1>강의신청목록 상세보기</h1>
 		<form action="/lms/admin/subjects/updateClassOpenApplyAction.jsp" method="post">
 			<input type="hidden" name="classApplyNo" value="<%=classApplyNo%>">

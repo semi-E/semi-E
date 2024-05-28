@@ -33,7 +33,7 @@
 <body>
 	<jsp:include page="/admin/include/header.jsp"></jsp:include>
 	<div class="container-fluid page-body-wrapper">
-		<jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
+		<jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
 		<div class="main-panel">
 			<div class="content-wrapper">
 				<h1>myPage</h1>

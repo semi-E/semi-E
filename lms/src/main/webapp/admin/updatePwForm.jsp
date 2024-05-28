@@ -20,7 +20,7 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/pwSidebar.jsp"></jsp:include>
+		<jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
 		<form method="post" action="/lms/admin/updatePwAction.jsp">
 			<div>
 				예전 비밀번호: <input type="password" name = "oldPw">
