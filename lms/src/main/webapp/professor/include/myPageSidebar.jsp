@@ -18,17 +18,17 @@
               <div class="collapse" id="myPage">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item">
-                    <a class="nav-link" href="/lms/student/myPage.jsp"
+                    <a class="nav-link" href="/lms/professor/myPage.jsp"
                       >내 정보</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/lms/student/updateMyPageForm.jsp"
+                    <a class="nav-link" href="/lms/professor/updateMyPageForm.jsp"
                       >정보 수정</a
                     >
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/lms/student/updatePwForm.jsp"
+                    <a class="nav-link" href="/lms/professor/updatePwForm.jsp"
                       >비밀번호 변경</a
                     >
                   </li>
