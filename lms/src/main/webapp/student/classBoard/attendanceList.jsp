@@ -31,45 +31,48 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/student/include/header.jsp"></jsp:include>
-		<h1>출결 관리</h1>
-		<table border="1">
-			<tr>
-				<th>학번</th>
-				<th>이름</th>
-				<%
-					for(int i = 1; i < 16; i++){
-				%>
-					<th><%=i %>주차</th>
-				<%
-					}
-				%>
-			</tr>
-			<tr>
-				<%
-					int index = 1;
-					for(HashMap m : attendanceList){
-						if(index % 15 == 1){
-				%>
-							<td>
-								<%=m.get("studentNo") %>
-							</td>
-							<td><%=m.get("name") %>
-				<%				
+		<div class="container-fluid page-body-wrapper">
+            <jsp:include page="/student/include/classBoardSidebar.jsp"></jsp:include>
+			<h1>출결 관리</h1>
+			<table border="1">
+				<tr>
+					<th>학번</th>
+					<th>이름</th>
+					<%
+						for(int i = 1; i < 16; i++){
+					%>
+						<th><%=i %>주차</th>
+					<%
 						}
-				%>
-						<td><%=m.get("state") %></td>
-				<%
-						if(index % 15 == 0){
-				%>
-							</tr>
-							<tr>
-				<%
+					%>
+				</tr>
+				<tr>
+					<%
+						int index = 1;
+						for(HashMap m : attendanceList){
+							if(index % 15 == 1){
+					%>
+								<td>
+									<%=m.get("studentNo") %>
+								</td>
+								<td><%=m.get("name") %>
+					<%				
+							}
+					%>
+							<td><%=m.get("state") %></td>
+					<%
+							if(index % 15 == 0){
+					%>
+								</tr>
+								<tr>
+					<%
+							}
+							index++;
 						}
-						index++;
-					}
-				%>
-			</tr>
-		</table>
+					%>
+				</tr>
+			</table>
+		</div>
 	</div>
 </body>
 </html>
