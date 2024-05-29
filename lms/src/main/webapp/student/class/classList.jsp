@@ -92,13 +92,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>마이페이지 수정</title>
+    <title>강의 목록</title>
 </head>
 <body>
     <div class="container-scroller">
         <jsp:include page="/student/include/header.jsp"></jsp:include>
         <div class="container-fluid page-body-wrapper">
-            <jsp:include page="/student/include/myPageSidebar.jsp"></jsp:include>
+            <jsp:include page="/student/include/classSidebar.jsp"></jsp:include>
             <div class="container mt-5">
                 <h1 class="mb-4">강의 리스트</h1>
                 	<form method="get" action="/lms/student/class/classList.jsp">

@@ -30,12 +30,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>수강 신청된 목록</title>
 </head>
 <body>
 	<jsp:include page="/student/include/header.jsp"></jsp:include>
 	<div class="container-fluid page-body-wrapper">
-		<jsp:include page="/student/include/classSidebar.jsp"></jsp:include>
+		<jsp:include page="/student/include/classApplySidebar.jsp"></jsp:include>
 		<div class="main-panel">
 			<div class="content-wrapper">
 				<table border ="1">

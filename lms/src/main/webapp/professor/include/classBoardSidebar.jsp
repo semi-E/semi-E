@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 
-        <!-- partial:partials/_settings-panel.html -->
+    <div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="ti-settings"></i></div>
         
 	<nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
@@ -49,3 +50,4 @@
             </li>
            </ul>
         </nav>
+       </div>

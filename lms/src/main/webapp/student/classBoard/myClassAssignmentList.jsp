@@ -48,43 +48,46 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/student/include/header.jsp"></jsp:include>
-		<h1>과제 목록</h1>
-		<table border="1">
-			<tr>
-				<th>제목</th>
-				<th>생성날짜</th>
-				<th>제출기한</th>
-			</tr>
+		<div class="container-fluid page-body-wrapper">
+            <jsp:include page="/student/include/classBoardSidebar.jsp"></jsp:include>
+			<h1>과제 목록</h1>
+			<table border="1">
+				<tr>
+					<th>제목</th>
+					<th>생성날짜</th>
+					<th>제출기한</th>
+				</tr>
+				<%
+					for(HashMap m : assignmentList){
+				%>
+						<tr>
+							<td><a href="/lms/student/classBoard/myClassAssignmentOne.jsp?assignmentNo=<%=m.get("assignmentNo")%>"><%=m.get("title") %></a></td>
+							<td><%=m.get("createDate") %></td>
+							<td><%=m.get("endDate") %></td>
+						</tr>
+				<%
+					}
+				%>
+			</table>
+			
 			<%
-				for(HashMap m : assignmentList){
+				if(currentPage > 1){
 			%>
-					<tr>
-						<td><a href="/lms/student/classBoard/myClassAssignmentOne.jsp?assignmentNo=<%=m.get("assignmentNo")%>"><%=m.get("title") %></a></td>
-						<td><%=m.get("createDate") %></td>
-						<td><%=m.get("endDate") %></td>
-					</tr>
+					<a href="/lms/student/classBoard/myClassAssignmentList.jsp?currentPage=1&classApplyNo=<%=classApplyNo%>">처음</a>
+					<a href="/lms/student/classBoard/myClassAssignmentList.jsp?currentPage=<%=currentPage - 1 %>&classApplyNo=<%=classApplyNo%>">이전</a>
 			<%
 				}
 			%>
-		</table>
-		
-		<%
-			if(currentPage > 1){
-		%>
-				<a href="/lms/student/classBoard/myClassAssignmentList.jsp?currentPage=1&classApplyNo=<%=classApplyNo%>">처음</a>
-				<a href="/lms/student/classBoard/myClassAssignmentList.jsp?currentPage=<%=currentPage - 1 %>&classApplyNo=<%=classApplyNo%>">이전</a>
-		<%
-			}
-		%>
-		
-		<%
-			if(currentPage < lastPage){
-		%>
-				<a href="/lms/student/classBoard/myClassAssignmentList.jsp?currentPage=<%=currentPage + 1 %>&classApplyNo=<%=classApplyNo%>">다음</a>
-				<a href="/lms/student/classBoard/myClassAssignmentList.jsp?currentPage=<%=lastPage %>&classApplyNo=<%=classApplyNo%>">마지막</a>
-		<%
-			}
-		%>
+			
+			<%
+				if(currentPage < lastPage){
+			%>
+					<a href="/lms/student/classBoard/myClassAssignmentList.jsp?currentPage=<%=currentPage + 1 %>&classApplyNo=<%=classApplyNo%>">다음</a>
+					<a href="/lms/student/classBoard/myClassAssignmentList.jsp?currentPage=<%=lastPage %>&classApplyNo=<%=classApplyNo%>">마지막</a>
+			<%
+				}
+			%>
+		</div>
 	</div>
 </body>
 </html>

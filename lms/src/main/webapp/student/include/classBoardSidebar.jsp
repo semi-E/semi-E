@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<div class="theme-setting-wrapper">
+        <div id="settings-trigger"><i class="ti-settings"></i></div>
 	<nav class="sidebar sidebar-offcanvas" id="sidebar">
           <ul class="nav">
             <li class="nav-item">
@@ -21,6 +23,11 @@
                     >
                   </li>
                   <li class="nav-item">
+                    <a class="nav-link" href="/lms/student/classBoard/myClassBoardOne.jsp?classApplyNo=<%=request.getParameter("classApplyNo") %>"
+                      >강의 상세보기</a
+                    >
+                  </li>
+                  <li class="nav-item">
                     <a class="nav-link" href="/lms/student/classBoard/attendanceList.jsp?classApplyNo=<%=request.getParameter("classApplyNo") %>"
                       >출결</a
                     >
@@ -36,3 +43,4 @@
             </li>
            </ul>
         </nav>
+    </div>

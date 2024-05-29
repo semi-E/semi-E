@@ -47,7 +47,7 @@
     <div class="container-scroller">
         <jsp:include page="/student/include/header.jsp"></jsp:include>
         <div class="container-fluid page-body-wrapper">
-            <jsp:include page="/student/include/myPageSidebar.jsp"></jsp:include>
+            <jsp:include page="/student/include/classSidebar.jsp"></jsp:include>
             <div class="container mt-5">
                 <h1 class="mb-4">내 강의 목록</h1>
                 		 <table class="table table-striped table-borderless">

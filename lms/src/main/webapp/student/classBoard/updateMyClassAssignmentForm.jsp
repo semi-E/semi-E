@@ -29,14 +29,17 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/student/include/header.jsp"></jsp:include>
-		<h1>과제 수정</h1>
-		<form method="post" action="/lms/student/classBoard/updateMyClassAssignmentAction.jsp" enctype="multipart/form-data">
-			<input type="hidden" name="assignmentNo" value="<%=assignmentNo%>">
-			제목 : <input type="text" name="title" value="<%=studentAssignment.get("title") %>"><br>
-			파일 : <input type="file" name="file"><br>
-			내용 : <textarea rows="5" cols="50" name="content"><%=studentAssignment.get("content") %></textarea><br>
-			<button type="submit">수정</button>
-		</form>
+		<div class="container-fluid page-body-wrapper">
+            <jsp:include page="/student/include/classBoardSidebar.jsp"></jsp:include>
+			<h1>과제 수정</h1>
+			<form method="post" action="/lms/student/classBoard/updateMyClassAssignmentAction.jsp" enctype="multipart/form-data">
+				<input type="hidden" name="assignmentNo" value="<%=assignmentNo%>">
+				제목 : <input type="text" name="title" value="<%=studentAssignment.get("title") %>"><br>
+				파일 : <input type="file" name="file"><br>
+				내용 : <textarea rows="5" cols="50" name="content"><%=studentAssignment.get("content") %></textarea><br>
+				<button type="submit">수정</button>
+			</form>
+		</div>
 	</div>
 </body>
 </html>
