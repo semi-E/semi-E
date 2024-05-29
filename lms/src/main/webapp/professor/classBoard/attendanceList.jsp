@@ -11,7 +11,7 @@
 	}
 %>
 <%
-	int classApplyNo = 2;//Integer.parseInt(request.getParameter("classApplyNo")); classBoardOne.jsp생기면 사용
+	int classApplyNo = Integer.parseInt(request.getParameter("classApplyNo"));
 	
 	//디버깅
 	System.out.println(classApplyNo + "<-- attendanceList param classApplyNo");
@@ -27,75 +27,78 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/professor/include/header.jsp"></jsp:include>
-		<h1>출결 관리</h1>
-		<form method="post" action="/lms/professor/classBoard/updateAttendanceAction.jsp">
-			<table border="1">
-				<tr>
-					<th>학번</th>
-					<th>이름</th>
-					<%
-						for(int i = 1; i < 16; i++){
-					%>
-						<th><%=i %>주차</th>
-					<%
-						}
-					%>
-				</tr>
-				<tr>
-					<%
-						int index = 1;
-						for(HashMap m : attendanceList){
-							if(index % 15 == 1){
-					%>
+		<div class="container-fluid page-body-wrapper">
+			<jsp:include page="/professor/include/classBoardSidebar.jsp"></jsp:include>
+			<h1>출결 관리</h1>
+			<form method="post" action="/lms/professor/classBoard/updateAttendanceAction.jsp">
+				<table border="1">
+					<tr>
+						<th>학번</th>
+						<th>이름</th>
+						<%
+							for(int i = 1; i < 16; i++){
+						%>
+							<th><%=i %>주차</th>
+						<%
+							}
+						%>
+					</tr>
+					<tr>
+						<%
+							int index = 1;
+							for(HashMap m : attendanceList){
+								if(index % 15 == 1){
+						%>
+									<td>
+										<%=m.get("studentNo") %>
+										<input type="hidden" name="studentNo" value="<%=m.get("studentNo")%>">
+									</td>
+									<td><%=m.get("name") %>
+						<%				
+								}
+						%>
 								<td>
-									<%=m.get("studentNo") %>
-									<input type="hidden" name="studentNo" value="<%=m.get("studentNo")%>">
+									<select name="state">
+						<%
+										if(m.get("state").equals("O")){
+						%>
+											<option value="O" selected>O</option>
+											<option value="/">/</option>
+											<option value="X">X</option>
+									
+						<%
+										} else if(m.get("state").equals("X")){
+						%>
+											<option value="O">O</option>
+											<option value="/">/</option>
+											<option value="X" selected>X</option>
+						<%
+										} else {
+						%>
+											<option value="O">O</option>
+											<option value="/"  selected>/</option>
+											<option value="X">X</option>
+						<%
+										}
+						%>
+									</select>
 								</td>
-								<td><%=m.get("name") %>
-					<%				
+						<%
+								if(index % 15 == 0){
+						%>
+									</tr>
+									<tr>
+						<%
+								}
+								index++;
 							}
-					%>
-							<td>
-								<select name="state">
-					<%
-									if(m.get("state").equals("O")){
-					%>
-										<option value="O" selected>O</option>
-										<option value="/">/</option>
-										<option value="X">X</option>
-								
-					<%
-									} else if(m.get("state").equals("X")){
-					%>
-										<option value="O">O</option>
-										<option value="/">/</option>
-										<option value="X" selected>X</option>
-					<%
-									} else {
-					%>
-										<option value="O">O</option>
-										<option value="/"  selected>/</option>
-										<option value="X">X</option>
-					<%
-									}
-					%>
-								</select>
-							</td>
-					<%
-							if(index % 15 == 0){
-					%>
-								</tr>
-								<tr>
-					<%
-							}
-							index++;
-						}
-					%>
-				</tr>
-			</table>
-			<input type="hidden" name="classApplyNo" value="<%=classApplyNo%>">
-			<button type="submit">수정</button>
-		</form>
+						%>
+					</tr>
+				</table>
+				<input type="hidden" name="classApplyNo" value="<%=classApplyNo%>">
+				<button type="submit">수정</button>
+			</form>
+		</div>
 	</div>
 </body>
 </html>

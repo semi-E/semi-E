@@ -34,10 +34,10 @@
 	
 	if(row == 1) {
 		System.out.println("과제 수정 성공");
-		response.sendRedirect("/lms/professor/classBoard/assignmentList.jsp");
+		response.sendRedirect("/lms/professor/classBoard/assignmentList.jsp?classApplyNo=" + classApplyNo);
 	}else {
 		System.out.println("과제 수정 실패");
-		response.sendRedirect("/lms/professor/classBoard/updateAssignmentForm.jsp");
+		response.sendRedirect("/lms/professor/classBoard/updateAssignmentForm.jsp?classApplyNo=" + classApplyNo + "&assignmentNo=" + assignmentNo);
 	}
 	
 	

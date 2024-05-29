@@ -13,6 +13,10 @@
 		
 	System.out.println(assignmentNo+"<----submitAssignmentOne.assignmentNo");
 	
+ 	int classApplyNo = Integer.parseInt((request.getParameter("classApplyNo")));
+		
+	System.out.println(classApplyNo+"<----submitAssignmentOne.classApplyNo");
+	
 	int studentNo = Integer.parseInt((request.getParameter("studentNo")));
 	
 	System.out.println(studentNo+"<----submitAssignmentOne.studentNo");
@@ -25,10 +29,10 @@
 	
 	if(row == 1){
 		System.out.println("제출과제 수정 성공");
-		response.sendRedirect("/lms/professor/classBoard/submitAssignmentOne.jsp?assignmentNo=" + assignmentNo + "&studentNo=" + studentNo);
+		response.sendRedirect("/lms/professor/classBoard/submitAssignmentOne.jsp?assignmentNo=" + assignmentNo + "&studentNo=" + studentNo + "&classApplyNo=" + classApplyNo);
 	}else {
 		System.out.println("제출과제 수정 실패");
-		response.sendRedirect("/lms/professor/classBoard/submitAssignmentOne.jsp?assignmentNo=" + assignmentNo + "&studentNo=" + studentNo +  "&error=" + errormsg);
+		response.sendRedirect("/lms/professor/classBoard/submitAssignmentOne.jsp?assignmentNo=" + assignmentNo + "&studentNo=" + studentNo +  "&error=" + errormsg + "&classApplyNo=" + classApplyNo);
 	}
  %>  
     

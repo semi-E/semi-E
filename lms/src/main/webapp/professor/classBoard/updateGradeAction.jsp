@@ -52,10 +52,10 @@
 	
 	if(row == 1){
 		System.out.println("성적 수정 성공");
-		response.sendRedirect("/lms/professor/classBoard/gradeList.jsp");
+		response.sendRedirect("/lms/professor/classBoard/gradeList.jsp?classApplyNo=" + classApplyNo);
 	} else {
 		System.out.println("성적 수정 실패");
-		response.sendRedirect("/lms/professor/classBoard/gradeList.jsp");
+		response.sendRedirect("/lms/professor/classBoard/gradeList.jsp?classApplyNo=" + classApplyNo);
 	}
 	
 	
