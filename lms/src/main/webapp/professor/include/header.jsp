@@ -43,6 +43,7 @@
           		<ul class="dropdown-menu" style="position:absolute;">
 	            	<li><a class="dropdown-item" href="/lms/professor/class/myClassList.jsp">내 강의 목록</a></li>
 	            	<li><a class="dropdown-item" href="/lms/professor/class/classOpenApplyList.jsp">강의 개설 신청 목록</a></li>
+	            	<li><a class="dropdown-item" href="/lms/professor/class/addClassOpenApplyForm.jsp">강의 개설 신청</a></li>
 	            	<li><a class="dropdown-item" href="/lms/professor/class/classList.jsp">강의 목록</a></li>
 	            	<li><a class="dropdown-item" href="/lms/professor/class/subjectList.jsp">과목 목록</a></li>
 	          	</ul>
