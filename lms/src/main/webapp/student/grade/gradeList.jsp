@@ -30,17 +30,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>gradeList</title>
+    <meta charset="UTF-8">
+    <title>마이페이지 수정</title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/student/include/header.jsp"></jsp:include>
-		<div class="container-fluid page-body-wrapper">
-			<jsp:include page="/student/include/myPageSidebar.jsp"></jsp:include>
-		
-			<h1>성적 리스트</h1>
-			<table border = "1">
+    <div class="container-scroller">
+        <jsp:include page="/student/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/student/include/myPageSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">성적 리스트</h1>
+                	<table border = "1" class="table table-striped table-borderless">
 				<tr>
 					<td>학생번호</td>
 					<td>중간고사</td>
@@ -70,9 +70,10 @@
 				
 			</table>
 		
-	
-		</div>
-	</div>
-	
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>

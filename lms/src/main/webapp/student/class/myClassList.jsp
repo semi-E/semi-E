@@ -47,14 +47,10 @@
     <div class="container-scroller">
         <jsp:include page="/student/include/header.jsp"></jsp:include>
         <div class="container-fluid page-body-wrapper">
-            <div class="row">
-                <div class="col-md-3 sidebar">
-                    <jsp:include page="/student/include/classSidebar.jsp"></jsp:include>
-                </div>
-                <div class="col-md-9 main-content">
-                    <h1>내 강의 목록</h1>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-borderless">
+            <jsp:include page="/student/include/myPageSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">내 강의 목록</h1>
+                		 <table class="table table-striped table-borderless">
                             <thead>
                                 <tr>
                                     <th>강의 번호</th>
@@ -84,10 +80,10 @@
                                 %>
                             </tbody>
                         </table>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>

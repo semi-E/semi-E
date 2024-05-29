@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  
 <%@page import="lms.dao.MyclassDAO"%>
@@ -72,13 +72,13 @@
 
 </head>
 <body>
-	<jsp:include page="/student/include/header.jsp"></jsp:include>
-	<div class="container-fluid page-body-wrapper">
-		<jsp:include page="/student/include/classSidebar.jsp"></jsp:include>
-		<div class="main-panel">
-			<div class="content-wrapper">
-				<h1>강의 시간표</h1>
-				<table  class="table table-bordered">
+    <div class="container-scroller">
+        <jsp:include page="/student/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/student/include/myPageSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">강의 시간표</h1>
+                <table  class="table table-bordered">
 				    <tr>
 				        <th></th>
 				        <th>월</th>
@@ -157,8 +157,10 @@
 						%>
 		  
 		       </table>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>

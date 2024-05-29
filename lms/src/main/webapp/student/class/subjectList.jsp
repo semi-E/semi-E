@@ -49,29 +49,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>마이페이지 수정</title>
 </head>
 <body>
-	<jsp:include page="/student/include/header.jsp"></jsp:include>
-	<div class="container-fluid page-body-wrapper">
-		<jsp:include page="/student/include/classSidebar.jsp"></jsp:include>
-		<div class="main-panel">
-			<div class="content-wrapper">
-				<h1>과목 리스트</h1>
+    <div class="container-scroller">
+        <jsp:include page="/student/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/student/include/myPageSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">과목 리스트</h1>
+                		<form method="get" action="/lms/student/class/subjectList.jsp">
+					과목이름:<input type="text" name = "subjectName" class="form-control">
+					학점:<input type="text" name = "credit" class="form-control">
 				
-				<form method="get" action="/lms/student/class/subjectList.jsp">
-					과목이름:<input type="text" name = "subjectName">
-					학점:<input type="text" name = "credit">
-				
-					<button type="submit">검색</button>
+					<button type="submit"  class="btn btn-primary">검색</button>
 					
 				</form>
 				
-				
-				
-				
-				<table border = "1">
+								
+				<table border = "1" class="table table-striped table-borderless">
 				
 					<tr>
 						<td>과목이름</td>
@@ -92,8 +89,10 @@
 			        %>
 				
 				</table>
-			</div>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>

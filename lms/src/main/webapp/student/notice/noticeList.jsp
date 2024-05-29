@@ -51,26 +51,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>마이페이지 수정</title>
 </head>
 <body>
-
-	<jsp:include page="/student/include/header.jsp"></jsp:include>
-	<div class="container-fluid page-body-wrapper">
-		<jsp:include page="/student/include/noticeSidebar.jsp"></jsp:include>
-			<div class="main-panel">
-				<div class="content-wrapper">
-	
-			<h1>공지 리스트</h1>
-			
-			<form method="get" action="/lms/student/notice/noticeList.jsp">
-				제목 : <input type="text" name="title">
+    <div class="container-scroller">
+        <jsp:include page="/student/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/student/include/myPageSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">공지 리스트</h1>
+                <form method="get" action="/lms/student/notice/noticeList.jsp">
+				제목 : <input type="text" name="title" class="form-control">
 				
-				<button type="submit">검색</button>
+				<button type="submit"  class="btn btn-primary">검색</button>
 			</form>
 			
-			<table border="1">
+			<table border="1" class="table table-bordered table-hover">
 				<tr>
 					<td>공지번호</td>
 					<td>제목</td>
@@ -90,29 +87,12 @@
 			%>
 		
 			</table>
-			
-			
-			<!-- 페이징 -->
-			<%
-				if(currentPage > 1){
-			%>
-					<a href="/lms/student/notice/noticeList.jsp?currentPage=1&title=<%=title%>">처음</a>
-					<a href="/lms/student/notice/noticeList.jsp?currentPage=<%=currentPage - 1 %>&title=<%=title%>">이전</a>
-			<%
-				}
-			%>
-			
-			<%
-				if(currentPage < lastPage){
-			%>
-					<a href="/lms/student/notice/noticeList.jsp?currentPage=<%=currentPage %>&title=<%=title%>">다음</a>
-					<a href="/lms/student/notice/noticeList.jsp?currentPage=<%=lastPage%>&title=<%=title%>">마지막</a>
-			<%
-				}
-			%>
-		
-			</div>
-		</div>
-	</div>
+                    <button type="submit" class="btn btn-primary">수정</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>

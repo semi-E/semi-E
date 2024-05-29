@@ -91,24 +91,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>마이페이지 수정</title>
 </head>
 <body>
-	<jsp:include page="/student/include/header.jsp"></jsp:include>
-		<div class="container-fluid page-body-wrapper">
-		<jsp:include page="/student/include/classSidebar.jsp"></jsp:include>
-		<div class="main-panel">
-			<div class="content-wrapper">
-				<h1>강의 리스트</h1>
-				
-				<form method="get" action="/lms/student/class/classList.jsp">
-					강의번호:<input type="text" name = "classApplyNo">
-					교수번호:<input type="text" name = "professorNo">
-					강의이름:<input type="text" name = "className">
-					과목이름:<input type="text" name = "subjectName">
+    <div class="container-scroller">
+        <jsp:include page="/student/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/student/include/myPageSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">강의 리스트</h1>
+                	<form method="get" action="/lms/student/class/classList.jsp">
+					강의번호:<input type="text" name = "classApplyNo" class="form-control">
+					교수번호:<input type="text" name = "professorNo" class="form-control">
+					강의이름:<input type="text" name = "className" class="form-control">
+					과목이름:<input type="text" name = "subjectName" class="form-control">
 					요일 :
-					<select name="days">
+					<select name="days" class="form-control">
 						<option value="">선택</option>
 						<option value="월">월</option>
 						<option value="화">화</option>
@@ -117,7 +116,7 @@
 						<option value="금">금</option>
 					</select>
 					시작 교시 : 
-					<select name="periodStart">
+					<select name="periodStart" class="form-control">
 						<option value="">선택</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -129,14 +128,11 @@
 						<option value="8">8</option>
 					</select>
 				
-					<button type="submit">검색</button>
+					<button type="submit" class="btn btn-primary">검색</button>
 					
 				</form>
-				
-				
-				
-				
-				<table border = "1">
+							
+				<table border = "1" class="table table-striped table-borderless">
 					<tr>
 						<th>강의 번호</th>
 						<th>교수 번호</th>
@@ -176,9 +172,10 @@
 				
 				
 				</table>
-			</div>
-		</div>
-	</div>
-	
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>
