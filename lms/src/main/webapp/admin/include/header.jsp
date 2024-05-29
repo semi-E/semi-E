@@ -62,7 +62,6 @@
 	            	<li><a class="dropdown-item" href="/lms/admin/department/departmentList.jsp">학과 관리</a></li>
 	            	<li><a class="dropdown-item" href="/lms/admin/subjects/subjectList.jsp">과목 관리</a></li>
 	            	<li><a class="dropdown-item" href="/lms/admin/subjects/classList.jsp">강의 관리</a></li>
-	            	<li><a class="dropdown-item" href="/lms/admin/subjects/classOpenApplyList.jsp">강의 개설 신청 관리</a></li>
 	          	</ul>
           	</li>
         	<li class="nav-item">

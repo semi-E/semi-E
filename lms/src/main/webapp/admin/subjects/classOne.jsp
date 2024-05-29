@@ -21,65 +21,72 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>classOpenApplyOne</title>
+    <meta charset="UTF-8">
+    <title>classOpenApplyOne</title>
 </head>
+
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/classListSidebar.jsp"></jsp:include>
-		<h1>강의목록 상세보기</h1>	
-			<table border="1">
-				<tr>
-					<th>과목이름</th>
-					<td>
-						<%=m.get("subjectName") %>
-					</td>
-				</tr>
-				<tr>
-					<th>수업이름</th>
-					<td>
-						<%=m.get("className") %>
-					</td>
-				</tr>
-				<tr>
-					<th>시작 교시</th>
-					<td>
-						<%=m.get("periodStart") %>
-					</td>
-				</tr>
-				<tr>
-					<th>요일</th>
-					<td>
-						<%=m.get("days") %>
-					</td>
-				</tr>
-				<tr>
-					<th>작성일시</th>
-					<td>
-						<%=m.get("createDate") %>
-					</td>
-				</tr>
-				<tr>
-					<th>수정일시</th>
-					<td>
-						<%=m.get("updateDate") %>
-					</td>
-				</tr>
-				<tr>
-					<th>허용상태</th>
-					<td>
-						<%=m.get("state") %>
-					</td>
-				</tr>
-				<tr>
-					<th>강의실</th>
-					<td>
-						<%=m.get("classroom") %>
-					</td>
-				</tr>
-		</table>
-		<a href="/lms/admin/subjects/classList.jsp">리스트</a>
+    <jsp:include page="/admin/include/header.jsp"></jsp:include>
+    <div class="container-fluid page-body-wrapper">
+        <jsp:include page="/admin/include/classListSidebar.jsp"></jsp:include>
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <h1>강의목록 상세보기</h1>
+                <table border="1">
+                    <tr>
+                        <th>과목이름</th>
+                        <td>
+                            <%=m.get("subjectName") %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>수업이름</th>
+                        <td>
+                            <%=m.get("className") %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>시작 교시</th>
+                        <td>
+                            <%=m.get("periodStart") %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>요일</th>
+                        <td>
+                            <%=m.get("days") %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>작성일시</th>
+                        <td>
+                            <%=m.get("createDate") %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>수정일시</th>
+                        <td>
+                            <%=m.get("updateDate") %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>허용상태</th>
+                        <td>
+                            <%=m.get("state") %>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>강의실</th>
+                        <td>
+                            <%=m.get("classroom") %>
+                        </td>
+                    </tr>
+                </table>
+                <a href="/lms/admin/subjects/classList.jsp">리스트</a>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -21,67 +21,73 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>classOpenApplyOne</title>
+    <meta charset="UTF-8">
+    <title>classOpenApplyOne</title>
 </head>
+
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/classListSidebar.jsp"></jsp:include>
-		<h1>강의신청목록 상세보기</h1>
-		<form action="/lms/admin/subjects/updateClassOpenApplyAction.jsp" method="post">
-			<input type="hidden" name="classApplyNo" value="<%=classApplyNo%>">
-			<table border="1">
-				<tr>
-					<th>과목이름</th>
-					<td>
-						<%=m.get("subjectName") %>
-					</td>
-				</tr>
-				<tr>
-					<th>수업이름</th>
-					<td>
-						<%=m.get("className") %>
-					</td>
-				</tr>
-				<tr>
-					<th>시작 교시</th>
-					<td>
-						<%=m.get("periodStart") %>
-					</td>
-				</tr>
-				<tr>
-					<th>요일</th>
-					<td>
-						<%=m.get("days") %>
-					</td>
-				</tr>
-				<tr>
-					<th>작성일시</th>
-					<td>
-						<%=m.get("createDate") %>
-					</td>
-				</tr>
-				<tr>
-					<th>허용상태</th>
-					<td>
-						<select name="state">
-							<option value="승인대기">승인대기</option>
-							<option value="승인">승인</option>
-							<option value="승인거절">승인거절</option>
-						</select>
-					</td>
-				</tr>
-				<tr>
-					<th>강의실</th>
-					<td>
-						<input type="text" name="classRoom">
-					</td>
-				</tr>
-			</table>
-			<button type="submit">수정하기</button>
-		</form>
-	</div>
+    <jsp:include page="/admin/include/header.jsp"></jsp:include>
+    <div class="container-fluid page-body-wrapper">
+        <jsp:include page="/admin/include/classListSidebar.jsp"></jsp:include>
+        <div class="main-panel">
+            <div class="content-wrapper">
+                <h1>강의신청목록 상세보기</h1>
+                <form action="/lms/admin/subjects/updateClassOpenApplyAction.jsp" method="post">
+                    <input type="hidden" name="classApplyNo" value="<%=classApplyNo%>">
+                    <table border="1">
+                        <tr>
+                            <th>과목이름</th>
+                            <td>
+                                <%=m.get("subjectName") %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>수업이름</th>
+                            <td>
+                                <%=m.get("className") %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>시작 교시</th>
+                            <td>
+                                <%=m.get("periodStart") %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>요일</th>
+                            <td>
+                                <%=m.get("days") %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>작성일시</th>
+                            <td>
+                                <%=m.get("createDate") %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>허용상태</th>
+                            <td>
+                                <select name="state">
+                                    <option value="승인대기">승인대기</option>
+                                    <option value="승인">승인</option>
+                                    <option value="승인거절">승인거절</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>강의실</th>
+                            <td>
+                                <input type="text" name="classRoom">
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="submit">수정하기</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -7,18 +7,24 @@
 </head>
 	<body>
 	<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/classListSidebar.jsp"></jsp:include>
-		<h1>과목 추가하기</h1>
-		<form method="post" action="/lms/admin/subjects/addSubjectAction.jsp">
-			<div>
-				<label for="subjectName">과목이름</label>
-				<input type="text" required name="subjectName" id="subjectName">
+		<div class="container-fluid page-body-wrapper">
+			<jsp:include page="/admin/include/classListSidebar.jsp"></jsp:include>
+				<div class="main-panel">
+					<div class="content-wrapper">
+						<h1>과목 추가하기</h1>
+							<form method="post" action="/lms/admin/subjects/addSubjectAction.jsp">
+							<div>
+								<label for="subjectName">과목이름</label>
+								<input type="text" required name="subjectName" id="subjectName">
+							</div>
+							<div>
+								<label for="credit">학점</label>
+								<input type="number" required name="credit" id="credit">
+							</div>
+						 <button type="submit">추가하기</button>
+					</form>
+				</div>		
 			</div>
-			<div>
-				<label for="credit">학점</label>
-				<input type="number" required name="credit" id="credit">
-			</div>
-			 <button type="submit">추가하기</button>
-		</form>
+		</div>
 	</body>
 </html>

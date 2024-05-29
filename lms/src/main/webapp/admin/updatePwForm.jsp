@@ -18,23 +18,23 @@
 <title>비밀번호 재설정</title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
-		<form method="post" action="/lms/admin/updatePwAction.jsp">
-			<div>
-				예전 비밀번호: <input type="password" name = "oldPw">
+	<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<div class="container-fluid page-body-wrapper">
+			<jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
+				<div class="main-panel">
+					<div class="content-wrapper">
+						<form method="post" action="/lms/admin/updatePwAction.jsp">
+							<div>
+								예전 비밀번호: <input type="password" name = "oldPw">
+							</div>
+							<div>
+								새 비밀번호: <input type="password" name = "newPw">
+							</div>
+						<button type="submit">제출</button>
+					</form>
+				<a href="/lms/admin/updatePwForm.jsp">비밀번호 변경</a>
 			</div>
-			<div>
-				새 비밀번호: <input type="p assword" name = "newPw">
-			</div>
-			<!-- 테스트용 -->
-			
-			<button type="submit">제출</button>
-		</form>
-		<a href="/lms/admin/updatePwForm.jsp">비밀번호 변경</a>
-	
+		</div>
 	</div>
-	
 </body>
 </html>

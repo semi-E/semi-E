@@ -18,21 +18,25 @@
 <title>addNoticeForm</title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/noticeSidebar.jsp"></jsp:include>
-		<h1>공지추가하기</h1>
-		<form action="/lms/admin/notice/addNoticeAction.jsp" method="post">
-			<div>
-				<label for="title">제목</label>
-				<input type="text" name="title" id="title">
+	<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<div class="container-fluid page-body-wrapper">
+			<jsp:include page="/admin/include/noticeSidebar.jsp"></jsp:include>
+				<div class="main-panel">
+					<div class="content-wrapper">		
+					<h1>공지추가하기</h1>
+					<form action="/lms/admin/notice/addNoticeAction.jsp" method="post">
+						<div>
+							<label for="title">제목</label>
+							<input type="text" name="title" id="title">
+						</div>
+						<div>
+							<label for="content">내용</label>
+							<textarea  name="content" id="content"></textarea>
+						</div>
+					<button type="submit">공지 추가하기</button>
+				</form>
 			</div>
-			<div>
-				<label for="content">내용</label>
-				<textarea  name="content" id="content"></textarea>
-			</div>
-			<button type="submit">공지 추가하기</button>
-		</form>
+		</div>
 	</div>
 </body>
 </html>

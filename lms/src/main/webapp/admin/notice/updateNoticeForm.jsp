@@ -23,26 +23,30 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<jsp:include page="/admin/include/noticeSidebar.jsp"></jsp:include>
-		<h1>공지수정하기</h1>
-		<form method="post" action="/lms/admin/notice/updateNoticeAction.jsp">
-			<div>
-				<label>공지번호</label>
-				<%=m.get("noticeNo") %>
-				 <input type="hidden" name="noticeNo" value="<%=m.get("noticeNo") %>">
+	<jsp:include page="/admin/include/header.jsp"></jsp:include>
+		<div class="container-fluid page-body-wrapper">
+			<jsp:include page="/admin/include/noticeSidebar.jsp"></jsp:include>
+				<div class="main-panel">
+					<div class="content-wrapper">	
+					<h1>공지수정하기</h1>
+							<form method="post" action="/lms/admin/notice/updateNoticeAction.jsp">
+							<div>
+								<label>공지번호</label>
+								<%=m.get("noticeNo") %>
+								 <input type="hidden" name="noticeNo" value="<%=m.get("noticeNo") %>">
+							</div>
+							<div>
+								<label for="title">제목</label>
+								<input type="text" name="title" id="title" value="<%= m.get("title") %>">
+							</div>
+							<div>
+								<label for="content">내용</label>
+								<textarea name="content" id="content"><%= m.get("content") %></textarea>
+							</div>
+					<button type= "submit">수정하기</button>
+				</form>
 			</div>
-			<div>
-				<label for="title">제목</label>
-				<input type="text" name="title" id="title" value="<%= m.get("title") %>">
-			</div>
-			<div>
-				<label for="content">내용</label>
-				<textarea name="content" id="content"><%= m.get("content") %></textarea>
-			</div>
-			<button type= "submit">수정하기</button>
-		</form>
+		</div>		
 	</div>
 </body>
 </html>
