@@ -56,6 +56,8 @@
 		<jsp:include page="/professor/include/header.jsp"></jsp:include>
 		<div class="container-fluid page-body-wrapper">
 			<jsp:include page="/professor/include/classSidebar.jsp"></jsp:include>
+			<div class="main-panel">
+				<div class="content-wrapper">
 			<h1>전체 과목 목록</h1>
 			<a href="/lms/professor/class/classList.jsp">강의 목록</a>
 			<form method="get" action="/lms/professor/class/subjectList.jsp">
@@ -79,6 +81,9 @@
 				%>
 				
 			</table>
+			</div>
+			</div>
+			
 		</div>
 	</div>
 </body>

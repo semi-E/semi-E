@@ -56,6 +56,8 @@
 		<jsp:include page="/professor/include/header.jsp"></jsp:include>
 		<div class="container-fluid page-body-wrapper">
 			<jsp:include page="/professor/include/noticeSidebar.jsp"></jsp:include>
+			<div class="main-panel">
+				<div class="content-wrapper">
 			<h1>공지사항</h1>
 			<form method="get" action="/lms/professor/notice/noticeList.jsp">
 				제목 : <input type="text" name="title">
@@ -92,6 +94,8 @@
 			<%
 				}
 			%>
+		</div>
+		</div>
 		</div>
 	</div>
 </body>

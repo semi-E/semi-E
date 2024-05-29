@@ -58,52 +58,55 @@
 </head>
 <body>
 	<div class="container-scroller">
-		<jsp:include page="/professor/include/header.jsp"></jsp:include>
-		<div class="container-fluid page-body-wrapper">
-			<jsp:include page="/professor/include/classSidebar.jsp"></jsp:include>
-			<h1>내 강의 목록</h1>
-			<a href="/lms/professor/class/subjectList.jsp">과목 목록</a>
-			<a href="/lms/professor/class/classList.jsp">강의 목록</a>
-			<a href="/lms/professor/class/classOpenApplyList.jsp">내 강의 신청 목록</a>
-			<form method="get" action="/lms/professor/class/myClassList.jsp">
-				년도 : <input type="number" step="any" name="year">
-				학기 : 
-				<select name="semester">
-					<option value="1">1</option>
-					<option value="2">2</option>
-				</select>
-				<button type="submit">검색</button>
-			</form>
-			<table border="1">
-				<tr>
-					<th>강의 번호</th>
-					<th>과목 명</th>
-					<th>강의 명</th>
-					<th>학점</th>
-					<th>요일</th>
-					<th>시작 교시</th>
-					<th>년도</th>
-					<th>학기</th>
-				</tr>
-				<%
-					for(HashMap m : classList){
-				%>
-						<tr>
-							<td><%=m.get("classApplyNo") %></td>
-							<td><%=m.get("subjectName") %></td>
-							<td><%=m.get("className") %></td>
-							<td><%=m.get("credit") %></td>
-							<td><%=m.get("days") %></td>
-							<td><%=m.get("periodStart") %></td>
-							<td><%=m.get("year") %></td>
-							<td><%=m.get("semester") %></td>
-						</tr>
-				<%
-					}
-				%>
-				
-			</table>
+	<jsp:include page="/professor/include/header.jsp"></jsp:include>
+	<div class="container-fluid page-body-wrapper">
+		<jsp:include page="/professor/include/classSidebar.jsp"></jsp:include>
+			<div class="main-panel">
+				<div class="content-wrapper">
+				<h1>내 강의 목록</h1>
+				<a href="/lms/professor/class/subjectList.jsp">과목 목록</a>
+				<a href="/lms/professor/class/classList.jsp">강의 목록</a>
+				<a href="/lms/professor/class/classOpenApplyList.jsp">내 강의 신청 목록</a>
+				<form method="get" action="/lms/professor/class/myClassList.jsp">
+					년도 : <input type="number" step="any" name="year">
+					학기 : 
+					<select name="semester">
+						<option value="1">1</option>
+						<option value="2">2</option>
+					</select>
+					<button type="submit"class="btn btn-primary">검색</button>
+				</form>
+				<table class="table table-striped">
+					<tr>
+						<th>강의 번호</th>
+						<th>과목 명</th>
+						<th>강의 명</th>
+						<th>학점</th>
+						<th>요일</th>
+						<th>시작 교시</th>
+						<th>년도</th>
+						<th>학기</th>
+					</tr>
+					<%
+						for(HashMap m : classList){
+					%>
+							<tr>
+								<td><%=m.get("classApplyNo") %></td>
+								<td><%=m.get("subjectName") %></td>
+								<td><%=m.get("className") %></td>
+								<td><%=m.get("credit") %></td>
+								<td><%=m.get("days") %></td>
+								<td><%=m.get("periodStart") %></td>
+								<td><%=m.get("year") %></td>
+								<td><%=m.get("semester") %></td>
+							</tr>
+					<%
+						}
+					%>
+				</table>
+			</div>
 		</div>
 	</div>
+</div>
 </body>
 </html>

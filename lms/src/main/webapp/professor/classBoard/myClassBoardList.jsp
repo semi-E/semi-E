@@ -28,7 +28,9 @@
 <body>
 	<div class="container-scroller">
 		<jsp:include page="/professor/include/header.jsp"></jsp:include>
-		<div class="container-fluid page-body-wrapper">
+		
+			<div class="content-wrapper">
+			 <div class="col-md-12 grid-margin">
 			<h1>강의 목록</h1>
 			<table border="1">
 				<tr>
@@ -61,7 +63,8 @@
 				%>
 				
 			</table>
+			</div>
+			</div>
 		</div>
-	</div>
 </body>
 </html>
