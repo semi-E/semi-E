@@ -102,6 +102,10 @@
 			<jsp:include page="/professor/include/classSidebar.jsp"></jsp:include>
 				<div class="main-panel">
 					<div class="content-wrapper">
+					 <div class="col-md-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+								
 						<h1>강의 신청 목록</h1>
 						<a href="/lms/professor/class/addClassOpenApplyForm.jsp">강의 신청</a>
 						<form method="get" action="/lms/professor/class/classOpenApplyList.jsp">
@@ -187,9 +191,12 @@
 						<%
 							}
 						%>
+						</div>
+						</div>
+						</div>
+						</div>
+						</div>
 			</div>
 			</div>
-		</div>
-	</div>
 </body>
 </html>

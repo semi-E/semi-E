@@ -32,6 +32,9 @@
 		<jsp:include page="/professor/include/myPageSidebar.jsp"></jsp:include>
 		<div class="main-panel">
 			<div class="content-wrapper">
+			 <div class="col-md-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
 				<h1>마이페이지</h1>
 				<table class="table table-striped">
 					<tr>
@@ -77,6 +80,9 @@
 				<a href="/lms/professor/updatePwForm.jsp"class="btn btn-primary">비밀번호 변경</a>
 			</div>
 		</div>
+	</div>
+	</div>
+	</div>
 	</div>
 	 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
