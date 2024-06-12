@@ -22,15 +22,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>상세보기</title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/student/include/header.jsp"></jsp:include>
-		<div class="container-fluid page-body-wrapper">
+    <div class="container-scroller">
+        <jsp:include page="/student/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
             <jsp:include page="/student/include/classBoardSidebar.jsp"></jsp:include>
-			<table border ="1">
+            <div class="container mt-5">
+                <h1 class="mb-4">강의 상세보기</h1>
+                	<table border ="1" class="table table-striped table-borderless">
 				<tr>
 					<td>강의번호</td>
 					<td><%=m.get("classApplyNo") %></td>
@@ -79,8 +81,11 @@
 					<td><%=m.get("semester") %></td>		
 				</tr>
 			</table>
-			<a href="/lms/student/classBoard/attendanceList.jsp?classApplyNo=<%=m.get("classApplyNo")%>&studnetNo<%=m.get("studnetNo")%>">출석</a>
-		</div>
-	</div>
+		<a href="/lms/student/classBoard/attendanceList.jsp?classApplyNo=<%=m.get("classApplyNo")%>&studnetNo<%=m.get("studnetNo")%>">출석</a>	
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>

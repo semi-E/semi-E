@@ -25,16 +25,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title></title>
 </head>
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/student/include/header.jsp"></jsp:include>
-		<div class="container-fluid page-body-wrapper">
+    <div class="container-scroller">
+        <jsp:include page="/student/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
             <jsp:include page="/student/include/classBoardSidebar.jsp"></jsp:include>
-			<h1>출결 관리</h1>
-			<table border="1">
+            <div class="container mt-5">
+                <h1 class="mb-4">출석 리스트</h1>
+                <table border="1"  class="table table-striped table-borderless">
 				<tr>
 					<th>학번</th>
 					<th>이름</th>
@@ -72,7 +73,10 @@
 					%>
 				</tr>
 			</table>
-		</div>
-	</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>
