@@ -57,45 +57,51 @@
 		<div class="container-fluid page-body-wrapper">
 			<jsp:include page="/professor/include/noticeSidebar.jsp"></jsp:include>
 			<div class="main-panel">
-				<div class="content-wrapper">
-			<h1>공지사항</h1>
-			<form method="get" action="/lms/professor/notice/noticeList.jsp">
-				제목 : <input type="text" name="title">
-			</form>
-			<table border = 1>
-				<tr>
-					<th>공지번호</th><th>제목</th>
-				</tr>
-				<%
-					for(HashMap m : selectNoticeList){
-				%>
-					<tr>
-						<td><a href="/lms/professor/notice/noticeOne.jsp?noticeNo=<%=m.get("noticeNo") %>"><%=m.get("noticeNo") %></a></td>
-						<td><a href="/lms/professor/notice/noticeOne.jsp?noticeNo=<%=m.get("noticeNo") %>"><%=m.get("title") %></a></td>
-					</tr>
-				<%
-					}
-				%>
-			</table>
-			<%
-				if(currentPage > 1){
-			%>
-					<a href="/lms/professor/notice/noticeList.jsp?currentPage=1&title=<%=title%>">처음</a>
-					<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=currentPage - 1 %>&title=<%=title%>">이전</a>
-			<%
-				}
-			%>
-			
-			<%
-				if(currentPage < lastPage){
-			%>
-					<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=currentPage %>&title=<%=title%>">다음</a>
-					<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=lastPage%>&title=<%=title%>">마지막</a>
-			<%
-				}
-			%>
-		</div>
-		</div>
+				<div class="content-wrapper ">
+					 <div class="col-md-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<h1>공지사항</h1>
+									<form method="get" action="/lms/professor/notice/noticeList.jsp">
+										제목 : <input type="text" name="title">
+									</form>
+									<table class="table table-striped">
+										<tr>
+											<th>공지번호</th><th>제목</th>
+										</tr>
+										<%
+											for(HashMap m : selectNoticeList){
+										%>
+											<tr>
+												<td><a href="/lms/professor/notice/noticeOne.jsp?noticeNo=<%=m.get("noticeNo") %>"><%=m.get("noticeNo") %></a></td>
+												<td><a href="/lms/professor/notice/noticeOne.jsp?noticeNo=<%=m.get("noticeNo") %>"><%=m.get("title") %></a></td>
+											</tr>
+										<%
+											}
+										%>
+									</table>
+									<%
+										if(currentPage > 1){
+									%>
+											<a href="/lms/professor/notice/noticeList.jsp?currentPage=1&title=<%=title%>">처음</a>
+											<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=currentPage - 1 %>&title=<%=title%>">이전</a>
+									<%
+										}
+									%>
+									
+									<%
+										if(currentPage < lastPage){
+									%>
+											<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=currentPage %>&title=<%=title%>">다음</a>
+											<a href="/lms/professor/notice/noticeList.jsp?currentPage=<%=lastPage%>&title=<%=title%>">마지막</a>
+									<%
+										}
+									%>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

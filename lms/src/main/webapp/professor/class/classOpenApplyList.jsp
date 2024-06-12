@@ -139,9 +139,9 @@
 								<option value="1">1</option>
 								<option value="2">2</option>
 							</select>
-							<button type="submit">검색</button>
+							<button type="submit"class="btn btn-primary">검색</button>
 						</form>
-						<table border="1">
+						<table class="table table-striped">
 							<tr>
 								<th>강의 번호</th>
 								<th>과목 명</th>

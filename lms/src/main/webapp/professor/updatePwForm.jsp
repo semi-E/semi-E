@@ -18,12 +18,24 @@
 		<jsp:include page="/professor/include/header.jsp"></jsp:include>
 		<div class="container-fluid page-body-wrapper">
 			<jsp:include page="/professor/include/myPageSidebar.jsp"></jsp:include>
-			<h1>비밀번호 변경</h1>
-			<form method="post" action="/lms/professor/updatePwAction.jsp">
-				비밀번호 : <input type="password" name="oldPw"><br>
-				새 비밀번호 : <input type="password" name="newPw"><br>
-				<button type="submit">변경</button>
-			</form>
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<div class="content-wrapper">
+				 		<div class="col-md-12 grid-margin stretch-card">
+							<div class="card">
+								<div class="card-body">
+									<h1>비밀번호 변경</h1>
+									<form method="post" action="/lms/professor/updatePwAction.jsp">
+										비밀번호 : <input type="password" name="oldPw"><br>
+										새 비밀번호 : <input type="password" name="newPw"><br>
+										<button type="submit" class="btn btn-primary">변경</button>
+									</form>
+								</div>
+							</div>			
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

@@ -33,8 +33,8 @@
 		<div class="main-panel">
 			<div class="content-wrapper">
 			 <div class="col-md-12 grid-margin stretch-card">
-							<div class="card">
-								<div class="card-body">
+				<div class="card">
+					<div class="card-body">
 				<h1>마이페이지</h1>
 				<table class="table table-striped">
 					<tr>

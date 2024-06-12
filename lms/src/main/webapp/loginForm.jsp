@@ -47,7 +47,10 @@
               
 
               <input type="submit" value="로그인" class="btn btn-block btn-primary">
-
+				<h5>관리자ID:120240001</h5>
+				<h5>교수ID:220240101</h5>
+				<h5>학생ID:20240101</h5>
+				<h5>공통PW:1234</h5>
             </form>
           </div>
         </div>
