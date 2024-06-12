@@ -62,7 +62,7 @@
 					for(HashMap m : assignmentList){
 				%>
 						<tr>
-							<td><a href="/lms/student/classBoard/myClassAssignmentOne.jsp?assignmentNo=<%=m.get("assignmentNo")%>"><%=m.get("title") %></a></td>
+							<td><a href="/lms/student/classBoard/myClassAssignmentOne.jsp?assignmentNo=<%=m.get("assignmentNo")%>&classApplyNo=<%=classApplyNo%>"><%=m.get("title") %></a></td>
 							<td><%=m.get("createDate") %></td>
 							<td><%=m.get("endDate") %></td>
 						</tr>
