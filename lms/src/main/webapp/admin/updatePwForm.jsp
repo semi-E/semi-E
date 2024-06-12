@@ -10,31 +10,33 @@
 %>
 
 
-
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>비밀번호 재설정</title>
-</head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>	
 <body>
-	<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<div class="container-fluid page-body-wrapper">
-			<jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
-				<div class="main-panel">
-					<div class="content-wrapper">
-						<form method="post" action="/lms/admin/updatePwAction.jsp">
+    <div class="container-scroller">
+        <jsp:include page="/admin/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">비밀번호 재설정</h1>
+		<form method="post" action="/lms/admin/updatePwAction.jsp">
 							<div>
-								예전 비밀번호: <input type="password" name = "oldPw">
+								예전 비밀번호: <input type="password" name = "oldPw"  class="form-control">
 							</div>
 							<div>
-								새 비밀번호: <input type="password" name = "newPw">
+								새 비밀번호: <input type="password" name = "newPw"  class="form-control">
 							</div>
-						<button type="submit">제출</button>
+						<button type="submit" class="btn btn-primary mt-3">제출</button>
 					</form>
-				<a href="/lms/admin/updatePwForm.jsp">비밀번호 변경</a>
-			</div>
-		</div>
-	</div>
+				<a href="/lms/admin/updatePwForm.jsp" class="btn btn-primary mt-3">비밀번호 변경</a>		
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>

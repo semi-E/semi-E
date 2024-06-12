@@ -31,21 +31,22 @@
 		<jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
 		<div class="main-panel">
 			<div class="content-wrapper">
+			<h1 class="mb-4">관리자 등록</h1>
 				<form method="get" action="/lms/admin/admins/addAdminAction.jsp">
 					<div>
-						<input type="text" name = "adminNo" placeholder="관리자 번호">
+						<input type="text" name = "adminNo" placeholder="관리자 번호"  class="form-control">
 					</div>
 					
 					<div>
-						<select name="grade">
+						<select name="grade" class="btn btn-primary mt-3">
 						    <option value="마스터">마스터</option>
 						    <option value="서브">서브</option>
 						  </select>
 					</div>
 					<div>
-						<input type="text" name = "name" placeholder="이름" >
+						<input type="text" name = "name" placeholder="이름"  class="form-control">
 					</div>
-					<button type="submit">추가</button>
+					<button type="submit" class="btn btn-primary mt-3">추가</button>
 				</form>
 			</div>
 		</div>

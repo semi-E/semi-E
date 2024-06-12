@@ -27,18 +27,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>myPage</title>
-</head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>	
 <body>
-	<jsp:include page="/admin/include/header.jsp"></jsp:include>
-	<div class="container-fluid page-body-wrapper">
-		<jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
-		<div class="main-panel">
-			<div class="content-wrapper">
-				<h1>myPage</h1>
+    <div class="container-scroller">
+        <jsp:include page="/admin/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">MyPage</h1>
 			
-				<table border="1">
+				<table border="1"  class="table table-bordered">
 					<tr>
 						<th>번호</th>
 						<td><%=m.get("adminNo") %></td>
@@ -81,10 +81,11 @@
 					</tr>
 			
 				</table>
-				
-				<a href = "/lms/admin/updateMyPageForm.jsp">수정</a>
-			</div>
-		</div>
-	</div>
+		
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>

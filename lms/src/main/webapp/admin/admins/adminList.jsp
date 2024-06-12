@@ -35,7 +35,7 @@ ArrayList<HashMap<String, Object>> selectAdminList = AdminDAO.selectAdminList();
 		<jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
 		<div class="main-panel">
 			<div class="content-wrapper">
-				<table border=1>
+				<table border=1  class="table table-bordered">
 					<tr>
 						<td>관리자번호</td>
 						<td>이름</td>

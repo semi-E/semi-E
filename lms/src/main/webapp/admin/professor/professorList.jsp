@@ -55,27 +55,28 @@
 	
 	ArrayList<HashMap<String, Object>> professorList = ProfessorDAO.selectProfessorList(professorNo, department, name, startRow, rowPerPage);
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>ProfessorList</title>
-</head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>	
 <body>
-	<jsp:include page="/admin/include/header.jsp"></jsp:include>
-	<div class="container-fluid page-body-wrapper">
-		<jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
-		<div class="main-panel">
-			<div class="content-wrapper">
-				<h1>교수 목록</h1>
-				<a href="/lms/admin/professor/addProfessorForm.jsp">교수 등록</a>
+    <div class="container-scroller">
+        <jsp:include page="/admin/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/admin/include/adminListSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">교수 목록</h1>
+              	<a href="/lms/admin/professor/addProfessorForm.jsp">교수 등록</a>
 				<form method="get" action="/lms/admin/professor/professorList.jsp">
-					번호 :<input type="text" name="professorNo">
-					이름 : <input type="text" name="name">
-					학과 : <input type="text" name="department">
-					<button type="submit">검색</button>	
+					번호 :<input type="text" name="professorNo" class="form-control">
+					이름 : <input type="text" name="name" class="form-control">
+					학과 : <input type="text" name="department" class="form-control">
+					<button type="submit" class="btn btn-primary mt-3">검색</button>	
 				</form>
-				<table border="1">
+				<table border="1" class="table table-bordered">
 					<tr>
 						<th>번호</th>
 						<th>이름</th>
@@ -116,8 +117,9 @@
 				<%
 					}
 				%>
-			</div>
-		</div>
-	</div>
+			
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>

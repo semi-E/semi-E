@@ -107,23 +107,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>관리자-(교수의 강의 신청 목록)</title>
-</head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>	
 <body>
-	<jsp:include page="/admin/include/header.jsp"></jsp:include>
-	<div class="container-fluid page-body-wrapper">
-		<jsp:include page="/admin/include/classListSidebar.jsp"></jsp:include>
-		<div class="main-panel">
-			<div class="content-wrapper">
-				<h1>강의 신청 목록</h1>
+    <div class="container-scroller">
+        <jsp:include page="/admin/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/admin/include/classListSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">강의 신청 목록</h1>
 				<a href="/lms/admin/subjects/classList.jsp">승인 신청된 강의 리스트 가기</a>
 				<form method="get" action="/lms/admin/subjects/classOpenApplyList.jsp">
-					강의 번호 : <input type="number" name="classApplyNo">
-					과목 명 : <input type="text"  name="subjectName">
-					강의 명 : <input type="text" name="className"><br>
+					강의 번호 : <input type="number" name="classApplyNo" class="form-control">
+					과목 명 : <input type="text"  name="subjectName" class="form-control">
+					강의 명 : <input type="text" name="className" class="form-control"><br>
 					요일 :
-					<select name="days">
+					<select name="days"  class="form-control">
 						<option value="">선택</option>
 						<option value="월">월</option>
 						<option value="화">화</option>
@@ -132,7 +132,7 @@
 						<option value="금">금</option>
 					</select>
 					시작 교시 : 
-					<select name="periodStart">
+					<select name="periodStart"  class="form-control">
 						<option value="">선택</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
@@ -143,15 +143,15 @@
 						<option value="7">7</option>
 						<option value="8">8</option>
 					</select>
-					년도 : <input type="number" step="any" name="year">
+					년도 : <input type="number" step="any" name="year"  class="form-control">
 					학기 : 
-					<select name="semester">
+					<select name="semester"  class="form-control">
 						<option value="1">1</option>
 						<option value="2">2</option>
 					</select>
-					<button type="submit">검색</button>
+					<button type="submit" class="btn btn-primary mt-3">검색</button>
 				</form>
-				<table border="1">
+				<table border="1" class="table table-bordered">
 					<tr>
 						<th>강의 번호</th>
 						<th>교수 번호</th>

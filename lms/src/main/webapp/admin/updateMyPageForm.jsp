@@ -23,18 +23,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>내 정보 수정</title>
-</head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>	
 <body>
-	<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<div class="container-fluid page-body-wrapper">
-			<jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
-			<div class="main-panel">
-				<div class="content-wrapper">
-				<h1>마이페이지 수정</h1>
-				<form method="post" action="/lms/admin/updateMyPageAction.jsp">
-					<table border="1">
+    <div class="container-scroller">
+        <jsp:include page="/admin/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/admin/include/myPageSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">내 정보 변경</h1>
+     
+		<form method="post" action="/lms/admin/updateMyPageAction.jsp">
+					<table border="1" class="table table-bordered">
 						<tr>
 							<th>번호</th>
 							<td>
@@ -102,8 +103,10 @@
 					</table>
 					<button type="submit">수정</button>
 				</form>
-			</div>
-		</div>		
-	</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>

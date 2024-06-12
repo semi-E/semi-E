@@ -47,26 +47,25 @@
 	//DAO 호출
 	ArrayList<HashMap<String, Object>> selectSubjectList= SubjectDAO.selectSubjectList(subjectName, startRow, rowPerPage);
  %>
-<!DOCTYPE html>
-<html>
 
+ <!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>과목 리스트</title>
-</head>
-
+    <title></title>
+</head>	
 <body>
-    <jsp:include page="/admin/include/header.jsp"></jsp:include>
-    <div class="container-fluid page-body-wrapper">
-        <jsp:include page="/admin/include/classListSidebar.jsp"></jsp:include>
-        <div class="main-panel">
-            <div class="content-wrapper">
-                <h1>과목 리스트</h1>
+    <div class="container-scroller">
+        <jsp:include page="/admin/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/admin/include/classListSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">과목 리스트</h1>
                 <form action="/lms/admin/subjects/subjectList.jsp">
-                    <input type="text" name="subjectName">
-                    <button type="submit">검색</button>
+                    <div><input type="text" name="subjectName"> <button type="submit" class="btn btn-primary mt-3">검색</button></div>
+                   
                 </form>
-                <table border="1">
+                <table border="1" class="table table-bordered">
                     <%
 						for(HashMap m : selectSubjectList){
 					%>
@@ -102,5 +101,7 @@
             </div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
 </body>
 </html>

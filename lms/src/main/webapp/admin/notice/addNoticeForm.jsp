@@ -11,29 +11,31 @@
 %>
 <%
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>addNoticeForm</title>
-</head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>	
 <body>
-	<jsp:include page="/admin/include/header.jsp"></jsp:include>
-		<div class="container-fluid page-body-wrapper">
-			<jsp:include page="/admin/include/noticeSidebar.jsp"></jsp:include>
-				<div class="main-panel">
-					<div class="content-wrapper">		
-					<h1>공지추가하기</h1>
+    <div class="container-scroller">
+        <jsp:include page="/admin/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/admin/include/noticeSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">공지 추가하기</h1>
 					<form action="/lms/admin/notice/addNoticeAction.jsp" method="post">
 						<div>
 							<label for="title">제목</label>
-							<input type="text" name="title" id="title">
+							<input type="text" name="title" id="title" class="form-control" >
 						</div>
 						<div>
 							<label for="content">내용</label>
-							<textarea  name="content" id="content"></textarea>
+							<textarea  name="content" id="content" class="form-control" ></textarea>
 						</div>
-					<button type="submit">공지 추가하기</button>
+					<button type="submit"  class="btn btn-primary mt-3">공지 추가하기</button>
 				</form>
 			</div>
 		</div>

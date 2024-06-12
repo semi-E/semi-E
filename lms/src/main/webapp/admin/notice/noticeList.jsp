@@ -47,27 +47,29 @@
 	//DAO 호출
 	ArrayList<HashMap<String, Object>> selectNoticeList= NoticeDAO.selectNoticeList( title, startRow, rowPerPage);
  %>
-<!DOCTYPE html>
+
+ 
+ <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>공지 리스트</title>
-</head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>	
 <body>
-	<jsp:include page="/admin/include/header.jsp"></jsp:include>
-	<div class="container-fluid page-body-wrapper">
-		<jsp:include page="/admin/include/noticeSidebar.jsp"></jsp:include>
-		<div class="main-panel">
-			<div class="content-wrapper">
-				<h1>공지 리스트</h1>
-				<form action="/lms/admin/notice/noticeList.jsp" method="get">
+    <div class="container-scroller">
+        <jsp:include page="/admin/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
+            <jsp:include page="/admin/include/noticeSidebar.jsp"></jsp:include>
+            <div class="container mt-5">
+                <h1 class="mb-4">공지 리스트</h1>
+		<form action="/lms/admin/notice/noticeList.jsp" method="get">
 					<input  type="text" name="title">
-					<button type="submit">검색</button>
+					<button type="submit" class="btn btn-primary mt-3">검색</button>
 				</form>
 				
 				
 				
-				<table border="1">
+				<table border="1"  class="table table-bordered">
 						<tr>
 							<th>게시물 이름</th>
 							<th></th>

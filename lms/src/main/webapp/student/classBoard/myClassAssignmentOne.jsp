@@ -24,19 +24,22 @@
 	
 	HashMap<String ,Object> studentAssignment = StudentAssignmentDAO.selectStudentAssignment(assignmentNo, studentNo);
 %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>	
 <body>
-	<div class="container-scroller">
-		<jsp:include page="/student/include/header.jsp"></jsp:include>
-		<div class="container-fluid page-body-wrapper">
+    <div class="container-scroller">
+        <jsp:include page="/student/include/header.jsp"></jsp:include>
+        <div class="container-fluid page-body-wrapper">
             <jsp:include page="/student/include/classBoardSidebar.jsp"></jsp:include>
-			<h1>과제 상세보기</h1>
-			<table border="1">
+            <div class="container mt-5">
+                <h1 class="mb-4">과제 상세보기</h1>
+			<table border="1"  class="table table-bordered">
 				<tr>
 					<th>제목</th>
 					<td><%=assignment.get("title") %></td>
@@ -58,8 +61,10 @@
 			<%
 				if(studentAssignment != null){
 			%>
+			
+			<br><br>
 					<h2>제출 과제</h2>
-					<table border="1">
+					<table border="1"  class="table table-bordered">
 						<tr>
 							<th>제목</th>
 							<td><%=studentAssignment.get("title") %></td>
@@ -91,5 +96,6 @@
 			%>
 		</div>
 	</div>
+</div>
 </body>
 </html>
